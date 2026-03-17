@@ -3,194 +3,621 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FLOWZ – Booking</title>
-
+  <title>FLOWZ – Artist Press Kit</title>
   <style>
-    body {
-      margin: 0;
-      padding: 24px;
-      background: radial-gradient(circle at top, #1a1a1a, #0b0b0b);
-      color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+    :root {
+      --bg: #090909;
+      --panel: rgba(18,18,18,0.78);
+      --panel-strong: rgba(26,26,26,0.92);
+      --text: #f5f5f5;
+      --muted: #b0b0b0;
+      --soft: #7f7f7f;
+      --line: rgba(255,255,255,0.08);
+      --accent: #ffffff;
+      --max: 1120px;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
     }
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      padding: 28px;
-      background: rgba(25, 25, 25, 0.9);
-      border-radius: 20px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.6),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.78)),
+        radial-gradient(circle at top, #1a1a1a 0%, #0b0b0b 40%, #090909 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.85) 12%, rgba(0,0,0,.42) 54%, rgba(0,0,0,.18) 100%),
+        url('photo_header.jpg') center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 15%, rgba(255,255,255,.10), transparent 28%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 32px 24px 40px;
+      animation: fadeUp .9s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,.24);
+      color: #d6d6d6;
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
 
     .logo {
-      width: 180px;
-      max-width: 100%;
-      margin: 0 auto 14px;
+      width: min(340px, 72vw);
       display: block;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.34));
     }
 
-    .subtitle {
-      display: block;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-bottom: 18px;
-      font-weight: 600;
+    .hero-copy {
+      max-width: 690px;
     }
 
-    p {
-      color: #cfcfcf;
-      font-size: 14px;
-      line-height: 1.6;
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 7vw, 74px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    .hero-sub {
       margin: 0 0 20px;
+      color: #d7d7d7;
+      font-size: clamp(16px, 2vw, 20px);
+      max-width: 650px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 0;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(8px);
+      color: #e5e5e5;
+      font-size: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
     }
 
     .btn {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px 16px;
-      margin-top: 10px;
-      border-radius: 12px;
-      font-size: 14px;
-      border: none;
-      cursor: pointer;
-      transition:
-        transform 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease,
-        box-shadow 0.22s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
       text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, opacity .2s ease;
     }
 
-    .btn:active {
-      transform: scale(0.98);
-    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0) scale(.98); }
 
-    .primary {
+    .btn-primary {
       background: #fff;
       color: #111;
-      font-weight: 500;
-      box-shadow: 0 6px 18px rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 28px rgba(255,255,255,.10);
     }
 
-    .primary:hover {
+    .btn-secondary {
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      border-color: rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+    }
+
+    main {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 30px 24px 70px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      margin-top: -42px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      padding: 24px;
+    }
+
+    .section {
+      margin-top: 22px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+
+    .lead {
+      color: #d8d8d8;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .muted { color: var(--muted); }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .fact {
+      padding: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px;
+    }
+
+    .fact-label {
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .fact-value {
+      font-size: 15px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .bio {
+      color: #d4d4d4;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .bio p { margin: 0 0 14px; }
+
+    .quote {
+      margin-top: 18px;
+      padding: 18px 18px 18px 20px;
+      border-left: 2px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      color: #ececec;
+      font-size: 15px;
+      font-style: italic;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .list-item:last-child { border-bottom: 0; }
+
+    .show-title {
+      font-weight: 600;
+      color: #f1f1f1;
+    }
+
+    .show-meta {
+      color: #9f9f9f;
+      font-size: 14px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      aspect-ratio: 4 / 5;
+      background: #141414;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .45s ease;
+    }
+
+    .photo:hover img { transform: scale(1.03); }
+
+    .links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      text-decoration: none;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .link-card:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
     }
 
-    .secondary {
-      background: #2a2a2a;
+    .link-label {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #f1f1f1;
+    }
+
+    .link-sub {
+      display: block;
+      font-size: 13px;
+      color: #9d9d9d;
+      margin-top: 2px;
+    }
+
+    .contact-card {
+      background: var(--panel-strong);
+    }
+
+    .contact-row {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .contact-box {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .contact-label {
+      color: var(--soft);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .contact-value {
+      font-size: 16px;
       color: #fff;
       font-weight: 600;
-      padding: 14px 16px;
+      word-break: break-word;
     }
 
-    .secondary:hover {
-      background: #333;
+    .footer-cta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .secondary.copied {
+    .drive-btn {
+      width: 100%;
+      justify-content: center;
       background: #fff;
       color: #111;
-      transform: scale(1.03);
-      box-shadow: 0 10px 24px rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 16px 18px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(255,255,255,.10);
     }
 
-    .secondary.failed {
-      background: #4a2222;
-      color: #fff;
-      transform: scale(1.03);
-      box-shadow: 0 10px 24px rgba(120, 0, 0, 0.18);
-    }
-
-    .mail {
-      margin-top: 14px;
-      font-size: 14px;
-      color: #aaa;
-      display: none;
-      word-break: break-all;
-    }
-
-    .note {
-      margin-top: 14px;
+    .small {
+      color: #8e8e8e;
       font-size: 13px;
-      color: #777;
-      min-height: 18px;
+      margin-top: 12px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+        margin-top: -26px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell, main, .hero-inner { padding-left: 18px; padding-right: 18px; }
+      .hero { min-height: 82vh; background-position: center top; }
+      .card { padding: 20px; border-radius: 18px; }
+      .facts { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .list-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .show-meta {
+        text-align: left;
+        white-space: normal;
+      }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
     }
   </style>
 </head>
-
 <body>
-  <div class="card">
-    <img src="logo.png" alt="FLOWZ" class="logo">
-    <span class="subtitle">Booking Inquiries</span>
-
-    <p>
-      For booking inquiries, please include the details below.
-    </p>
-
-    <a
-      class="btn primary"
-      href="mailto:marvin@subvoidagency.com?subject=Booking%20Inquiry%20%E2%80%93%20FLOWZ&body=Booking%20Inquiry%20%E2%80%93%20FLOWZ%0A%0AEvent%20Name%3A%0ADate%3A%0ALocation%3A%0AVenue%20%2F%20Club%3A%0ACapacity%3A%0AFee%20%2F%20Budget%3A%0A%0AAdditional%20Details%3A"
-    >
-      Open Email
-    </a>
-
-    <button class="btn secondary" id="copyBtn" onclick="copyMail()">
-      📋 Copy Email
-    </button>
-
-    <div class="mail" id="mail">
-      marvin@subvoidagency.com
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Artist Press Kit</div>
+      <img src="logo.png" alt="FLOWZ" class="logo">
+      <div class="hero-copy">
+        <h2>Drum &amp; Bass artist from Cologne</h2>
+        <p class="hero-sub">
+          FLOWZ delivers high-energy sets across Dancefloor, Neurofunk and UK Jump Up. Built for clubs, festivals and intense crowd connection.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF?usp=drive_link" target="_blank" rel="noreferrer">Download Press Kit</a>
+        <a class="btn btn-secondary" href="mailto:marvin@subvoidagency.com?subject=Booking%20Inquiry%20%E2%80%93%20FLOWZ&body=Booking%20Inquiry%20%E2%80%93%20FLOWZ%0A%0AEvent%20Name%3A%0ADate%3A%0ALocation%3A%0AVenue%20%2F%20Club%3A%0ACapacity%3A%0AFee%20%2F%20Budget%3A%0A%0AAdditional%20Details%3A">Booking Inquiry</a>
+        <a class="btn btn-secondary" href="#contact">Contact &amp; Links</a>
+      </div>
     </div>
+  </section>
 
-    <div class="note" id="note">
-      If nothing happens, copy the email manually.
+  <main>
+    <div class="grid">
+      <div>
+        <section class="card section">
+          <h2>About FLOWZ</h2>
+          <div class="bio">
+            <p>Florian, aka FLOWZ, is a Drum &amp; Bass artist from Cologne, Germany. His connection to music started early through piano and later turned into a deep passion for electronic music and DJ culture.</p>
+            <p>What began with internet radio stations and a first DJ controller at the age of 13 evolved into years of practice, club experience and a relentless commitment to growth. Today, FLOWZ is known for energetic, story-driven sets that move between Dancefloor, Neurofunk and UK Jump Up without losing flow or identity.</p>
+            <p>From warm-up to peak time or closing, he adapts confidently to every slot — always aiming to create high-energy moments, emotional turns and unforgettable crowd reactions.</p>
+          </div>
+          <div class="quote">
+            “Music is not just a hobby for me; it’s a passion. In every set, I try to tell a story and take people on an emotional journey.”
+          </div>
+        </section>
+
+        <section class="card section">
+          <h2>Selected Shows</h2>
+          <div class="list">
+            <div class="list-item">
+              <div>
+                <div class="show-title">WORLD CLUB DOME — Bass Division Stage</div>
+              </div>
+              <div class="show-meta">Frankfurt, DE · 2022</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">KING-S Festival Koningsdag</div>
+              </div>
+              <div class="show-meta">Eindhoven, NL · 2023</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">Electrisize Festival — Blackout Stage</div>
+              </div>
+              <div class="show-meta">Erkelenz, DE · 2019</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">Bootshaus</div>
+              </div>
+              <div class="show-meta">Cologne, DE · Multiple Shows</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">Fiber w/ MUZZ, Grafix, Andromedik</div>
+              </div>
+              <div class="show-meta">Nijmegen, NL · 2022</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">Blacklist w/ Hedex, Serum, Madcore</div>
+              </div>
+              <div class="show-meta">Cologne, DE · 2025</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">BREAKZONE Festival w/ Phace, Zombie Cats</div>
+              </div>
+              <div class="show-meta">Cologne, DE · 2025</div>
+            </div>
+            <div class="list-item">
+              <div>
+                <div class="show-title">808 FAMILY w/ AC13, Subsonic</div>
+              </div>
+              <div class="show-meta">Cologne, DE · 2024</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card section">
+          <h2>Media</h2>
+          <p class="lead muted">A small selection of photos from recent shows</p>
+          <div class="photo-grid">
+            <div class="photo">
+              <img src="photo1.jpg" alt="FLOWZ press photo 1">
+            </div>
+            <div class="photo">
+              <img src="photo2.jpg" alt="FLOWZ press photo 2">
+            </div>
+            <div class="photo">
+              <img src="photo3.jpg" alt="FLOWZ press photo 3">
+            </div>
+            <div class="photo">
+              <img src="photo4.jpg" alt="FLOWZ press photo 4">
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div>
+        <section class="card section">
+          <h2>Key Facts</h2>
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-label">Artist</div>
+              <div class="fact-value">FLOWZ</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Based In</div>
+              <div class="fact-value">Cologne, Germany</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Genre</div>
+              <div class="fact-value">Drum &amp; Bass</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Styles</div>
+              <div class="fact-value">Dancefloor, UK Jump Up, Neurofunk, Liquid</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Formats</div>
+              <div class="fact-value">Clubs, Festivals, Special Events</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Crew</div>
+              <div class="fact-value">Resident DJ at 808 FAMILY</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card section">
+          <h2>Music &amp; Socials</h2>
+          <div class="links">
+            <a class="link-card" href="https://www.instagram.com/iam.flowz/" target="_blank" rel="noreferrer">
+              <div>
+                <span class="link-label">Instagram</span>
+                <span class="link-sub">@iam.flowz</span>
+              </div>
+              <span>↗</span>
+            </a>
+            <a class="link-card" href="https://soundcloud.com/iamflowz" target="_blank" rel="noreferrer">
+              <div>
+                <span class="link-label">SoundCloud</span>
+                <span class="link-sub">Latest mixes and uploads</span>
+              </div>
+              <span>↗</span>
+            </a>
+            <a class="link-card" href="https://www.youtube.com/@iamflowz" target="_blank" rel="noreferrer">
+              <div>
+                <span class="link-label">YouTube</span>
+                <span class="link-sub">Videos and live content</span>
+              </div>
+              <span>↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="card section contact-card" id="contact">
+          <h2>Contact</h2>
+          <p class="lead muted">For booking inquiries, please reach out directly or use the full press kit below.</p>
+          <div class="contact-row">
+            <div class="contact-box">
+              <div class="contact-label">Booking Email</div>
+              <div class="contact-value">marvin@subvoidagency.com</div>
+            </div>
+            <div class="contact-box">
+              <div class="contact-label">Availability</div>
+              <div class="contact-value">Club Shows · Festivals · Special Events</div>
+            </div>
+          </div>
+          <div class="footer-cta" style="flex-direction:column;">
+            <a class="btn drive-btn" style="order:-1; font-size:16px; padding:18px 20px; box-shadow:0 16px 40px rgba(255,255,255,.18);" href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF?usp=drive_link" target="_blank" rel="noreferrer">Download Press Kit</a>
+            <a class="btn btn-primary" href="mailto:marvin@subvoidagency.com?subject=Booking%20Inquiry%20%E2%80%93%20FLOWZ&body=Booking%20Inquiry%20%E2%80%93%20FLOWZ%0A%0AEvent%20Name%3A%0ADate%3A%0ALocation%3A%0AVenue%20%2F%20Club%3A%0ACapacity%3A%0AFee%20%2F%20Budget%3A%0A%0AAdditional%20Details%3A">Send Booking Inquiry</a>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
-
-  <script>
-    function copyMail() {
-      const mail = "marvin@subvoidagency.com";
-      const note = document.getElementById("note");
-      const mailEl = document.getElementById("mail");
-      const btn = document.getElementById("copyBtn");
-
-      navigator.clipboard.writeText(mail).then(() => {
-        note.textContent = "Email copied.";
-        btn.textContent = "✓ Copied";
-        btn.classList.remove("failed");
-        btn.classList.add("copied");
-
-        setTimeout(() => {
-          btn.textContent = "📋 Copy Email";
-          btn.classList.remove("copied");
-        }, 1300);
-      }).catch(() => {
-        note.textContent = "Copy failed. Showing address below.";
-        mailEl.style.display = "block";
-        btn.textContent = "✕ Failed";
-        btn.classList.remove("copied");
-        btn.classList.add("failed");
-
-        setTimeout(() => {
-          btn.textContent = "📋 Copy Email";
-          btn.classList.remove("failed");
-        }, 1500);
-      });
-    }
-  </script>
+  </main>
 </body>
 </html>
