@@ -444,19 +444,37 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 920px) {
-      .content-grid {
+    @media (max-width: 1100px) {
+      .photo-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .stack {
-        display: contents;
       }
     }
 
+    @media (max-width: 920px) {
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 22px;
+        margin-top: -26px;
+      }
+
+      .stack {
+        display: contents !important;
+      }
+
+      .about-section { order: 1; }
+      .keyfacts-section { order: 2; }
+      .shows-section { order: 3; }
+      .sets-section { order: 4; }
+      .socials-section { order: 5; }
+      .contact-section { order: 6; }
+      .media-section { order: 7; }
+    }
+
     @media (max-width: 640px) {
-      .photo-grid {
-    	grid-template-columns: 1fr;
+      main, .hero-inner {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
       .hero {
@@ -474,7 +492,7 @@
       }
 
       .photo-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
 
       .list-item {
@@ -513,7 +531,6 @@
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF?usp=drive_link" target="_blank" rel="noreferrer">Download Full Press Kit</a>
         <a class="btn btn-secondary" href="mailto:marvin@subvoidagency.com?subject=Booking%20Inquiry%20-%20FLOWZ&body=Booking%20Inquiry%20-%20FLOWZ%0A%0AEvent%20Name%3A%0ADate%3A%0ALocation%3A%0AVenue%20%2F%20Club%3A%0ACapacity%3A%0AFee%20%2F%20Budget%3A%0A%0AAdditional%20Details%3A">Booking Inquiry</a>
-        <a class="btn btn-secondary" href="#contact">Contact &amp; Links</a>
       </div>
     </div>
   </section>
@@ -557,17 +574,18 @@
               <div class="show-meta">Nijmegen, NL · 2022</div>
             </div>
             <div class="list-item">
+              <div><div class="show-title">808 FAMILY w/ AC13, Subsonic</div></div>
+              <div class="show-meta">Cologne, DE · 2024</div>
+            </div>
+            <div class="list-item">
               <div><div class="show-title">Blacklist w/ Hedex, Serum, Madcore</div></div>
               <div class="show-meta">Cologne, DE · 2025</div>
             </div>
             <div class="list-item">
-              <div><div class="show-title">BREAKZONE Festival w/ Phace, Zombie Cats</div></div>
-              <div class="show-meta">Cologne, DE · 2025</div>
+              <div><div class="show-title">BAD BEHAVIOUR w/ Primate, Feed The Fire</div></div>
+              <div class="show-meta">Mönchengladbach, DE · 2026</div>
             </div>
-            <div class="list-item">
-              <div><div class="show-title">808 FAMILY w/ AC13, Subsonic</div></div>
-              <div class="show-meta">Cologne, DE · 2024</div>
-            </div>
+
           </div>
         </section>
       </div>
