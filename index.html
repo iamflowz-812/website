@@ -35,12 +35,6 @@
 
     a { color: inherit; }
 
-    .shell {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      padding: 24px;
-    }
-
     .hero {
       position: relative;
       min-height: 90vh;
@@ -94,7 +88,7 @@
       max-width: 690px;
     }
 
-    h1 {
+    .hero-copy h2 {
       margin: 0 0 10px;
       font-size: clamp(34px, 7vw, 74px);
       line-height: 0.98;
@@ -170,13 +164,19 @@
       padding: 30px 24px 70px;
     }
 
-    .grid {
+    .content-grid {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 22px;
       margin-top: -42px;
       position: relative;
       z-index: 3;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 22px;
     }
 
     .card {
@@ -188,8 +188,8 @@
       padding: 24px;
     }
 
-    .section {
-      margin-top: 22px;
+    .contact-card {
+      background: var(--panel-strong);
     }
 
     .section h2 {
@@ -344,10 +344,6 @@
       margin-top: 2px;
     }
 
-    .contact-card {
-      background: var(--panel-strong);
-    }
-
     .contact-row {
       display: grid;
       gap: 12px;
@@ -381,6 +377,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      flex-direction: column;
     }
 
     .drive-btn {
@@ -395,40 +392,59 @@
       box-shadow: 0 12px 28px rgba(255,255,255,.10);
     }
 
-    .small {
-      color: #8e8e8e;
-      font-size: 13px;
-      margin-top: 12px;
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 920px) {
-      .grid {
+      .content-grid {
         grid-template-columns: 1fr;
         margin-top: -26px;
       }
     }
 
     @media (max-width: 640px) {
-      .shell, main, .hero-inner { padding-left: 18px; padding-right: 18px; }
-      .hero { min-height: 82vh; background-position: center top; }
-      .card { padding: 20px; border-radius: 18px; }
-      .facts { grid-template-columns: 1fr; }
-      .photo-grid { grid-template-columns: 1fr; }
+      main, .hero-inner {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero {
+        min-height: 82vh;
+        background-position: center top;
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 18px;
+      }
+
+      .facts {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
       .list-item {
         flex-direction: column;
         align-items: flex-start;
       }
+
       .show-meta {
         text-align: left;
         white-space: normal;
       }
-      .hero-actions { flex-direction: column; }
-      .hero-actions .btn { width: 100%; }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -440,7 +456,7 @@
       <div class="hero-copy">
         <h2>Drum &amp; Bass artist from Cologne</h2>
         <p class="hero-sub">
-          FLOWZ delivers high-energy sets across Dancefloor, Neurofunk and UK Jump Up. Built for clubs, festivals and intense crowd connection.
+          FLOWZ delivers high-energy Drum & Bass sets blending Dancefloor, Neurofunk and UK Jump Up. Built for clubs, festivals and unforgettable crowd moments.
         </p>
       </div>
       <div class="hero-actions">
@@ -452,14 +468,14 @@
   </section>
 
   <main>
-    <div class="grid">
-      <div>
+    <div class="content-grid">
+      <div class="stack">
         <section class="card section">
           <h2>About FLOWZ</h2>
           <div class="bio">
             <p>Florian, aka FLOWZ, is a Drum &amp; Bass artist from Cologne, Germany. His connection to music started early through piano and later turned into a deep passion for electronic music and DJ culture.</p>
             <p>What began with internet radio stations and a first DJ controller at the age of 13 evolved into years of practice, club experience and a relentless commitment to growth. Today, FLOWZ is known for energetic, story-driven sets that move between Dancefloor, Neurofunk and UK Jump Up without losing flow or identity.</p>
-            <p>From warm-up to peak time or closing, he adapts confidently to every slot — always aiming to create high-energy moments, emotional turns and unforgettable crowd reactions.</p>
+            <p>From warm-up to peak time or closing, he adapts confidently to every slot. Always aiming to create high-energy moments, emotional turns and unforgettable crowd reactions.</p>
           </div>
           <div class="quote">
             “Music is not just a hobby for me; it’s a passion. In every set, I try to tell a story and take people on an emotional journey.”
@@ -470,51 +486,35 @@
           <h2>Selected Shows</h2>
           <div class="list">
             <div class="list-item">
-              <div>
-                <div class="show-title">WORLD CLUB DOME — Bass Division Stage</div>
-              </div>
+              <div><div class="show-title">WORLD CLUB DOME - Bass Division Stage</div></div>
               <div class="show-meta">Frankfurt, DE · 2022</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">KING-S Festival Koningsdag</div>
-              </div>
+              <div><div class="show-title">KING-S Festival Koningsdag</div></div>
               <div class="show-meta">Eindhoven, NL · 2023</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">Electrisize Festival — Blackout Stage</div>
-              </div>
+              <div><div class="show-title">Electrisize Festival - Blackout Stage</div></div>
               <div class="show-meta">Erkelenz, DE · 2019</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">Bootshaus</div>
-              </div>
+              <div><div class="show-title">Bootshaus</div></div>
               <div class="show-meta">Cologne, DE · Multiple Shows</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">Fiber w/ MUZZ, Grafix, Andromedik</div>
-              </div>
+              <div><div class="show-title">Fiber w/ MUZZ, Grafix, Andromedik</div></div>
               <div class="show-meta">Nijmegen, NL · 2022</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">Blacklist w/ Hedex, Serum, Madcore</div>
-              </div>
+              <div><div class="show-title">Blacklist w/ Hedex, Serum, Madcore</div></div>
               <div class="show-meta">Cologne, DE · 2025</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">BREAKZONE Festival w/ Phace, Zombie Cats</div>
-              </div>
+              <div><div class="show-title">BREAKZONE Festival w/ Phace, Zombie Cats</div></div>
               <div class="show-meta">Cologne, DE · 2025</div>
             </div>
             <div class="list-item">
-              <div>
-                <div class="show-title">808 FAMILY w/ AC13, Subsonic</div>
-              </div>
+              <div><div class="show-title">808 FAMILY w/ AC13, Subsonic</div></div>
               <div class="show-meta">Cologne, DE · 2024</div>
             </div>
           </div>
@@ -522,25 +522,17 @@
 
         <section class="card section">
           <h2>Media</h2>
-          <p class="lead muted">A small selection of photos from recent shows</p>
+          <p class="lead muted">A small selection of press pictures and photos from recent shows.</p>
           <div class="photo-grid">
-            <div class="photo">
-              <img src="photo1.jpg" alt="FLOWZ press photo 1">
-            </div>
-            <div class="photo">
-              <img src="photo2.jpg" alt="FLOWZ press photo 2">
-            </div>
-            <div class="photo">
-              <img src="photo3.jpg" alt="FLOWZ press photo 3">
-            </div>
-            <div class="photo">
-              <img src="photo4.jpg" alt="FLOWZ press photo 4">
-            </div>
+            <div class="photo"><img src="photo1.jpg" alt="FLOWZ press photo 1"></div>
+            <div class="photo"><img src="photo2.jpg" alt="FLOWZ press photo 2"></div>
+            <div class="photo"><img src="photo3.jpg" alt="FLOWZ press photo 3"></div>
+            <div class="photo"><img src="photo4.jpg" alt="FLOWZ press photo 4"></div>
           </div>
         </section>
       </div>
 
-      <div>
+      <div class="stack">
         <section class="card section">
           <h2>Key Facts</h2>
           <div class="facts">
@@ -558,7 +550,7 @@
             </div>
             <div class="fact">
               <div class="fact-label">Styles</div>
-              <div class="fact-value">Dancefloor, UK Jump Up, Neurofunk, Liquid</div>
+              <div class="fact-value">Dancefloor, Neurofunk, UK Jump Up</div>
             </div>
             <div class="fact">
               <div class="fact-label">Formats</div>
@@ -600,7 +592,7 @@
 
         <section class="card section contact-card" id="contact">
           <h2>Contact</h2>
-          <p class="lead muted">For booking inquiries, please reach out directly or use the full press kit below.</p>
+          <p class="lead muted">For booking inquiries, please contact us directly via the email address provided. Further information can be found in the press kit provided.</p>
           <div class="contact-row">
             <div class="contact-box">
               <div class="contact-label">Booking Email</div>
@@ -611,8 +603,8 @@
               <div class="contact-value">Club Shows · Festivals · Special Events</div>
             </div>
           </div>
-          <div class="footer-cta" style="flex-direction:column;">
-            <a class="btn drive-btn" style="order:-1; font-size:16px; padding:18px 20px; box-shadow:0 16px 40px rgba(255,255,255,.18);" href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF?usp=drive_link" target="_blank" rel="noreferrer">Download Press Kit</a>
+          <div class="footer-cta">
+            <a class="btn drive-btn" href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF?usp=drive_link" target="_blank" rel="noreferrer">Download Press Kit</a>
             <a class="btn btn-primary" href="mailto:marvin@subvoidagency.com?subject=Booking%20Inquiry%20%E2%80%93%20FLOWZ&body=Booking%20Inquiry%20%E2%80%93%20FLOWZ%0A%0AEvent%20Name%3A%0ADate%3A%0ALocation%3A%0AVenue%20%2F%20Club%3A%0ACapacity%3A%0AFee%20%2F%20Budget%3A%0A%0AAdditional%20Details%3A">Send Booking Inquiry</a>
           </div>
         </section>
