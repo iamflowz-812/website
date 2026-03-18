@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="/favicon.png">
   <title>FLOWZ - Artist Press Kit</title>
-  <!-- SEO -->
-  <meta name="description" content="Drum & Bass artist from Cologne. Press kit, live sets, booking info and media."> 
-  <!-- Open Graph (WhatsApp, Discord, etc.) -->
+  <meta name="description" content="Drum & Bass artist from Cologne. Press kit, live sets, booking info and media.">
   <meta property="og:title" content="FLOWZ - Artist Press Kit">
   <meta property="og:image" content="https://presskit.iamflowz.de/preview.jpg">
   <meta property="og:description" content="Official Press Kit & Media">
@@ -456,6 +454,130 @@
       margin-top: 22px;
     }
 
+    .consent-embed {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .consent-embed.video {
+      aspect-ratio: 16 / 9;
+    }
+
+    .consent-embed.audio {
+      min-height: 220px;
+    }
+
+    .consent-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,.02), rgba(255,255,255,.04)),
+        radial-gradient(circle at top, rgba(255,255,255,.06), transparent 40%);
+    }
+
+    .consent-placeholder-inner {
+      max-width: 520px;
+    }
+
+    .consent-badge {
+      display: inline-block;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: #d4d4d4;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .consent-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f1f1f1;
+      margin-bottom: 10px;
+    }
+
+    .consent-text {
+      color: #bdbdbd;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 auto 18px;
+    }
+
+    .consent-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .consent-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .consent-btn:hover { transform: translateY(-1px); }
+
+    .consent-btn-primary {
+      background: #fff;
+      color: #111;
+      border: 1px solid transparent;
+    }
+
+    .consent-btn-secondary {
+      background: rgba(255,255,255,.05);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .consent-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .consent-embed.audio iframe {
+      min-height: 220px;
+    }
+
+    .legal-footer {
+      width: min(100%, var(--max));
+      margin: 20px auto 40px;
+      padding: 0 24px;
+      text-align: center;
+      color: #9f9f9f;
+      font-size: 14px;
+    }
+
+    .legal-footer a {
+      text-decoration: none;
+    }
+
+    .legal-footer a:hover {
+      text-decoration: underline;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
@@ -534,6 +656,18 @@
         font-size: 22px;
         line-height: 1.12;
       }
+
+      .consent-placeholder {
+        padding: 18px;
+      }
+
+      .consent-actions {
+        flex-direction: column;
+      }
+
+      .consent-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -602,7 +736,6 @@
               <div><div class="show-title">BAD BEHAVIOUR w/ Primate, Feed The Fire</div></div>
               <div class="show-meta">Mönchengladbach, DE · 2026</div>
             </div>
-
           </div>
         </section>
       </div>
@@ -652,15 +785,61 @@
           <div class="embed-stack">
             <div class="embed-card">
               <span class="embed-title">YouTube - Container Rave Liveset</span>
-              <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/KE9rXPWRyV0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <div class="consent-embed video" id="youtube-consent">
+                <div class="consent-placeholder">
+                  <div class="consent-placeholder-inner">
+                    <div class="consent-badge">External Content</div>
+                    <div class="consent-title">Load YouTube video</div>
+                    <p class="consent-text">
+                      By loading this video, data may be transmitted to YouTube or Google. The content will only be loaded after you click the button.
+                    </p>
+                    <div class="consent-actions">
+                      <button
+                        type="button"
+                        class="consent-btn consent-btn-primary"
+                        onclick="loadEmbed('youtube-consent', 'https://www.youtube-nocookie.com/embed/KE9rXPWRyV0?rel=0', true)">
+                        Load YouTube
+                      </button>
+                      <a
+                        class="consent-btn consent-btn-secondary"
+                        href="https://www.youtube.com/watch?v=KE9rXPWRyV0"
+                        target="_blank"
+                        rel="noreferrer">
+                        Open on YouTube
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="embed-card">
               <span class="embed-title">SoundCloud - YEARMIX 2025</span>
-              <div class="soundcloud-embed">
-                <iframe height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+              <div class="consent-embed audio" id="soundcloud-consent">
+                <div class="consent-placeholder">
+                  <div class="consent-placeholder-inner">
+                    <div class="consent-badge">External Content</div>
+                    <div class="consent-title">Load SoundCloud player</div>
+                    <p class="consent-text">
+                      By loading this player, data may be transmitted to SoundCloud. The content will only be loaded after you click the button.
+                    </p>
+                    <div class="consent-actions">
+                      <button
+                        type="button"
+                        class="consent-btn consent-btn-primary"
+                        onclick="loadEmbed('soundcloud-consent', 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=true', false)">
+                        Load SoundCloud
+                      </button>
+                      <a
+                        class="consent-btn consent-btn-secondary"
+                        href="https://soundcloud.com/iamflowz/yearmix-2025"
+                        target="_blank"
+                        rel="noreferrer">
+                        Open on SoundCloud
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="soundcloud-meta">
                 <a href="https://soundcloud.com/iamflowz" title="FLOWZ" target="_blank" rel="noreferrer">FLOWZ</a> ·
@@ -752,5 +931,36 @@
       </div>
     </section>
   </main>
+
+  <footer class="legal-footer">
+    <a href="/impressum.html">Impressum</a>
+    <span style="opacity:.5;"> · </span>
+    <a href="/datenschutz.html">Datenschutz</a>
+  </footer>
+
+  <script>
+    function loadEmbed(containerId, src, isVideo) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+      if (isVideo) {
+        iframe.title = 'YouTube video player';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+      } else {
+        iframe.title = 'SoundCloud player';
+        iframe.setAttribute('scrolling', 'no');
+        iframe.setAttribute('allow', 'autoplay');
+      }
+
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    }
+  </script>
 </body>
 </html>
