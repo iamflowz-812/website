@@ -431,7 +431,7 @@
 
     .consent-embed[data-embed-type="youtube"] {
       aspect-ratio: 16 / 9;
-      max-width: 660px;
+	  max-width: 660px
       min-height: 240px;
     }
 
@@ -546,6 +546,18 @@
       cursor: pointer;
     }
 
+    .cookie-settings {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      display: none;
+    }
+
+    .cookie-settings.is-visible {
+      display: inline-flex;
+    }
+
     .fact:hover,
     .contact-box:hover {
       transform: translateY(-1px);
@@ -657,7 +669,8 @@
         line-height: 1.12;
       }
 
-      .cookie-banner {
+      .cookie-banner,
+      .cookie-settings {
         left: 14px;
         right: 14px;
         bottom: 14px;
@@ -682,6 +695,10 @@
         width: 100%;
         display: grid;
         grid-template-columns: 1fr;
+      }
+
+      .cookie-settings {
+        width: auto;
       }
     }
   </style>
@@ -921,8 +938,8 @@
     <div class="cookie-actions">
       <button type="button" class="btn btn-secondary" id="cookie-decline">Ablehnen</button>
       <button type="button" class="btn btn-primary" id="cookie-accept">Akzeptieren</button>
+  </div>const settingsButton = document.getElementById('cookie-settings-button');
     </div>
-  </div>
 
   <script>
     const CONSENT_KEY = 'flowz_external_media_consent';
@@ -1013,12 +1030,10 @@
 
     acceptButton.addEventListener('click', () => setConsent('accepted'));
     declineButton.addEventListener('click', () => setConsent('declined'));
-
-    footerSettingsTrigger.addEventListener('click', () => {
+    settingsButton.addEventListener('click', () => {
       document.cookie = `${CONSENT_KEY}=; path=/; max-age=0; SameSite=Lax`;
       updateConsentUI();
       renderEmbeds();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
 
     updateConsentUI();
