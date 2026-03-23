@@ -696,7 +696,10 @@
         display: grid;
         grid-template-columns: 1fr;
       }
-
+	  
+	  #cookie-settings-button {
+      display: none !important;
+	  
       .cookie-settings {
         width: auto;
       }
@@ -938,13 +941,16 @@
     <div class="cookie-actions">
       <button type="button" class="btn btn-secondary" id="cookie-decline">Ablehnen</button>
       <button type="button" class="btn btn-primary" id="cookie-accept">Akzeptieren</button>
-  </div>const settingsButton = document.getElementById('cookie-settings-button');
     </div>
+  </div>
+
+  <button type="button" class="cookie-manage cookie-settings" id="cookie-settings-button">Cookie-Einstellungen</button>
 
   <script>
     const CONSENT_KEY = 'flowz_external_media_consent';
     const embeds = document.querySelectorAll('.consent-embed');
     const banner = document.getElementById('cookie-banner');
+    const settingsButton = document.getElementById('cookie-settings-button');
     const footerSettingsTrigger = document.getElementById('cookie-settings-trigger');
     const acceptButton = document.getElementById('cookie-accept');
     const declineButton = document.getElementById('cookie-decline');
@@ -1026,6 +1032,7 @@
       const hasDecision = consent === 'accepted' || consent === 'declined';
 
       banner.classList.toggle('is-visible', !hasDecision);
+      settingsButton.classList.toggle('is-visible', hasDecision);
     }
 
     acceptButton.addEventListener('click', () => setConsent('accepted'));
@@ -1034,6 +1041,12 @@
       document.cookie = `${CONSENT_KEY}=; path=/; max-age=0; SameSite=Lax`;
       updateConsentUI();
       renderEmbeds();
+    });
+    footerSettingsTrigger.addEventListener('click', () => {
+      document.cookie = `${CONSENT_KEY}=; path=/; max-age=0; SameSite=Lax`;
+      updateConsentUI();
+      renderEmbeds();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
 
     updateConsentUI();
