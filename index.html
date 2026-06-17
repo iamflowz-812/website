@@ -1,28 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-  background: var(--bg);
-  color: var(--dark);
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  margin: 0;
-}
-</style>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PRESS KIT - FLOWZ</title>
+  
   <link rel="icon" type="image/png" href="favicon.png"/>
   <link rel="shortcut icon" href="favicon.png"/>
+  
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  
   <style>
     :root {
       --bg: #f2f0eb;
@@ -34,7 +21,7 @@ body {
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--dark); font-family: 'Inter', sans-serif; font-size: 16px; }
+    body { background: var(--bg); color: var(--dark); font-family: 'Inter', sans-serif; font-size: 16px; padding-top: 60px; }
 
     /* ── NAV ── */
     nav {
@@ -44,24 +31,14 @@ body {
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-logo {
-      font-family: 'Anton', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      color: #fff;
-      text-decoration: none;
-    }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
+    .nav-logo-link { display: flex; align-items: center; text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(255,255,255,0.5);
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -79,16 +56,13 @@ body {
       transition: background 0.2s;
       white-space: nowrap;
     }
-    .nav-presskit:hover { background: var(--red) !important; }
+    .nav-presskit:hover { background: #c01108 !important; }
     .nav-toggle {
       display: none;
       background: none; border: none; cursor: pointer;
       flex-direction: column; gap: 5px;
     }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--dark); }
-    .nav-links a { color: rgba(255,255,255,0.5); }
-    .nav-links a:hover { color: var(--red); }
-    .nav-toggle span { background: #fff; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; }
 
     /* ── HERO ── */
     header {
@@ -102,14 +76,14 @@ body {
       background: var(--dark);
     }
     .hero-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
-		opacity: 0.18;
-		pointer-events: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.18;
+      pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; }
     .hero-ticker {
@@ -219,24 +193,10 @@ body {
     }
 
     /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--border);
-    }
-    .about-image {
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: var(--surface);
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); }
+    .about-image { aspect-ratio: 1; overflow: hidden; background: var(--surface); }
     .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-text-box {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    .about-text-box { padding: 3rem; display: flex; flex-direction: column; justify-content: space-between; }
     .about-text-box p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
     blockquote {
       font-family: 'Anton', sans-serif;
@@ -260,11 +220,7 @@ body {
       transition: background 0.2s, padding 0.2s;
       cursor: default;
     }
-    .show-entry:hover {
-      background: var(--surface);
-      margin: 0 -1rem;
-      padding: 1.75rem 1rem;
-    }
+    .show-entry:hover { background: var(--surface); margin: 0 -1rem; padding: 1.75rem 1rem; }
     .show-year { font-family: 'Anton', sans-serif; font-size: 1.2rem; color: var(--muted); }
     .show-name { font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--dark); letter-spacing: 0.03em; }
     .show-loc { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
@@ -297,13 +253,7 @@ body {
 
     /* ── CONTACT ── */
     .contact-block { background: #2e2a26; color: #fff; padding: 5rem 2.5rem; border-top: 1px solid rgba(227,21,13,0.2); }
-    .contact-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-    }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
     .contact-block h2 { color: #fff; }
     .contact-block .section-num { color: var(--red); }
     .contact-block p { color: rgba(255,255,255,0.4); line-height: 1.8; }
@@ -322,95 +272,56 @@ body {
     form input::placeholder, form textarea::placeholder { color: rgba(255,255,255,0.25); }
     form input:focus, form textarea:focus { border-color: var(--red); }
     form textarea { min-height: 100px; resize: none; }
-    .form-success {
-      display: none;
-      padding: 0.9rem 1.25rem;
-      border: 1px solid var(--red);
-      background: rgba(227,21,13,0.1);
-      color: #fff;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-    .form-error {
-      display: none;
-      padding: 0.9rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
+    .form-success { display: none; padding: 0.9rem 1.25rem; border: 1px solid var(--red); background: rgba(227,21,13,0.1); color: #fff; font-size: 0.85rem; letter-spacing: 0.05em; }
+    .form-error { display: none; padding: 0.9rem 1.25rem; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); font-size: 0.85rem; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    footer { background: var(--dark); padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 1rem; }
     footer p, footer a { font-size: 0.7rem; color: rgba(255,255,255,0.25); text-decoration: none; }
     footer a:hover { color: var(--red); }
 
-    /* ══════════════════════════════════════════
-       ── DARK SECTION (ehemals Surface) ──
-       Gilt für #shows und #music
-    ══════════════════════════════════════════ */
-    .section-dark {
-      background: var(--dark);
-    }
+    /* ── DARK SECTION OVERRIDES ── */
+    .section-dark { background: var(--dark); }
+    .section-dark h1-1 { color: #fff; }
+    .section-dark .show-entry { border-bottom-color: rgba(255,255,255,0.08); }
+    .section-dark .show-entry:hover { background: rgba(255,255,255,0.05); }
+    .section-dark .show-name { color: rgba(255,255,255,0.9); }
+    .section-dark .show-year { color: rgba(255,255,255,0.35); }
+    .section-dark .show-loc { color: rgba(255,255,255,0.4); }
+    .section-dark .show-type { color: var(--red); }
+    .section-dark .shows-all-link-wrapper { border-top-color: rgba(255,255,255,0.08) !important; }
+    .section-dark .shows-all-link { color: rgba(255,255,255,0.35) !important; }
+    .section-dark .shows-all-link:hover { color: var(--red) !important; }
+    .section-dark .social-item { color: rgba(255,255,255,0.85); border-bottom-color: rgba(255,255,255,0.08); }
+    .section-dark .social-item:hover { color: var(--red); }
+    .section-dark .social-item span:last-child { color: rgba(255,255,255,0.4); }
 
-    /* Überschriften */
-    .section-dark h1-1 {
-      color: #fff;
+    /* ── COOKIE BANNER STYLE ── */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #141312;
+      border-top: 2px solid var(--red);
+      padding: 1.5rem 2.5rem;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* Show-Liste */
-    .section-dark .show-entry {
-      border-bottom-color: rgba(255,255,255,0.08);
-    }
-    .section-dark .show-entry:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .section-dark .show-name {
-      color: rgba(255,255,255,0.9);
-    }
-    .section-dark .show-year {
-      color: rgba(255,255,255,0.35);
-    }
-    .section-dark .show-loc {
-      color: rgba(255,255,255,0.4);
-    }
-    .section-dark .show-type {
-      color: var(--red);
-    }
-
-    /* "See all past shows" Footer-Zeile */
-    .section-dark .shows-all-link-wrapper {
-      border-top-color: rgba(255,255,255,0.08) !important;
-    }
-    .section-dark .shows-all-link {
-      color: rgba(255,255,255,0.35) !important;
-    }
-    .section-dark .shows-all-link:hover {
-      color: var(--red) !important;
-    }
-
-    /* Social-Liste */
-    .section-dark .social-item {
-      color: rgba(255,255,255,0.85);
-      border-bottom-color: rgba(255,255,255,0.08);
-    }
-    .section-dark .social-item:hover {
-      color: var(--red);
-    }
-    .section-dark .social-item span:last-child {
-      color: rgba(255,255,255,0.4);
-    }
+    .cookie-banner.show { transform: translateY(0); }
+    .cookie-text { font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .cookie-text a { color: #fff; text-decoration: underline; transition: color 0.2s; }
+    .cookie-text a:hover { color: var(--red); }
+    .cookie-btns { display: flex; gap: 1rem; }
+    .btn-cookie-accept { background: var(--red); color: #fff; border: none; padding: 0.75rem 1.75rem; font-size: 0.75rem; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .btn-cookie-accept:hover { background: #c01108; }
 
     /* ── MOBILE ── */
     @media (max-width: 900px) {
+      body { padding-top: 50px; }
       nav { padding: 1rem 1.25rem; }
       .nav-right { gap: 0; }
       .nav-links {
@@ -418,8 +329,8 @@ body {
         flex-direction: column;
         position: absolute;
         top: 100%; left: 0; right: 0;
-        background: var(--bg);
-        border-top: 1px solid var(--border);
+        background: var(--dark);
+        border-top: 1px solid rgba(255,255,255,0.08);
         padding: 1.5rem 1.25rem;
         gap: 1.25rem;
       }
@@ -427,32 +338,12 @@ body {
       .nav-toggle { display: flex; margin-left: 1rem; }
       .nav-presskit { display: none; }
       header { padding: 2rem 1.25rem 4rem; }
-      .hero-cta {
-        position: static;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        margin-top: 2rem;
-      }
+      .hero-cta { position: static; display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 2rem; }
       .hero-presskit-btn {
-        display: inline-block;
-        background: transparent;
-        border: 1px solid rgba(255,255,255,0.35);
-        color: #fff;
-        padding: 1rem 2.5rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        text-decoration: none;
-        font-weight: 500;
-        text-align: center;
-        transition: border-color 0.2s, color 0.2s;
+        display: inline-block; background: transparent; border: 1px solid rgba(255,255,255,0.35); color: #fff;
+        padding: 1rem 2.5rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 500; text-align: center; transition: border-color 0.2s, color 0.2s;
       }
-      .hero-presskit-btn:hover {
-        border-color: var(--red);
-        color: var(--red);
-      }
+      .hero-presskit-btn:hover { border-color: var(--red); color: var(--red); }
       .hero-meta { gap: 1.5rem; }
       .hero-logo { max-height: 70px; }
       .section { padding: 4rem 1.25rem; }
@@ -466,17 +357,18 @@ body {
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .contact-block { padding: 3rem 1.25rem; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
-      .nav-links {
-        background: var(--dark);
-        border-top: 1px solid rgba(255,255,255,0.08);
-      }
+      .cookie-banner { flex-direction: column; gap: 1.25rem; padding: 1.5rem 1.25rem; align-items: flex-start; }
+      .cookie-btns { width: 100%; }
+      .btn-cookie-accept { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <!-- ── NAV ── -->
+
   <nav>
-    <a href="index.html"</a> <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
+    <a href="index.html" class="nav-logo-link">
+      <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
+    </a>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
@@ -497,16 +389,15 @@ body {
     </div>
   </nav>
 
-  <!-- ── HERO ── -->
   <header>
     <video class="hero-bg" autoplay muted loop playsinline poster="photo_header.jpg">
-		<source src="hero.mp4" type="video/mp4">
-	</video>
+      <source src="hero-video.mp4" type="video/mp4">
+    </video>
     <div class="hero-content">
-      <p class="hero-ticker">Drum &amp; Bass · Cologne, Germany</p>
+      <p class="hero-ticker">Drum & Bass · Cologne, Germany</p>
       <img src="logo.png" alt="FLOWZ – Drum & Bass Artist" class="hero-logo"/>
       <div class="hero-meta">
-        <div class="hero-meta-item"><strong>Genre</strong>Drum &amp; Bass</div>
+        <div class="hero-meta-item"><strong>Genre</strong>Drum & Bass</div>
         <div class="hero-meta-item"><strong>Styles</strong>Dancefloor · Jump Up · Neurofunk</div>
         <div class="hero-meta-item"><strong>Based</strong>Cologne, DE</div>
         <div class="hero-meta-item"><strong>Available</strong>Clubs · Festivals · Events</div>
@@ -522,7 +413,6 @@ body {
     </div>
   </header>
 
-  <!-- ── ABOUT ── -->
   <div class="section" id="about">
     <div class="section-inner">
       <div class="section-num">01 — About</div>
@@ -535,7 +425,7 @@ body {
             <h2 style="font-size: clamp(2rem, 3vw, 3rem); margin-bottom: 1.5rem;">
               FLORIAN AKA FLOWZ
             </h2>
-            <p>Drum &amp; Bass artist from Cologne, Germany. His connection to music started early through piano and later turned into a deep passion for electronic music and DJ culture.</p>
+            <p>Drum & Bass artist from Cologne, Germany. His connection to music started early through piano and later turned into a deep passion for electronic music and DJ culture.</p>
             <p>What began with internet radio stations and a first DJ controller at the age of 13 evolved into years of practice, club experience and a relentless commitment to growth. Today, FLOWZ is known for energetic, story-driven sets that move between Dancefloor, Neurofunk and Jump Up.</p>
             <p>From warm-up to peak time or closing, he adapts confidently to every slot – always aiming to create high-energy moments, emotional turns and unforgettable crowd reactions.</p>
           </div>
@@ -547,11 +437,11 @@ body {
     </div>
   </div>
 
-  <!-- ── SHOWS ── (war: surface → jetzt: dark) -->
   <div class="section section-dark" id="shows">
     <div class="section-inner">
       <div class="section-num">02 — Shows</div>
       <h1-1>SELECTED SHOWS</h1-1>
+      
       <div class="show-entry">
         <span class="show-year">2026</span>
         <div>
@@ -624,124 +514,83 @@ body {
         </div>
         <span class="show-type">Festival</span>
       </div>
-      <!-- "See all" Footer-Link – Klassen statt Inline-Style für Dark-Override -->
-      <div class="shows-all-link-wrapper"
-           style="margin-top: 2.5rem; text-align: right; border-top: 1px solid; padding-top: 1.75rem;">
-        <a href="shows.html" class="shows-all-link"
-           style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-                  text-decoration: none; transition: color 0.2s;">
+
+      <div class="shows-all-link-wrapper" style="margin-top: 2.5rem; text-align: right; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.75rem;">
+        <a href="shows.html" class="shows-all-link" style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: color 0.2s;">
           See all upcoming and past shows →
         </a>
       </div>
     </div>
   </div>
 
-  <!-- ── KEY FACTS ── -->
-<div class="section">
-  <div class="section-inner">
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-num">03 — Profile</div>
+      <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">KEY FACTS</h2>
 
-    <!-- AUSSERHALB des Grids -->
-    <div class="section-num">03 — Profile</div>
-    <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">
-      KEY FACTS
-    </h2>
+      <div class="two-col" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
+        <div>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Styles</p>
+          <div class="facts-bands" style="margin-bottom: 2.5rem;">
+            <span class="tag active">Dancefloor</span>
+            <span class="tag active">Jump Up</span>
+            <span class="tag active">Neurofunk</span>
+            <span class="tag active">Liquid</span>
+            <span class="tag active">Deep</span>
+            <span class="tag">Dubstep</span>
+            <span class="tag">Riddim</span>
+          </div>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Playing shows for</p>
+          <div class="facts-bands">
+            <span class="tag active">Clubs</span>
+            <span class="tag active">Festivals</span>
+            <span class="tag active">Special Events</span>
+          </div>
+        </div>
 
-    <!-- Grid beginnt erst hier -->
-    <div class="two-col" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
-
-      <!-- Linke Spalte: Beschreibung + Styles -->
-      <div>
-        <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Styles</p>
-         <div class="facts-bands" style="margin-bottom: 2.5rem;">
-          <span class="tag active">Dancefloor</span>
-          <span class="tag active">Jump Up</span>
-          <span class="tag active">Neurofunk</span>
-          <span class="tag active">Liquid</span>
-		  <span class="tag active">Deep</span>
-		  <span class="tag">Dubstep</span>
-		  <span class="tag">Riddim</span>
-		</div>
-		<p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Playing shows for</p>
-        <div class="facts-bands">
-          <span class="tag active">Clubs</span>
-          <span class="tag active">Festivals</span>
-          <span class="tag active">Special Events</span>
+        <div>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Shared the stage with</p>
+          <div class="facts-bands" style="margin-bottom: 2.5rem;">
+            <span class="tag active">Hedex</span>
+            <span class="tag active">Andromedik</span>
+            <span class="tag active">Grafix</span>
+            <span class="tag active">Primate</span>
+            <span class="tag active">Subsonic</span>
+            <span class="tag active">AC13</span>
+            <span class="tag active">Serum</span>
+            <span class="tag active">MUZZ</span>
+            <span class="tag active">Annix</span>
+            <span class="tag active">ATMOS</span>
+            <span class="tag active">Oliverse</span>
+            <span class="tag active">Gourski</span>
+          </div>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Played in the following countries</p>
+          <div class="facts-bands">
+            <span class="tag active">Germany</span>
+            <span class="tag active">Austria</span>
+            <span class="tag active">Netherlands</span>
+            <span class="tag active">Luxembourg</span>
+          </div>
         </div>
       </div>
-
-      <!-- Rechte Spalte: Stage + Countries -->
-      <div>
-        <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Shared the stage with</p>
-        <div class="facts-bands" style="margin-bottom: 2.5rem;">
-          <span class="tag active">Hedex</span>
-          <span class="tag active">Andromedik</span>
-          <span class="tag active">Grafix</span>
-          <span class="tag active">Primate</span>
-          <span class="tag active">Subsonic</span>
-          <span class="tag active">AC13</span>
-          <span class="tag active">Serum</span>
-          <span class="tag active">MUZZ</span>
-          <span class="tag active">Annix</span>
-          <span class="tag active">ATMOS</span>
-          <span class="tag active">Oliverse</span>
-          <span class="tag active">Gourski</span>
-        </div>
-        <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Played in the following countries</p>
-        <div class="facts-bands">
-          <span class="tag active">Germany</span>
-          <span class="tag active">Austria</span>
-          <span class="tag active">Netherlands</span>
-          <span class="tag active">Luxembourg</span>
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
 
-  <!-- ── MUSIC & SOCIALS ── (war: surface → jetzt: dark) -->
   <div class="section section-dark" id="music">
     <div class="section-inner">
-      <div class="section-num">04 — Music &amp; Socials</div>
-      <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">
-        LISTEN &amp; FOLLOW
-      </h1-1>
+      <div class="section-num">04 — Music & Socials</div>
+      <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">LISTEN & FOLLOW</h1-1>
       <ul class="social-list">
-        <li>
-          <a href="https://instagram.com/iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item">
-            <span>Instagram</span><span>@iam.flowz ↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://tiktok.com/@iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item">
-            <span>TikTok</span><span>@iam.flowz ↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://open.spotify.com/user/1127328760?si=05d9b72c6b4c49d9" rel="noopener noreferrer" class="social-item">
-            <span>Spotify</span><span>Latest Releases ↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://soundcloud.com/iamflowz" rel="noopener noreferrer" class="social-item">
-            <span>SoundCloud</span><span>Latest Mixtapes ↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.youtube.com/@iamflowz" rel="noopener noreferrer" class="social-item">
-            <span>YouTube</span><span>Latest Liveset ↗</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.songkick.com/artists/9706799-flowz-de" rel="noopener noreferrer" class="social-item">
-            <span>Songkick</span><span>All upcoming shows ↗</span>
-          </a>
-        </li>
+        <li><a href="https://instagram.com/iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item"><span>Instagram</span><span>@iam.flowz ↗</span></a></li>
+        <li><a href="https://tiktok.com/@iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item"><span>TikTok</span><span>@iam.flowz ↗</span></a></li>
+        <li><a href="https://open.spotify.com/user/1127328760?si=05d9b72c6b4c49d9" rel="noopener noreferrer" class="social-item"><span>Spotify</span><span>Latest Releases ↗</span></a></li>
+        <li><a href="https://soundcloud.com/iamflowz" rel="noopener noreferrer" class="social-item"><span>SoundCloud</span><span>Latest Mixtapes ↗</span></a></li>
+        <li><a href="https://www.youtube.com/@iamflowz" rel="noopener noreferrer" class="social-item"><span>YouTube</span><span>Latest Liveset ↗</span></a></li>
+        <li><a href="https://www.songkick.com/artists/9706799-flowz-de" rel="noopener noreferrer" class="social-item"><span>Songkick</span><span>All upcoming shows ↗</span></a></li>
       </ul>
     </div>
   </div>
 
-  <!-- ── CONTACT ── -->
   <div class="contact-block" id="contact">
     <div class="contact-inner">
       <div>
@@ -749,9 +598,7 @@ body {
         <h1>LET'S WORK<br/>TOGETHER</h1>
         <p>Available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry.</p>
         <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; max-width: 280px;">
-          <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
-             target="_blank" rel="noopener noreferrer"
-             class="btn-red" style="text-align:center;">
+          <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF" target="_blank" rel="noopener noreferrer" class="btn-red" style="text-align:center;">
             Press Kit ↓
           </a>
         </div>
@@ -769,23 +616,33 @@ body {
     </div>
   </div>
 
-  <!-- ── FOOTER ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
-      <a href="impressum.html">Impressum</a>
-      &nbsp;·&nbsp;
+      <a href="impressum.html">Impressum</a> · 
       <a href="datenschutz.html">Datenschutz</a>
     </p>
   </footer>
 
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-text">
+      Wir verwenden Cookies, um die Website-Nutzung zu analysieren. Mit dem Klick auf "Akzeptieren" stimmst du dem zu. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
+    </div>
+    <div class="cookie-btns">
+      <button class="btn-cookie-accept" id="btnAcceptCookies">Akzeptieren</button>
+    </div>
+  </div>
+
   <script>
+    // Mobile Nav Toggle
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
+
+    // Contact Form AJAX
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
     const formError   = document.getElementById('formError');
@@ -818,9 +675,23 @@ body {
         submitBtn.disabled = false;
       }
     });
+
+    // Cookie Banner Logic
+    const cookieBanner = document.getElementById('cookieBanner');
+    const btnAcceptCookies = document.getElementById('btnAcceptCookies');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('cookiesAccepted')) {
+        setTimeout(() => {
+          cookieBanner.classList.add('show');
+        }, 1000); // Erscheint elegant nach 1 Sekunde
+      }
+    });
+
+    btnAcceptCookies.addEventListener('click', () => {
+      localStorage.setItem('cookiesAccepted', 'true');
+      cookieBanner.classList.remove('show');
+    });
   </script>
-</body>
-</html>
-<script></script>
 </body>
 </html>
