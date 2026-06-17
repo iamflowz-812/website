@@ -1,114 +1,278 @@
-<!doctype html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Impressum – FLOWZ</title>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --bg:      #f2f0eb;
+      --dark:    #0d0d0d;
+      --red:     #e3150d;
+      --muted:   #888;
+      --border:  #d8d5cf;
+      --surface: #e8e5de;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
-      background: #090909;
-      color: #f5f5f5;
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
     }
 
-    .wrap {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 30px 20px 60px;
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
     }
 
-    .back {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 10px 14px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      transition: all 0.2s ease;
+    .nav-logo {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--dark);
       text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.3px;
     }
 
-    .back:hover {
-      background: rgba(255,255,255,0.15);
+    .nav-back {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--red); }
+
+    /* ── HERO ── */
+    .page-hero {
+      background: var(--dark);
+      padding: 5rem 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card {
-      background: rgba(18,18,18,0.8);
-      padding: 26px;
-      border-radius: 18px;
+    .page-hero::after {
+      content: 'IMPRESSUM';
+      position: absolute;
+      right: -1rem;
+      bottom: -2rem;
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(5rem, 15vw, 12rem);
+      color: rgba(255,255,255,0.03);
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
     }
 
-    h1 { margin-top: 0; }
-    h2 { margin-top: 26px; font-size: 18px; }
-    p { color: #d0d0d0; }
+    .section-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
 
-    a { color: #fff; }
-    a:hover { opacity: 0.85; }
+    .page-title {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTENT ── */
+    .content-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .legal-block {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal-block:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .legal-block h2 {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .legal-block h2::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .legal-block p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 0.75rem;
+      font-weight: 300;
+    }
+
+    .legal-block p:last-child { margin-bottom: 0; }
+
+    .legal-block address {
+      font-style: normal;
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .legal-block a {
+      color: var(--dark);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .legal-block a:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer p, footer a {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--red); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav          { padding: 1rem 1.25rem; }
+      .page-hero   { padding: 4rem 1.25rem 3rem; }
+      .content-wrap { padding: 3rem 1.25rem; }
+      footer       { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back" href="/">← Back</a>
 
-    <div class="card">
-      <h1>Impressum</h1>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">FLOWZ</a>
+    <a href="index.html" class="nav-back">← Zurück</a>
+  </nav>
 
-      <h2>Angaben gemäß § 5 DDG</h2>
-      <p>
-        Florian Miltz<br>
-        Mettfelder Straße 2<br>
-        50996 Köln<br>
-        Deutschland
-      </p>
-
-      <h2>Kontakt</h2>
-      <p>
-        E-Mail: <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a>
-      </p>
-
-      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-      <p>
-        Florian Miltz<br>
-        Mettfelder Straße 2<br>
-        50996 Köln
-      </p>
-
-      <h2>Haftung für Inhalte</h2>
-      <p>
-        Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-        Ich bin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach
-        Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung
-        der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine Haftung ist jedoch erst
-        ab dem Zeitpunkt möglich, zu dem ich von einer konkreten Rechtsverletzung Kenntnis erlange. Sobald ich von entsprechenden
-        Rechtsverletzungen Kenntnis erlange, werde ich diese Inhalte umgehend entfernen.
-      </p>
-
-      <h2>Haftung für Links</h2>
-      <p>
-        Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe.
-        Deshalb kann ich für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten
-        ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum
-        Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der
-        Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
-        Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige
-        Links umgehend entfernen.
-      </p>
-
-      <h2>Urheberrecht</h2>
-      <p>
-        Die durch mich erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
-        Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-        Urheberrechts bedürfen der schriftlichen Zustimmung. Downloads und Kopien dieser Seite sind nur für den
-        privaten, nicht kommerziellen Gebrauch gestattet. Soweit Inhalte nicht von mir erstellt wurden, werden die
-        Urheberrechte Dritter beachtet und entsprechend gekennzeichnet. Sollten Sie dennoch auf eine
-        Urheberrechtsverletzung aufmerksam werden, bitte ich um einen entsprechenden Hinweis. Bei Bekanntwerden von
-        Rechtsverletzungen werde ich derartige Inhalte umgehend entfernen.
-      </p>
-    </div>
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="section-num">Rechtliches</div>
+    <h1 class="page-title">IMPRES-<br/>SUM</h1>
   </div>
+
+  <!-- CONTENT -->
+  <div class="content-wrap">
+
+    <div class="legal-block">
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <address>
+        Florian Miltz<br/>
+        Mettfelder Straße 2<br/>
+        50996 Köln<br/>
+        Deutschland
+      </address>
+    </div>
+
+    <div class="legal-block">
+      <h2>Kontakt</h2>
+      <p>E-Mail: <a href="mailto:[EMAIL]">[EMAIL]</a></p>
+    </div>
+
+    <div class="legal-block">
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <address>
+        Florian Miltz<br/>
+        Mettfelder Straße 2<br/>
+        50996 Köln
+      </address>
+    </div>
+
+    <div class="legal-block">
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Ich bin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine Haftung ist jedoch erst ab dem Zeitpunkt möglich, zu dem ich von einer konkreten Rechtsverletzung Kenntnis erlange. Sobald ich von entsprechenden Rechtsverletzungen Kenntnis erlange, werde ich diese Inhalte umgehend entfernen.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>Haftung für Links</h2>
+      <p>Mein Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Links umgehend entfernen.</p>
+    </div>
+
+    <div class="legal-block">
+      <h2>Urheberrecht</h2>
+      <p>Die durch mich erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung.</p>
+      <p>Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit Inhalte nicht von mir erstellt wurden, werden die Urheberrechte Dritter beachtet und entsprechend gekennzeichnet. Sollten Sie dennoch auf eine Urheberrechtsverletzung aufmerksam werden, bitte ich um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werde ich derartige Inhalte umgehend entfernen.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 FLOWZ · All rights reserved.</p>
+    <p>
+      <a href="impressum.html">Impressum</a>
+      &nbsp;·&nbsp;
+      <a href="datenschutz.html">Datenschutz</a>
+    </p>
+  </footer>
+
 </body>
 </html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
