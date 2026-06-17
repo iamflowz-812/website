@@ -64,7 +64,6 @@
     }
     .nav-presskit:hover { background: #c01108 !important; }
     
-    /* Verhindert die Anzeige des mobilen Buttons in der Desktop-Ansicht */
     .nav-presskit-mobile {
       display: none;
     }
@@ -255,6 +254,8 @@
     .contact-block h2 { color: #fff; }
     .contact-block .section-num { color: var(--red); }
     .contact-block p { color: rgba(255,255,255,0.4); line-height: 1.8; }
+    .contact-block p a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s; }
+    .contact-block p a:hover { color: var(--red); border-color: var(--red); }
     form { display: flex; flex-direction: column; gap: 1.25rem; }
     form input, form textarea {
       background: transparent;
@@ -344,7 +345,6 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; }
       
-      /* Schaltet das mobile Element sichtbar und verkleinert es leicht */
       .nav-presskit-mobile {
         display: inline-block !important;
         padding: 0.45rem 0.95rem;
@@ -392,7 +392,6 @@
         </li>
       </ul>
       
-      <!-- Dieser Button ist über .nav-presskit-mobile auf dem Desktop unsichtbar und mobil permanent aktiv -->
       <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
          target="_blank" rel="noopener noreferrer"
          class="nav-presskit nav-presskit-mobile">
@@ -617,12 +616,7 @@
     <div class="contact-inner">
       <div>
         <h1>LET'S WORK<br/>TOGETHER</h1>
-        <p>Available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry.</p>
-        <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; max-width: 280px;">
-          <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF" target="_blank" rel="noopener noreferrer" class="btn-red" style="text-align:center;">
-            Press Kit ↓
-          </a>
-        </div>
+        <p>Available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry. Alternatively, you can send an email directly to <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a>.</p>
       </div>
       <form id="contactForm" action="https://formspree.io/f/mdavvkkr" method="POST">
         <input type="text" name="_gotcha" style="display:none"/>
@@ -632,7 +626,7 @@
         <textarea           name="message" placeholder="Message" rows="4"></textarea>
         <button type="submit" class="btn-red">Send Inquiry</button>
         <div class="form-success" id="formSuccess">✓ Message sent</div>
-        <div class="form-error"   id="formError">✗ Something went wrong. Please try again or send an email directly.</div>
+        <div class="form-error"   id="formError">✗ Something went wrong. Please try again or send an email directly to hey@iamflowz.de.</div>
       </form>
     </div>
   </div>
