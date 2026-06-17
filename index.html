@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FLOWZ – Drum & Bass Artist</title>
+  <title>FLOWZ - Press Kit</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
@@ -81,8 +81,9 @@
     .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--dark); }
 
     /* ── HERO ── */
-     {
+     header {
       min-height: 100vh;
+	  position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -126,6 +127,22 @@
       */
       filter: brightness(0) invert(1);
     }
+	
+    .hero-logo-small {
+      display: block;
+      max-height: 25px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+	  filter: brightness(0) invert(1);
+      /* 
+        Falls dein Logo dunkel/schwarz ist → wird weiß:
+        filter: brightness(0) invert(1);
+        
+        Falls dein Logo bereits hell/weiß ist → entfernen:
+        filter: none;
+      */
+    }	
 
     .hero-meta {
       display: flex;
@@ -184,7 +201,16 @@
       color: var(--red);
       margin-bottom: 2rem;
     }
-
+	
+    h1 {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      color: #fff;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+    }
+	
     h2 {
       font-family: 'Anton', sans-serif;
       font-size: clamp(3rem, 8vw, 8rem);
@@ -343,7 +369,9 @@
       .nav-links {
         display: none;
         flex-direction: column;
-        position: absolute;
+        position: static;
+		margin-top: 2rem;
+		text-align: left;
         top: 100%; left: 0; right: 0;
         background: var(--bg);
         border-top: 1px solid var(--border);
@@ -383,7 +411,7 @@
 
   <!-- ── NAV ── -->
   <nav>
-    <a href="#" class="nav-logo">FLOWZ</a>
+    <img src="logo.png" class="hero-logo-small"/>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
@@ -409,7 +437,7 @@
   <header>
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <p class="hero-ticker">Drum &amp; Bass · Cologne, Germany · 808 FAMILY</p>
+      <p class="hero-ticker">Drum &amp; Bass · Cologne, Germany</p>
 
       <!-- Logo statt FLOWZ Text -->
       <img src="logo.png" alt="FLOWZ – Drum & Bass Artist" class="hero-logo"/>
@@ -437,7 +465,7 @@
         <div class="about-text-box">
           <div>
             <h2 style="font-size: clamp(2rem, 4vw, 4rem); margin-bottom: 1.5rem;">
-              FLORIAN<br/>AKA FLOWZ
+              FLORIAN AKA FLOWZ
             </h2>
             <p>Drum &amp; Bass artist from Cologne, Germany. His connection to music started early through piano and later turned into a deep passion for electronic music and DJ culture.</p>
             <p>What began with internet radio stations and a first DJ controller at the age of 13 evolved into years of practice, club experience and a relentless commitment to growth. Today, FLOWZ is known for energetic, story-driven sets that move between Dancefloor, Neurofunk and Jump Up.</p>
@@ -455,7 +483,7 @@
   <div class="section" id="shows" style="background: var(--surface);">
     <div class="section-inner">
       <div class="section-num">02 — Shows</div>
-      <h2>SELECTED<br/>SHOWS</h2>
+      <h2>SELECTED SHOWS</h2>
 
       <div class="show-entry">
         <span class="show-year">2026</span>
@@ -528,6 +556,20 @@
           <div class="show-loc">Erkelenz, DE</div>
         </div>
         <span class="show-type">Festival</span>
+		</div>
+      <div style="margin-top: 2.5rem; text-align: right; border-top: 1px solid var(--border); padding-top: 1.75rem;">
+        <a href="shows.html"
+           style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+                  color: var(--muted); text-decoration: none;
+                  transition: color 0.2s;"
+           onmouseover="this.style.color='var(--red)'"
+           onmouseout="this.style.color='var(--muted)'">
+          See all past shows →
+        </a>
+      </div>
+
+    </div>
+  </div>
       </div>
     </div>
   </div>
@@ -539,19 +581,19 @@
       <div class="two-col">
         <div>
           <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 1.5rem;">
-            KEY<br/>FACTS
+            KEY FACTS
           </h2>
           <p style="color: var(--muted); line-height: 1.8; margin-bottom: 0.5rem;">
-            Co-Head and Resident DJ of <strong style="color:var(--dark);">808 FAMILY</strong> – Cologne's Drum &amp; Bass collective.
+            Co-Head and Resident DJ of <strong style="color:var(--dark);">808 FAMILY</strong> – Cologne's Bass music collective.
           </p>
           <div class="facts-bands">
             <span class="tag active">Dancefloor</span>
             <span class="tag active">Jump Up</span>
             <span class="tag active">Neurofunk</span>
             <span class="tag active">Liquid</span>
-            <span class="tag">Clubs</span>
-            <span class="tag">Festivals</span>
-            <span class="tag">Special Events</span>
+            <span class="tag active">Clubs</span>
+            <span class="tag active">Festivals</span>
+            <span class="tag active">Special Events</span>
           </div>
         </div>
         <div>
@@ -559,18 +601,19 @@
             Shared the stage with
           </p>
           <div class="facts-bands">
-            <span class="tag">Hedex</span>
-            <span class="tag">Andromedik</span>
-            <span class="tag">Grafix</span>
-            <span class="tag">Primate</span>
-            <span class="tag">Subsonic</span>
-            <span class="tag">AC13</span>
-            <span class="tag">Serum</span>
-            <span class="tag">MUZZ</span>
-            <span class="tag">Annix</span>
-            <span class="tag">ATMOS</span>
-            <span class="tag">Oliverse</span>
-            <span class="tag">Gourski</span>
+            <span class="tag active">Hedex</span>
+            <span class="tag active">Andromedik</span>
+            <span class="tag active">Grafix</span>
+            <span class="tag active">Primate</span>
+            <span class="tag active">Subsonic</span>
+            <span class="tag active">AC13</span>
+            <span class="tag active">Serum</span>
+            <span class="tag active">MUZZ</span>
+            <span class="tag active">Annix</span>
+            <span class="tag active">ATMOS</span>
+            <span class="tag active">Oliverse</span>
+            <span class="tag active">Gourski</span>
+			<span class="tag active">and many more</span>
           </div>
         </div>
       </div>
@@ -581,7 +624,7 @@
   <div class="section" id="music" style="background: var(--surface);">
     <div class="section-inner">
       <div class="section-num">04 — Music &amp; Socials</div>
-      <h2>LISTEN<br/>&amp; FOLLOW</h2>
+      <h2>LISTEN &amp; FOLLOW</h2>
       <ul class="social-list">
         <li>
           <a href="https://instagram.com/iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item">
@@ -622,7 +665,7 @@
     <div class="contact-inner">
       <div>
         <div class="section-num">05 — Booking</div>
-        <h2>LET'S WORK<br/>TOGETHER</h2>
+        <h1>LET'S WORK<br/>TOGETHER</h1>
         <p>Available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry.</p>
         <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; max-width: 280px;">
           <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
