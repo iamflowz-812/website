@@ -23,7 +23,7 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: flex-end; align-items: center;
       padding: 1.25rem 2.5rem;
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -60,10 +60,6 @@
       flex-direction: column; gap: 5px;
     }
     .nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.6); }
-    .hero-logo-small {
-      display: block; max-height: 25px; width: auto;
-      object-fit: contain; filter: brightness(0) invert(1);
-    }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -230,7 +226,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 900px) {
-      nav { padding: 1rem 1.25rem; }
+      nav { padding: 1rem 1.25rem; justify-content: flex-end; }
       .nav-right { gap: 0; }
       .nav-links {
         display: none;
@@ -260,11 +256,8 @@
 </head>
 <body>
 
-  <!-- ── NAV ── -->
+  <!-- ── NAV ── */ -->
   <nav>
-    <a href="/">
-      <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
-    </a>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
         <li><a href="/#about">About</a></li>
@@ -347,10 +340,6 @@
           <span class="show-city">TBA</span>
           <span class="show-badge upcoming">Club</span>
       </div>
-
-
-
-
 
       <!-- ─ 2026 ─ -->
       <div class="year-group">
@@ -1147,7 +1136,7 @@
 
     <!-- ─ Bottom Actions ─ -->
     <div class="shows-footer">
-      <a href="/html" class="back">← Back to Home</a>
+      <a href="/" class="back">← Back to Home</a>
       <a href="/#contact" class="btn-red">Booking Inquiry</a>
     </div>
 

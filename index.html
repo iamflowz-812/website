@@ -33,12 +33,11 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: flex-end; align-items: center;
       padding: 1.25rem 2.5rem;
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    .nav-logo-link { display: flex; align-items: center; text-decoration: none; }
     .nav-right { display: flex; align-items: center; gap: 2rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
@@ -77,10 +76,12 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem 2.5rem 4rem;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 2.5rem;
       overflow: hidden;
       background: var(--dark);
+      text-align: center;
     }
     .hero-bg {
       position: absolute;
@@ -92,61 +93,22 @@
       opacity: 0.18;
       pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-ticker {
-      font-size: 0.7rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.5rem;
-    }
-    .hero-logo {
-      display: block;
-      max-height: 120px;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-    .hero-logo-small {
-      display: block;
-      max-height: 25px;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
-    .hero-meta {
-      display: flex;
-      gap: 3rem;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 2rem;
-      flex-wrap: wrap;
-    }
-    .hero-meta-item {
-      color: rgba(255,255,255,0.4);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .hero-meta-item strong {
-      display: block;
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 400;
-      margin-bottom: 0.25rem;
-    }
-    .hero-cta {
-      position: absolute;
-      right: 2.5rem; bottom: 4rem;
+    .hero-content {
+      position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 2.5rem;
     }
-    .hero-presskit-btn { display: none; }
+    .hero-logo {
+      display: block;
+      max-height: 140px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
     .btn-red {
       display: inline-block;
       background: var(--red);
@@ -351,7 +313,7 @@
     /* ── MOBILE ── */
     @media (max-width: 900px) {
       body { padding-top: 50px; }
-      nav { padding: 1rem 1.25rem; }
+      nav { padding: 1rem 1.25rem; justify-content: flex-end; }
       .nav-right { gap: 0; }
       .nav-links {
         display: none;
@@ -366,15 +328,9 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; margin-left: 1rem; }
       .nav-presskit { display: none; }
-      header { padding: 2rem 1.25rem 4rem; }
-      .hero-cta { position: static; display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 2rem; }
-      .hero-presskit-btn {
-        display: inline-block; background: transparent; border: 1px solid rgba(255,255,255,0.35); color: #fff;
-        padding: 1rem 2.5rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 500; text-align: center; transition: border-color 0.2s, color 0.2s;
-      }
-      .hero-presskit-btn:hover { border-color: var(--red); color: var(--red); }
-      .hero-meta { gap: 1.5rem; }
-      .hero-logo { max-height: 70px; }
+      header { padding: 2rem 1.25rem; }
+      .hero-content { gap: 2rem; }
+      .hero-logo { max-height: 90px; }
       .section { padding: 4rem 1.25rem; }
       h2 { font-size: clamp(2.5rem, 10vw, 5rem); }
       .about-grid { grid-template-columns: 1fr; }
@@ -396,9 +352,6 @@
 <body>
 
   <nav>
-    <a href="/" class="nav-logo-link">
-      <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
-    </a>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
@@ -425,22 +378,8 @@
       <source src="hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-content">
-      <p class="hero-ticker">Drum & Bass · Cologne, Germany</p>
-      <img src="logo.png" alt="FLOWZ – Drum & Bass Artist" class="hero-logo"/>
-      <div class="hero-meta">
-        <div class="hero-meta-item"><strong>Genre</strong>Drum & Bass</div>
-        <div class="hero-meta-item"><strong>Styles</strong>Dancefloor · Jump Up · Neurofunk</div>
-        <div class="hero-meta-item"><strong>Based</strong>Cologne, DE</div>
-        <div class="hero-meta-item"><strong>Available</strong>Clubs · Festivals · Events</div>
-      </div>
-    </div>
-    <div class="hero-cta">
+      <img src="logo.png" alt="FLOWZ" class="hero-logo"/>
       <a href="#contact" class="btn-red">Booking Inquiry</a>
-      <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
-         target="_blank" rel="noopener noreferrer"
-         class="hero-presskit-btn">
-        Download Press Kit ↓
-      </a>
     </div>
   </header>
 
@@ -569,7 +508,7 @@
             <span class="tag">Dubstep</span>
             <span class="tag">Riddim</span>
           </div>
-          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Playing shows for</p>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Available for</p>
           <div class="facts-bands">
             <span class="tag active">Clubs</span>
             <span class="tag active">Festivals</span>
@@ -619,20 +558,16 @@
     </div>
   </div>
 
-  <!-- ── NEUER REITER: LATEST VIDEO AND MUSIC ── -->
   <div class="section" id="music">
     <div class="section-inner">
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">LATEST MUSIC & VIDEOS</h2>
       
       <div class="media-grid" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
-        <!-- Linke Spalte: YouTube (Responsive Wrapper) -->
         <div class="media-video-wrapper">
           <iframe width="560" height="315" src="https://www.youtube.com/embed/KE9rXPWRyV0?si=1zYIC-RL168O0Igv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         
-        <!-- Rechte Spalte: SoundCloud & Spotify Stack -->
         <div class="media-audio-stack">
-          <!-- SoundCloud Player -->
           <div>
             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
             <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; margin-top: 5px;">
@@ -640,7 +575,6 @@
             </div>
           </div>
           
-          <!-- Spotify Player -->
           <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/3vmMLFZ2ioiqpMdE20wA4X?si=4OJm4rz1TEen3MJeb_nqKA?utm_source=generator&theme=0&si=49e6e1c39458419e" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
@@ -681,7 +615,7 @@
 
   <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-text">
-      Wir verwenden Cookies, um die Website-Nutzung zu analysieren. Mit dem Klick auf "Akzeptieren" stimmst du dem zu. Details findest du in unserer <a href="datenschutz">Datenschutzerklärung</a>.
+      Wir verwenden Cookies, um die Website-Nutzung zu analysieren. Mit dem Klick auf "Akzeptieren" stimmst du dem zu. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
     </div>
     <div class="cookie-btns">
       <button class="btn-cookie-accept" id="btnAcceptCookies">Akzeptieren</button>

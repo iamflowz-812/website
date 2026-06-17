@@ -1,19 +1,16 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			background-color: white; /* Ensure the iframe has a white background */
+		}
+	</style>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8"/>
@@ -43,18 +40,10 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-	  display: flex; justify-content: space-between; align-items: center;
+	  display: flex; justify-content: flex-end; align-items: center;
       padding: 1.25rem 2.5rem;
-      background: var(--dark);                          /* war: var(--bg) */
-      border-bottom: 1px solid rgba(255,255,255,0.08);  /* war: var(--border) */
-    }
-
-    .nav-logo {
-      font-family: 'Anton', sans-serif;
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      color: #fff;
-      text-decoration: none;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-back {
@@ -68,7 +57,6 @@
     .nav-back:hover { color: var(--red); }
 	.nav-links a { color: rgba(255,255,255,0.5); }
 	.nav-links a:hover { color: var(--red); }
-	.nav-toggle span { background: #fff; }
 
     /* ── HERO ── */
     .page-hero {
@@ -76,15 +64,6 @@
       padding: 5rem 2.5rem 4rem;
       position: relative;
       overflow: hidden;
-    }
-	
-	.hero-logo-small {
-      display: block;
-      max-height: 25px;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
     }
 
     .section-num {
@@ -187,7 +166,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 768px) {
-      nav          { padding: 1rem 1.25rem; }
+      nav          { padding: 1rem 1.25rem; justify-content: flex-end; }
       .page-hero   { padding: 4rem 1.25rem 3rem; }
       .content-wrap { padding: 3rem 1.25rem; }
       footer       { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
@@ -202,8 +181,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html"</a> <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
-    <a href="index.html" class="nav-back">← Zurück</a>
+    <a href="/" class="nav-back">← Zurück</a>
   </nav>
 
   <!-- HERO -->
@@ -263,18 +241,13 @@
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
-      <a href="impressum.html">Impressum</a>
+      <a href="impressum">Impressum</a>
       &nbsp;·&nbsp;
-      <a href="datenschutz.html">Datenschutz</a>
+      <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
 </body>
 </html>
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    
+</body>
+</html>
