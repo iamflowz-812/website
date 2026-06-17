@@ -313,8 +313,16 @@
     /* ── MOBILE ── */
     @media (max-width: 900px) {
       body { padding-top: 50px; }
-      nav { padding: 1rem 1.25rem; justify-content: flex-end; }
-      .nav-right { gap: 0; }
+      nav { padding: 0.8rem 1.25rem; justify-content: flex-end; }
+      
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem; /* Abstand zwischen dem Presskit-Button und den Strichen */
+        width: 100%;
+        justify-content: flex-end;
+      }
+      
       .nav-links {
         display: none;
         flex-direction: column;
@@ -324,10 +332,24 @@
         border-top: 1px solid rgba(255,255,255,0.08);
         padding: 1.5rem 1.25rem;
         gap: 1.25rem;
+        text-align: center;
       }
       .nav-links.open { display: flex; }
-      .nav-toggle { display: flex; margin-left: 1rem; }
-      .nav-presskit { display: none; }
+      .nav-toggle { display: flex; }
+      
+      /* Verhindert das Ausblenden und schrumpft den Button leicht, damit er mobil gut aussieht */
+      .nav-presskit {
+        display: inline-block !important;
+        padding: 0.45rem 0.95rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+      }
+      
+      /* Versteckt den Button im ausgeklappten Menü-Dropdown, da er jetzt permanent in der Leiste steht */
+      .nav-links .nav-presskit {
+        display: none !important;
+      }
+      
       header { padding: 2rem 1.25rem; }
       .hero-content { gap: 2rem; }
       .hero-logo { max-height: 90px; }
@@ -367,6 +389,13 @@
           </a>
         </li>
       </ul>
+      
+      <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
+         target="_blank" rel="noopener noreferrer"
+         class="nav-presskit">
+        Press Kit ↓
+      </a>
+
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
       </button>
@@ -508,7 +537,7 @@
             <span class="tag">Dubstep</span>
             <span class="tag">Riddim</span>
           </div>
-          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Available for</p>
+          <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Playing shows for</p>
           <div class="facts-bands">
             <span class="tag active">Clubs</span>
             <span class="tag active">Festivals</span>
