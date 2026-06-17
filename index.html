@@ -235,6 +235,28 @@
     }
     .tag.active { border-color: var(--dark); color: var(--dark); }
 
+    /* ── MEDIA EMBED GRID ── */
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .media-video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .media-video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+    }
+    .media-audio-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     /* ── SOCIALS ── */
     .social-list { list-style: none; }
     .social-item {
@@ -252,7 +274,7 @@
     .social-item span:last-child { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
     /* ── CONTACT ── */
-    .contact-block { background: #2e2a26; color: #fff; padding: 5rem 2.5rem; border-top: 1px solid rgba(227,21,13,0.2); }
+    .contact-block { background: var(--dark); color: #fff; padding: 5rem 2.5rem; border-top: 1px solid rgba(227,21,13,0.2); }
     .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
     .contact-block h2 { color: #fff; }
     .contact-block .section-num { color: var(--red); }
@@ -354,6 +376,7 @@
       .show-entry { grid-template-columns: 3.5rem 1fr; }
       .show-type { display: none; }
       .two-col { grid-template-columns: 1fr; gap: 2rem; }
+      .media-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .contact-block { padding: 3rem 1.25rem; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
@@ -374,6 +397,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="shows.html">Shows</a></li>
         <li><a href="#music">Music</a></li>
+        <li><a href="#latest-media">Latest</a></li>
         <li><a href="#contact">Booking</a></li>
         <li>
           <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
@@ -415,7 +439,7 @@
 
   <div class="section" id="about">
     <div class="section-inner">
-      <div class="section-num">01 — About</div>
+      <div class="section-num">About FLOWZ</div>
       <div class="about-grid">
         <div class="about-image">
           <img src="photo5.jpg" alt="FLOWZ – Drum & Bass Artist from Cologne"/>
@@ -439,7 +463,6 @@
 
   <div class="section section-dark" id="shows">
     <div class="section-inner">
-      <div class="section-num">02 — Shows</div>
       <h1-1>SELECTED SHOWS</h1-1>
       
       <div class="show-entry">
@@ -525,7 +548,6 @@
 
   <div class="section">
     <div class="section-inner">
-      <div class="section-num">03 — Profile</div>
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">KEY FACTS</h2>
 
       <div class="two-col" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
@@ -578,8 +600,7 @@
 
   <div class="section section-dark" id="music">
     <div class="section-inner">
-      <div class="section-num">04 — Music & Socials</div>
-      <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">LISTEN & FOLLOW</h1-1>
+      <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">MUSIC & SOCIALS</h1-1>
       <ul class="social-list">
         <li><a href="https://instagram.com/iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item"><span>Instagram</span><span>@iam.flowz ↗</span></a></li>
         <li><a href="https://tiktok.com/@iam.flowz" target="_blank" rel="noopener noreferrer" class="social-item"><span>TikTok</span><span>@iam.flowz ↗</span></a></li>
@@ -591,10 +612,37 @@
     </div>
   </div>
 
+  <!-- ── NEUER REITER: LATEST VIDEO AND MUSIC ── -->
+  <div class="section" id="latest-media">
+    <div class="section-inner">
+      <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">LATEST VIDEO & MUSIC</h2>
+      
+      <div class="media-grid" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
+        <!-- Linke Spalte: YouTube (Responsive Wrapper) -->
+        <div class="media-video-wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/KE9rXPWRyV0?si=1zYIC-RL168O0Igv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        
+        <!-- Rechte Spalte: SoundCloud & Spotify Stack -->
+        <div class="media-audio-stack">
+          <!-- SoundCloud Player -->
+          <div>
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; margin-top: 5px;">
+              <a href="https://soundcloud.com/iamflowz" title="FLOWZ" target="_blank" style="color: #cccccc; text-decoration: none;">FLOWZ</a> · <a href="https://soundcloud.com/iamflowz/yearmix-2025" title="YEARMIX 2025" target="_blank" style="color: #cccccc; text-decoration: none;">YEARMIX 2025</a>
+            </div>
+          </div>
+          
+          <!-- Spotify Player -->
+          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/0QaSiI5TLA4N7mcsdxShDO?utm_source=generator&theme=0&si=49e6e1c39458419e" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="contact-block" id="contact">
     <div class="contact-inner">
       <div>
-        <div class="section-num">05 — Booking</div>
         <h1>LET'S WORK<br/>TOGETHER</h1>
         <p>Available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry.</p>
         <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; max-width: 280px;">
@@ -608,7 +656,7 @@
         <input type="text"  name="name"    placeholder="Your Name"           required/>
         <input type="email" name="email"   placeholder="Email Address"       required/>
         <input type="text"  name="event"   placeholder="Event / Venue / Date"/>
-        <textarea           name="message" placeholder="Message" rows="6"></textarea>
+        <textarea           name="message" placeholder="Message" rows="4"></textarea>
         <button type="submit" class="btn-red">Send Inquiry</button>
         <div class="form-success" id="formSuccess">✓ Message sent</div>
         <div class="form-error"   id="formError">✗ Something went wrong. Please try again or send an email directly.</div>
