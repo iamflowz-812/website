@@ -28,7 +28,21 @@
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
+    
     .nav-right { display: flex; align-items: center; gap: 2rem; }
+    
+    /* Der neue Back-to-Home Text-Reiter */
+    .nav-back-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-back-text:hover { color: var(--red); }
+
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 0.75rem;
@@ -227,7 +241,15 @@
     /* ── MOBILE ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.25rem; justify-content: flex-end; }
-      .nav-right { gap: 0; }
+      
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem; /* Abstand zwischen Textlink und Strichen */
+        width: 100%;
+        justify-content: flex-end;
+      }
+      
       .nav-links {
         display: none;
         flex-direction: column;
@@ -240,8 +262,14 @@
         text-align: center;
       }
       .nav-links.open { display: flex; }
-      .nav-toggle { display: flex; margin-left: 1rem; }
+      .nav-toggle { display: flex; }
       .nav-presskit { display: none; }
+      
+      .nav-back-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+      
       .page-hero { padding: 7rem 1.25rem 3rem; }
       .shows-inner { padding: 0 1.25rem; }
       .show-row {
@@ -260,6 +288,9 @@
   <!-- ── NAV ── */ -->
   <nav>
     <div class="nav-right">
+      <!-- Dauerhaft sichtbarer Text-Link links neben dem Toggle-Icon -->
+      <a href="/" class="nav-back-text">← Back to Home</a>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="/#about">About</a></li>
         <li><a href="shows" class="active">Shows</a></li>
@@ -1162,4 +1193,5 @@
     });
   </script>
 </body>
+</html>
 </html>
