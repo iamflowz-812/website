@@ -63,6 +63,12 @@
       white-space: nowrap;
     }
     .nav-presskit:hover { background: #c01108 !important; }
+    
+    /* Verhindert die Anzeige des mobilen Buttons in der Desktop-Ansicht */
+    .nav-presskit-mobile {
+      display: none;
+    }
+
     .nav-toggle {
       display: none;
       background: none; border: none; cursor: pointer;
@@ -191,6 +197,7 @@
     }
     .show-entry:hover { background: var(--surface); margin: 0 -1rem; padding: 1.75rem 1rem; }
     .show-year { font-family: 'Anton', sans-serif; font-size: 1.2rem; color: var(--muted); }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
     .show-name { font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--dark); letter-spacing: 0.03em; }
     .show-loc { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
     .show-type { text-align: right; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
@@ -318,7 +325,7 @@
       .nav-right {
         display: flex;
         align-items: center;
-        gap: 1rem; /* Abstand zwischen dem Presskit-Button und den Strichen */
+        gap: 1rem;
         width: 100%;
         justify-content: flex-end;
       }
@@ -337,17 +344,12 @@
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; }
       
-      /* Verhindert das Ausblenden und schrumpft den Button leicht, damit er mobil gut aussieht */
-      .nav-presskit {
+      /* Schaltet das mobile Element sichtbar und verkleinert es leicht */
+      .nav-presskit-mobile {
         display: inline-block !important;
         padding: 0.45rem 0.95rem;
         font-size: 0.65rem;
         letter-spacing: 0.1em;
-      }
-      
-      /* Versteckt den Button im ausgeklappten Menü-Dropdown, da er jetzt permanent in der Leiste steht */
-      .nav-links .nav-presskit {
-        display: none !important;
       }
       
       header { padding: 2rem 1.25rem; }
@@ -390,9 +392,10 @@
         </li>
       </ul>
       
+      <!-- Dieser Button ist über .nav-presskit-mobile auf dem Desktop unsichtbar und mobil permanent aktiv -->
       <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
          target="_blank" rel="noopener noreferrer"
-         class="nav-presskit">
+         class="nav-presskit nav-presskit-mobile">
         Press Kit ↓
       </a>
 
