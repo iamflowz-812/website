@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FLOWZ - Links</title>
+  
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="shortcut icon" href="favicon.png"/>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  
+  <style>
+    :root {
+      /* Farben eins zu eins aus deiner index.html */
+      --bg: #f2f0eb;
+      --dark: #0d0d0d;
+      --red: #e3150d;
+      --muted: #888;
+      --border: #d8d5cf;
+      --surface: #ffffff; /* Weiße Karten wie auf den Screenshots */
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body { 
+      background: var(--bg); 
+      color: var(--dark); 
+      font-family: 'Inter', sans-serif; 
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 3rem 1.25rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── PROFILE SECTION ── */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .profile-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .profile-logo {
+      display: block;
+      height: 42px; /* Entspricht optisch der Höhe des 2.25rem Textes */
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      filter: brightness(0); /* Invertiert dein weißes Logo zu tiefem Schwarz */
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--dark);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .block-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* ── CARD STYLES ── */
+    .card {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; /* Moderne, abgerundete Ecken wie bei Linktree */
+      text-decoration: none;
+      color: var(--dark);
+      padding: 1rem 1.25rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--red);
+      box-shadow: 0 4px 12px rgba(13, 13, 13, 0.05);
+    }
+
+    /* Card Content Alignment */
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Spezifisch für das Mail-Icon */
+    .card-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: var(--dark);
+      stroke-width: 1.75;
+    }
+
+    .card-cover {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      object-fit: cover;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .card-text {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 1.5rem; /* Platzhalter für den Drei-Punkt-Indikator */
+    }
+
+    .card-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400; /* Nicht fett */
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .card-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    /* Drei-Punkte-Menü rechts simulieren */
+    .card-dots {
+      position: absolute;
+      right: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .card-dots span {
+      width: 3px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 50%;
+    }
+    .card:hover .card-dots span {
+      background: var(--muted);
+    }
+
+    /* Spezifischer Stil für den Booking-Button */
+    .booking-card {
+      border: 1px solid var(--border);
+    }
+    .booking-card .card-title {
+      font-weight: 500; /* Leicht angehoben für den primären Call-to-Action */
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
+    footer p, footer a {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--red);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Profil-Kopf -->
+    <header>
+      <img src="og-share.jpg" alt="FLOWZ" class="profile-img"/>
+      <!-- Logo ersetzt den Text-Schriftzug und wird per CSS geschwärzt -->
+      <img src="logo.png" alt="FLOWZ" class="profile-logo"/>
+      <div class="subtitle">Drum & Bass Artist from Cologne, Germany</div>
+    </header>
+
+    <!-- Booking-Sektion -->
+    <section>
+      <div class="section-title">Booking Request</div>
+      <div class="block-group">
+        <a href="https://iamflowz.de/#contact" class="card booking-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+          </div>
+          <div class="card-text">
+            <div class="card-title">Submit your request here</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Sets-Sektion -->
+    <section>
+      <div class="section-title">Sets</div>
+      <div class="block-group">
+        
+        <!-- SET 1 -->
+        <a href="https://soundcloud.com/iamflowz/yearmix-2025" target="_blank" rel="noopener noreferrer" class="card">
+          <img src="cover_yearmix.jpg" alt="Yearmix" class="card-cover"/>
+          <div class="card-text">
+            <div class="card-title">Yearmix 2025</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- SET 2 -->
+        <a href="https://www.youtube.com/watch?v=gU0MKgpUH-E" target="_blank" rel="noopener noreferrer" class="card">
+          <img src="cover_subvoid.jpg" alt="Subvoid" class="card-cover"/>
+          <div class="card-text">
+            <div class="card-title">Subvoid Agency Showcase Night Liveset</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- SET 3 -->
+        <a href="https://www.youtube.com/watch?v=KE9rXPWRyV0" target="_blank" rel="noopener noreferrer" class="card">
+          <img src="cover_container.jpg" alt="Container" class="card-cover"/>
+          <div class="card-text">
+            <div class="card-title">Container Rave Liveset</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- SET 4 -->
+        <a href="https://www.youtube.com/watch?v=hnrPO8uTtQs" target="_blank" rel="noopener noreferrer" class="card">
+          <img src="cover_pollerwiesen.jpg" alt="Pollerwiesen" class="card-cover"/>
+          <div class="card-text">
+            <div class="card-title">Pollerwiesen DJ Set</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Socials-Sektion -->
+    <section>
+      <div class="section-title">Socials</div>
+      <div class="block-group">
+
+        <!-- INSTAGRAM -->
+        <a href="https://instagram.com/iam.flowz" target="_blank" rel="noopener noreferrer" class="card">
+          <div class="card-text">
+            <div class="card-title">Instagram</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- SOUNDCLOUD -->
+        <a href="https://soundcloud.com/iamflowz" target="_blank" rel="noopener noreferrer" class="card">
+          <div class="card-text">
+            <div class="card-title">SoundCloud</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- YOUTUBE -->
+        <a href="https://www.youtube.com/@iamflowz" target="_blank" rel="noopener noreferrer" class="card">
+          <div class="card-text">
+            <div class="card-title">YouTube</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- TIKTOK -->
+        <a href="https://tiktok.com/@iam.flowz" target="_blank" rel="noopener noreferrer" class="card">
+          <div class="card-text">
+            <div class="card-title">TikTok</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+        <!-- FACEBOOK -->
+        <a href="DEIN_LINK_HIER" target="_blank" rel="noopener noreferrer" class="card">
+          <div class="card-text">
+            <div class="card-title">Facebook</div>
+          </div>
+          <div class="card-dots"><span></span><span></span><span></span></div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Fußzeile -->
+    <footer>
+      <p>© 2026 FLOWZ</p>
+      <p style="margin-top: 0.4rem;">
+        <a href="https://iamflowz.de/impressum">Impressum</a> · 
+        <a href="https://iamflowz.de/datenschutz">Datenschutz</a>
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
