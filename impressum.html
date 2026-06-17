@@ -42,18 +42,18 @@
 
     /* ── NAV ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+	  display: flex; justify-content: space-between; align-items: center;
       padding: 1.25rem 2.5rem;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      background: var(--dark);                          /* war: var(--bg) */
+      border-bottom: 1px solid rgba(255,255,255,0.08);  /* war: var(--border) */
     }
 
     .nav-logo {
       font-family: 'Anton', sans-serif;
       font-size: 1.4rem;
       letter-spacing: 0.12em;
-      color: var(--dark);
+      color: #fff;
       text-decoration: none;
     }
 
@@ -66,6 +66,9 @@
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--red); }
+	.nav-links a { color: rgba(255,255,255,0.5); }
+	.nav-links a:hover { color: var(--red); }
+	.nav-toggle span { background: #fff; }
 
     /* ── HERO ── */
     .page-hero {
@@ -73,6 +76,15 @@
       padding: 5rem 2.5rem 4rem;
       position: relative;
       overflow: hidden;
+    }
+	
+	.hero-logo-small {
+      display: block;
+      max-height: 25px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
     }
 
     .section-num {
@@ -179,6 +191,10 @@
       .page-hero   { padding: 4rem 1.25rem 3rem; }
       .content-wrap { padding: 3rem 1.25rem; }
       footer       { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
+	  .nav-links {
+		background: var(--dark);
+		border-top: 1px solid rgba(255,255,255,0.08);
+	 }
     }
   </style>
 </head>
@@ -186,7 +202,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">FLOWZ</a>
+    <img src="logo.png" class="hero-logo-small" alt="FLOWZ"/>
     <a href="index.html" class="nav-back">← Zurück</a>
   </nav>
 
