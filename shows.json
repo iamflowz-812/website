@@ -1,19 +1,19 @@
 [
   {
-    "id": 1781767233631,
-    "date": "31.07.2026",
-    "title": "TBA",
-    "support": "TBA",
-    "city": "TBA, DE",
-    "badge": "Club",
-    "upcoming": true
-  },
-  {
     "id": 1,
     "date": "18.07.2026",
     "title": "BAD BEHAVIOUR Open Air",
     "support": "Gourski, 4U, tillted",
     "city": "MÃ¶nchengladbach, DE",
+    "badge": "Club",
+    "upcoming": true
+  },
+  {
+    "id": 1781767233631,
+    "date": "31.07.2026",
+    "title": "TBA",
+    "support": "TBA",
+    "city": "TBA, DE",
     "badge": "Club",
     "upcoming": true
   },
@@ -32,6 +32,24 @@
     "title": "BASSBOX BIRTHDAY BASH",
     "support": "BLNDR, tillted, SHTHPPNS",
     "city": "MÃ¶nchengladbach, DE",
+    "badge": "Club",
+    "upcoming": false
+  },
+  {
+    "id": 1781767926876,
+    "date": "13.06.2026",
+    "title": "BASSMENT Festival",
+    "support": "Second Stage - Sigma, Delta Heavy, Primate",
+    "city": "Wels, AT",
+    "badge": "Festival",
+    "upcoming": false
+  },
+  {
+    "id": 1781767989741,
+    "date": "02.11.2025",
+    "title": "SUBVOID Agency Showcase Night",
+    "support": "KEIOS, Blacksite, Difino",
+    "city": "Mönchengladbach, DE",
     "badge": "Club",
     "upcoming": false
   }
