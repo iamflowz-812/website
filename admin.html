@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>FLOWZ - Show Admin</title>
+  <style>
+    body { background: #0d0d0d; color: #fff; font-family: sans-serif; padding: 2rem; }
+    input, select, button { padding: 0.5rem; margin: 0.5rem 0; width: 100%; max-width: 400px; display: block; }
+    .show-item { border: 1px solid #333; padding: 1rem; margin-bottom: 1rem; background: #1a1a1a; }
+    .btn-delete { background: #e3150d; color: white; border: none; cursor: pointer; width: auto; }
+    .btn-save { background: #6ee7b7; color: #0d0d0d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Show Manager</h1>
+  
+  <input type="password" id="ghToken" placeholder="GitHub Personal Access Token eingeben">
+  <hr>
+  
+  <h3>Neue Show hinzufügen</h3>
+  <input type="text" id="newDate" placeholder="Datum (z.B. 18.07.2026)">
+  <input type="text" id="newTitle" placeholder="Event Name">
+  <input type="text" id="newSupport" placeholder="Support Acts">
+  <input type="text" id="newCity" placeholder="Stadt, Land">
+  <input type="text" id="newBadge" placeholder="Club / Festival">
+  <label><input type="checkbox" id="newUpcoming" checked style="width:auto; display:inline;"> Upcoming?</label>
+  <button onclick="addShow()">Hinzufügen</button>
+
+  <hr>
+  <h3>Aktuelle Daten (Vorschau / Löschen)</h3>
+  <div id="adminList">Lade Daten...</div>
+  
+  <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
+
+  <script>
+    const repoOwner = "iamflowz-812";
+    const repoName = "website";
+    const filePath = "shows.json";
+    
+    let localShows = [];
+    let fileSha = "";
+
+    // Daten initial von GitHub laden
+    fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`)
+      .then(res => res.json())
+      .then(data => {
+        fileSha = data.sha; // Wichtig für spätere Updates
+        localShows = JSON.parse(atob(data.content)); // Base64 dekodieren
+        renderAdminList();
+      });
+
+    function renderAdminList() {
+      const list = document.getElementById('adminList');
+      list.innerHTML = '';
+      localShows.forEach((show, index) => {
+        list.innerHTML += `
+          <div class="show-item">
+            <strong>${show.date} - ${show.title}</strong> (${show.city})
+            <button class="btn-delete" onclick="deleteShow(${index})">Löschen</button>
+          </div>
+        `;
+      });
+    }
+
+    function addShow() {
+      const newShow = {
+        id: Date.now(),
+        date: document.getElementById('newDate').value,
+        title: document.getElementById('newTitle').value,
+        support: document.getElementById('newSupport').value,
+        city: document.getElementById('newCity').value,
+        badge: document.getElementById('newBadge').value,
+        upcoming: document.getElementById('newUpcoming').checked
+      };
+      localShows.unshift(newShow); // Ganz oben hinzufügen
+      renderAdminList();
+    }
+
+    function deleteShow(index) {
+      localShows.splice(index, 1);
+      renderAdminList();
+    }
+
+    function saveToGitHub() {
+      const token = document.getElementById('ghToken').value;
+      if(!token) return alert("Bitte GitHub Token eingeben!");
+
+      const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(localShows, null, 2))));
+
+      fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: "Update shows via Admin Dashboard",
+          content: updatedContent,
+          sha: fileSha
+        })
+      })
+      .then(res => {
+        if(res.ok) {
+          alert("Erfolgreich live aktualisiert!");
+          location.reload();
+        } else {
+          alert("Fehler beim Speichern. Token korrekt?");
+        }
+      });
+    }
+  </script>
+</body>
+</html>
