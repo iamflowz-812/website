@@ -98,7 +98,7 @@
     <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
 
     <hr style="margin-top: 5rem; opacity: 0.2;">
-    <h3 style="opacity: 0.4;">Token-Verschlüsselungs-Tool</h3>
+    <h3>Token-Verschlüsselungs-Tool</h3>
     <div class="form-group" style="opacity: 0.5;">
       <p style="font-size:0.8rem; margin-bottom:0.5rem;">Gib hier deinen GitHub-Token und dein Wunschpasswort ein, um den verschlüsselten Code zu generieren:</p>
       <input type="text" id="toolsToken" placeholder="GitHub Token (ghp_...)">
@@ -110,12 +110,12 @@
 
   <script>
     // ── CONFIGURATION ───────────────────────────────────────
-    const repoOwner = "iamflowz-812"; // <-- HIER DEINEN USERNAME EINTRAGEN
-    const repoName = "website";       // <-- HIER DEINEN REPO-NAMEN EINTRAGEN
-    const filePath = "shows.json";           // Pfad zur JSON-Datei im Repo
-    const ALLOWED_USER = "admin";            // <-- DEIN GEWÜNSCHTER BENUTZERNAME
+    const repoOwner = "iamflowz-812"; 
+    const repoName = "website";       
+    const filePath = "shows.json";           
+    const ALLOWED_USER = "admin";            
     
-    // HIER das Ergebnis aus dem Verschlüsselungs-Tool einfügen:
+    // HIER das Ergebnis aus dem Verschlüsselungs-Tool unten einfügen:
     const ENCRYPTED_TOKEN = ""; 
     // ────────────────────────────────────────────────────────
 
@@ -123,35 +123,48 @@
     let localShows = [];
     let fileSha = "";
 
-    // LOGIN LOGIK MIT DEBUGGING
+    // LOGIN LOGIK
     function handleLogin() {
-// Egal was eingegeben wird, wir blenden das Login-Overlay einfach aus:
-  document.getElementById("loginOverlay").style.display = "none";
+      const user = document.getElementById("loginUser").value;
+      const pass = document.getElementById("loginPass").value;
+      const errorEl = document.getElementById("loginError");
+
+      // FALLS NOCH KEIN TOKEN HINTERLEGT IST: JEDEN LOGIN ZULASSEN, DAMIT DU DAS TOOL NUTZEN KANNST
+      if (!ENCRYPTED_TOKEN) {
+        document.getElementById("loginOverlay").style.display = "none";
+        loadDataFromGitHub();
+        return;
+      }
+
+      if (user !== ALLOWED_USER) {
+        errorEl.style.display = "block";
+        return;
       }
 
       try {
         const bytes = CryptoJS.AES.decrypt(ENCRYPTED_TOKEN, pass);
         const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 
-        console.log("Entschlüsselter String (Länge):", decrypted.length);
-        console.log("Startet mit ghp_ oder github_pat_?", decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_"));
-
         if (decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_")) {
           decryptedToken = decrypted;
           document.getElementById("loginOverlay").style.display = "none";
           loadDataFromGitHub();
         } else {
-          console.warn("Die Entschlüsselung war erfolgreich, ergab aber keinen gültigen Token-Präfix.");
           errorEl.style.display = "block";
         }
       } catch (e) {
-        console.error("Kritischer Fehler bei der AES-Entschlüsselung. Wahrscheinlich falsches Passwort:", e);
         errorEl.style.display = "block";
       }
     }
 
     // DATEN VON GITHUB LADEN
     function loadDataFromGitHub() {
+      // Wenn noch kein Token vorhanden ist, überspringen wir das Laden vorerst sauber
+      if (!decryptedToken) {
+        document.getElementById("adminList").innerHTML = `<span style="color:var(--text-muted);">Bitte nutze zuerst das Tool unten, um deinen verschlüsselten Token zu generieren und im Code einzubauen.</span>`;
+        return;
+      }
+
       const headers = { "Authorization": `token ${decryptedToken}` };
 
       fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, { headers })
@@ -225,7 +238,7 @@
       document.getElementById(`view-${index}`).style.display = "none";
     }
 
-    box = function closeEditForm(index) {
+    function closeEditForm(index) {
       document.getElementById(`editForm-${index}`).style.display = "none";
       document.getElementById(`view-${index}`).style.display = "flex";
     }
@@ -248,6 +261,7 @@
       renderAdminList();
     }
 
+    // Flag umschalten
     function toggleUpcoming(index) {
       localShows[index].upcoming = !localShows[index].upcoming;
       renderAdminList();
@@ -280,6 +294,8 @@
     }
 
     function saveToGitHub() {
+      if (!decryptedToken) return alert("Kein Token aktiv. Bitte logge dich mit gültigem Passwort ein.");
+      
       const jsonString = JSON.stringify(localShows, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
 
