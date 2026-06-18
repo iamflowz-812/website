@@ -96,16 +96,6 @@
     <div id="adminList">Lade Daten von GitHub...</div>
     
     <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
-
-    <hr style="margin-top: 5rem; opacity: 0.2;">
-    <h3>Token-Verschlüsselungs-Tool</h3>
-    <div class="form-group" style="opacity: 0.5;">
-      <p style="font-size:0.8rem; margin-bottom:0.5rem;">Gib hier deinen GitHub-Token und dein Wunschpasswort ein, um den verschlüsselten Code zu generieren:</p>
-      <input type="text" id="toolsToken" placeholder="GitHub Token (ghp_...)">
-      <input type="text" id="toolsPass" placeholder="Dein Wunsch-Admin-Passwort">
-      <button onclick="generateEncryptedToken()" style="background:#555; color:#fff;">Code generieren</button>
-      <input type="text" id="toolsOutput" readonly placeholder="Ergebnis-Code erscheint hier..." style="margin-top:1rem; background:#222;">
-    </div>
   </div>
 
   <script>
@@ -115,36 +105,31 @@
     const filePath = "shows.json";           
     const ALLOWED_USER = "admin";            
     
-    // HIER das Ergebnis aus dem Verschlüsselungs-Tool unten einfügen:
-    const ENCRYPTED_TOKEN = ""; 
+    // HIER dein kopiertes Krypto-Ergebnis einfügen:
+    const ENCRYPTED_TOKEN = "U2FsdGVkX19s84wwgE8UXe/gh1wnELEmc226yspUe+wdSwqbyimgD0trs6H1RDMH3P8psA4DTpb5+PZD05SASLbYnHCAi4LtQgcUeeGFIocY53t2qIcZalLzOp59Gj+Y1Eme+FuILwc2OpV7wQezsQ=="; 
     // ────────────────────────────────────────────────────────
 
     let decryptedToken = "";
     let localShows = [];
     let fileSha = "";
 
-    // LOGIN LOGIK
+    // LOGIN LOGIK (JETZT WIEDER SCHARF GESCHALTET)
     function handleLogin() {
       const user = document.getElementById("loginUser").value;
       const pass = document.getElementById("loginPass").value;
       const errorEl = document.getElementById("loginError");
 
-      // FALLS NOCH KEIN TOKEN HINTERLEGT IST: JEDEN LOGIN ZULASSEN, DAMIT DU DAS TOOL NUTZEN KANNST
-      if (!ENCRYPTED_TOKEN) {
-        document.getElementById("loginOverlay").style.display = "none";
-        loadDataFromGitHub();
-        return;
-      }
-
-      if (user !== ALLOWED_USER) {
+      if (user !== ALLOWED_USER || !ENCRYPTED_TOKEN) {
         errorEl.style.display = "block";
         return;
       }
 
       try {
+        // Entschlüsseln des Tokens mit deinem Passwort
         const bytes = CryptoJS.AES.decrypt(ENCRYPTED_TOKEN, pass);
         const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 
+        // Überprüfen, ob das Ergebnis ein echter GitHub-Token ist
         if (decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_")) {
           decryptedToken = decrypted;
           document.getElementById("loginOverlay").style.display = "none";
@@ -159,11 +144,7 @@
 
     // DATEN VON GITHUB LADEN
     function loadDataFromGitHub() {
-      // Wenn noch kein Token vorhanden ist, überspringen wir das Laden vorerst sauber
-      if (!decryptedToken) {
-        document.getElementById("adminList").innerHTML = `<span style="color:var(--text-muted);">Bitte nutze zuerst das Tool unten, um deinen verschlüsselten Token zu generieren und im Code einzubauen.</span>`;
-        return;
-      }
+      if (!decryptedToken) return;
 
       const headers = { "Authorization": `token ${decryptedToken}` };
 
@@ -261,7 +242,6 @@
       renderAdminList();
     }
 
-    // Flag umschalten
     function toggleUpcoming(index) {
       localShows[index].upcoming = !localShows[index].upcoming;
       renderAdminList();
@@ -294,8 +274,8 @@
     }
 
     function saveToGitHub() {
-      if (!decryptedToken) return alert("Kein Token aktiv. Bitte logge dich mit gültigem Passwort ein.");
-      
+      if (!decryptedToken) return;
+
       const jsonString = JSON.stringify(localShows, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
 
@@ -321,16 +301,6 @@
         loadDataFromGitHub();
       })
       .catch(err => alert("Speicherfehler: " + err.message));
-    }
-
-    // TOOL FÜR DIE ERSTEINRICHTUNG
-    function generateEncryptedToken() {
-      const tok = document.getElementById("toolsToken").value.trim();
-      const pass = document.getElementById("toolsPass").value.trim();
-      if(!tok || !pass) return alert("Bitte Token und Passwort eintragen!");
-      
-      const encrypted = CryptoJS.AES.encrypt(tok, pass).toString();
-      document.getElementById("toolsOutput").value = encrypted;
     }
   </script>
 </body>
