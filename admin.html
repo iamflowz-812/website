@@ -95,7 +95,7 @@
     <h3>Aktuelle Shows im Repository</h3>
     <div id="adminList">Lade Daten von GitHub...</div>
     
-    <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
+    <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub保存 spechteln</button>
   </div>
 
   <script>
@@ -105,7 +105,7 @@
     const filePath = "shows.json";           
     const ALLOWED_USER = "admin";            
     
-    // HIER dein kopiertes Krypto-Ergebnis einfügen:
+    // ACHTUNG: Hier fügst du deinen generierten Zeichensalat ein!
     const ENCRYPTED_TOKEN = "U2FsdGVkX19s84wwgE8UXe/gh1wnELEmc226yspUe+wdSwqbyimgD0trs6H1RDMH3P8psA4DTpb5+PZD05SASLbYnHCAi4LtQgcUeeGFIocY53t2qIcZalLzOp59Gj+Y1Eme+FuILwc2OpV7wQezsQ=="; 
     // ────────────────────────────────────────────────────────
 
@@ -113,7 +113,7 @@
     let localShows = [];
     let fileSha = "";
 
-    // LOGIN LOGIK (JETZT WIEDER SCHARF GESCHALTET)
+    // 1. LOGIN LOGIK
     function handleLogin() {
       const user = document.getElementById("loginUser").value;
       const pass = document.getElementById("loginPass").value;
@@ -125,11 +125,9 @@
       }
 
       try {
-        // Entschlüsseln des Tokens mit deinem Passwort
         const bytes = CryptoJS.AES.decrypt(ENCRYPTED_TOKEN, pass);
         const decrypted = bytes.toString(CryptoJS.enc.Utf8);
 
-        // Überprüfen, ob das Ergebnis ein echter GitHub-Token ist
         if (decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_")) {
           decryptedToken = decrypted;
           document.getElementById("loginOverlay").style.display = "none";
@@ -142,7 +140,7 @@
       }
     }
 
-    // DATEN VON GITHUB LADEN
+    // 2. DATEN VON GITHUB LADEN
     function loadDataFromGitHub() {
       if (!decryptedToken) return;
 
@@ -164,7 +162,7 @@
         });
     }
 
-    // LISTE REPRÄSENTIEREN
+    // 3. LISTE REPRÄSENTIEREN
     function renderAdminList() {
       const list = document.getElementById('adminList');
       list.innerHTML = '';
@@ -273,6 +271,7 @@
       titleEl.value = '';
     }
 
+    // 4. LIVE AUF GITHUB SPEICHERN
     function saveToGitHub() {
       if (!decryptedToken) return;
 
