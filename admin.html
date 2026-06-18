@@ -23,7 +23,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 2rem 1.5rem; line-height: 1.5; }
-    .container { max-width: 800px; margin: 0 auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
     h1 { font-size: 1.8rem; margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 2px solid var(--red); padding-bottom: 0.5rem; }
     h3 { font-size: 1.2rem; margin: 1.5rem 0 1rem 0; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
     hr { border: 0; height: 1px; background: var(--border); margin: 2rem 0; }
@@ -68,7 +68,7 @@
 
   <div id="loginOverlay">
     <div class="login-box">
-      <h2 style="margin-bottom: 1.5rem; letter-spacing: 0.1em;">FLOWZ ADMIN LOGIN</h2>
+      <h2 style="margin-bottom: 1.5rem; letter-spacing: 0.1em;">ADMIN LOGIN</h2>
       <input type="text" id="loginUser" placeholder="Benutzername">
       <input type="password" id="loginPass" placeholder="Passwort">
       <button class="btn-add" onclick="handleLogin()">Einloggen</button>
@@ -77,16 +77,16 @@
   </div>
 
   <div class="container">
-    <h1>FLOWZ - Show Manager</h1>
+    <h1>Show Manager</h1>
     <p style="font-size: 0.85rem; color: var(--green); margin-bottom: 1.5rem;">● Eingeloggt als Administrator</p>
     
     <h3>Neue Show hinzufügen</h3>
     <div class="form-group">
-      <input type="text" id="newDate" placeholder="Datum (z.B. 18.07.2026)">
+      <input type="text" id="newDate" placeholder="Datum (z.B. 01.01.2030)">
       <input type="text" id="newTitle" placeholder="Event Name">
       <input type="text" id="newSupport" placeholder="Support / Line-Up">
       <input type="text" id="newCity" placeholder="Stadt, Land">
-      <input type="text" id="newBadge" placeholder="Location-Typ (z.B. Club, Festival)">
+      <input type="text" id="newBadge" placeholder="Location-Typ (z.B. Club, Festival, Event)">
       <label><input type="checkbox" id="newUpcoming" checked> Als "UPCOMING" markieren</label>
       <button class="btn-add" onclick="addShow()">Zur Liste hinzufügen</button>
     </div>
@@ -95,7 +95,7 @@
     <h3>Aktuelle Shows im Repository</h3>
     <div id="adminList">Lade Daten von GitHub...</div>
     
-    <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub保存 spechteln</button>
+    <button class="btn-save" onclick="saveToGitHub()">Änderungen speichern</button>
   </div>
 
   <script>
