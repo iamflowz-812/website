@@ -2,10 +2,10 @@
   {
     "id": 1,
     "date": "18.07.2026",
-    "title": "BAD BEHAVIOUR Open Air",
+    "title": "BAD BEHAVIOUR",
     "support": "Gourski, 4U, tillted",
     "city": "Mönchengladbach, DE",
-    "badge": "Club",
+    "badge": "Open Air",
     "upcoming": true
   },
   {
@@ -50,13 +50,13 @@
     "title": "BASSBOX BIRTHDAY BASH",
     "support": "BLNDR, tillted, SHTHPPNS",
     "city": "Mönchengladbach, DE",
-    "badge": "Club",
+    "badge": "Event",
     "upcoming": false
   },
   {
     "id": 7,
     "date": "18.04.2026",
-    "title": "Bassment Festival",
+    "title": "BASSMENT Festival",
     "support": "Second Stage - Sigma, Delta Heavy, Primate",
     "city": "Wels, AT",
     "badge": "Festival",
@@ -146,10 +146,10 @@
   {
     "id": 17,
     "date": "19.07.2025",
-    "title": "BAD BEHAVIOUR Open Air",
+    "title": "BAD BEHAVIOUR",
     "support": "Gourski, BLYSS, tillted",
     "city": "Mönchengladbach, DE",
-    "badge": "Club",
+    "badge": "Open Air",
     "upcoming": false
   },
   {
@@ -461,7 +461,7 @@
   {
     "id": 52,
     "date": "11.09.2021",
-    "title": "BEATLAB OENAIR",
+    "title": "BEATLAB OPENAIR",
     "support": "Mainstage",
     "city": "Meckenheim, DE",
     "badge": "Festival",
@@ -569,10 +569,10 @@
   {
     "id": 64,
     "date": "05.10.2019",
-    "title": "Mattermind Open Air",
+    "title": "Mattermind",
     "support": "Roklem, Blank, TMPR",
     "city": "Brühl, DE",
-    "badge": "Event",
+    "badge": "Open Air",
     "upcoming": false
   },
   {
