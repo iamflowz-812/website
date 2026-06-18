@@ -125,18 +125,8 @@
 
     // LOGIN LOGIK MIT DEBUGGING
     function handleLogin() {
-      const user = document.getElementById("loginUser").value;
-      const pass = document.getElementById("loginPass").value;
-      const errorEl = document.getElementById("loginError");
-
-      console.log("--- Login-Versuch gestartet ---");
-      console.log("Eingegebener User:", user);
-      console.log("Verschlüsselter Token im Code hinterlegt?", !!ENCRYPTED_TOKEN);
-
-      if (user !== ALLOWED_USER || !ENCRYPTED_TOKEN) {
-        console.warn("User stimmt nicht überein oder ENCRYPTED_TOKEN ist leer.");
-        errorEl.style.display = "block";
-        return;
+// Egal was eingegeben wird, wir blenden das Login-Overlay einfach aus:
+  document.getElementById("loginOverlay").style.display = "none";
       }
 
       try {
