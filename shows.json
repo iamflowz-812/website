@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "date": "18.07.2026",
+    "title": "BAD BEHAVIOUR Open Air",
+    "support": "Gourski, 4U, tillted",
+    "city": "Mönchengladbach, DE",
+    "badge": "Club",
+    "upcoming": true
+  },
+  {
+    "id": 2,
+    "date": "15.08.2026",
+    "title": "BREAKZONE Festival",
+    "support": "Zombie Cats, Youphoria, Enaly",
+    "city": "Cologne, DE",
+    "badge": "Festival",
+    "upcoming": true
+  },
+  {
+    "id": 3,
+    "date": "13.06.2026",
+    "title": "BASSBOX BIRTHDAY BASH",
+    "support": "BLNDR, tillted, SHTHPPNS",
+    "city": "Mönchengladbach, DE",
+    "badge": "Club",
+    "upcoming": false
+  }
+]
