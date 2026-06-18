@@ -1,10 +1,19 @@
 [
   {
+    "id": 1781767233631,
+    "date": "31.07.2026",
+    "title": "TBA",
+    "support": "TBA",
+    "city": "TBA, DE",
+    "badge": "Club",
+    "upcoming": true
+  },
+  {
     "id": 1,
     "date": "18.07.2026",
     "title": "BAD BEHAVIOUR Open Air",
     "support": "Gourski, 4U, tillted",
-    "city": "Mönchengladbach, DE",
+    "city": "MÃ¶nchengladbach, DE",
     "badge": "Club",
     "upcoming": true
   },
@@ -22,7 +31,7 @@
     "date": "13.06.2026",
     "title": "BASSBOX BIRTHDAY BASH",
     "support": "BLNDR, tillted, SHTHPPNS",
-    "city": "Mönchengladbach, DE",
+    "city": "MÃ¶nchengladbach, DE",
     "badge": "Club",
     "upcoming": false
   }
