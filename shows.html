@@ -31,7 +31,6 @@
     
     .nav-right { display: flex; align-items: center; gap: 2rem; }
     
-    /* Der neue Back-to-Home Text-Reiter */
     .nav-back-text {
       font-size: 0.75rem;
       letter-spacing: 0.15em;
@@ -54,20 +53,6 @@
     }
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: #fff; }
-    .nav-presskit {
-      display: inline-block;
-      background: rgba(255,255,255,0.08);
-      color: #fff !important;
-      padding: 0.55rem 1.25rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .nav-presskit:hover { background: var(--red) !important; }
     .nav-toggle {
       display: none;
       background: none; border: none; cursor: pointer;
@@ -82,13 +67,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .page-hero-inner { max-width: 1200px; margin: 0 auto; }
-    .section-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.5rem;
-    }
     .page-hero h1 {
       font-family: 'Anton', sans-serif;
       font-size: clamp(3.5rem, 9vw, 8rem);
@@ -131,12 +109,6 @@
       color: #fff;
       line-height: 1;
       user-select: none;
-    }
-    .year-group-label .year-tag {
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--red);
     }
 
     .show-row {
@@ -238,14 +210,14 @@
     footer p, footer a { font-size: 0.7rem; color: rgba(255,255,255,0.2); text-decoration: none; }
     footer a:hover { color: var(--red); }
 
-    /* ── MOBILE ── */
+    /* ── MOBILE ANPASSUNG ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.25rem; justify-content: flex-end; }
       
       .nav-right {
         display: flex;
         align-items: center;
-        gap: 1.25rem; /* Abstand zwischen Textlink und Strichen */
+        gap: 1.25rem;
         width: 100%;
         justify-content: flex-end;
       }
@@ -263,20 +235,36 @@
       }
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; }
-      .nav-presskit { display: none; }
       
-      .nav-back-text {
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
-      }
+      .nav-back-text { font-size: 0.7rem; letter-spacing: 0.1em; }
       
       .page-hero { padding: 7rem 1.25rem 3rem; }
       .shows-inner { padding: 0 1.25rem; }
+      
+      /* Optimiertes Raster für Smartphones */
       .show-row {
-        grid-template-columns: 4.5rem 1fr;
-        gap: 1rem;
+        grid-template-columns: 5.5rem 1fr;
+        gap: 0.4rem 1rem;
+        padding: 1.5rem 0;
       }
-      .show-city, .show-badge { display: none; }
+      
+      /* Blendet die Stadt linksbündig unter dem Titel ein */
+      .show-city { 
+        display: block; 
+        grid-column: 2; 
+        font-size: 0.7rem;
+        color: rgba(255,255,255,0.5);
+      }
+      
+      /* Blendet das Badge linksbündig unter der Stadt ein */
+      .show-badge { 
+        display: block; 
+        grid-column: 2; 
+        text-align: left; 
+        font-size: 0.65rem;
+        margin-top: 0.1rem;
+      }
+      
       .year-group { margin-top: 3rem; }
       .shows-footer { padding: 2rem 1.25rem 0; flex-direction: column; gap: 1.25rem; text-align: center; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
@@ -285,16 +273,13 @@
 </head>
 <body>
 
-  <!-- ── NAV ── */ -->
   <nav>
     <div class="nav-right">
-      <!-- Dauerhaft sichtbarer Text-Link links neben dem Toggle-Icon -->
       <a href="/" class="nav-back-text">← Back Home</a>
-
       <ul class="nav-links" id="navLinks">
         <li><a href="/#about">About</a></li>
         <li><a href="shows" class="active">Shows</a></li>
-		<li><a href="/#socials">Socials</a></li>
+        <li><a href="/#socials">Socials</a></li>
         <li><a href="/#music">Music</a></li>
         <li><a href="/#contact">Booking</a></li>
       </ul>
@@ -304,101 +289,24 @@
     </div>
   </nav>
 
-  <!-- ── PAGE HERO ── -->
   <div class="page-hero">
     <div class="page-hero-inner">
       <h1>UPCOMING SHOWS</h1>
       <p class="hero-sub">Check out all my upcoming and past shows<br>ㅤ</p>
-	  <a href="/#contact" class="btn-red">Booking Inquiry</a>
+      <a href="/#contact" class="btn-red">Booking Inquiry</a>
     </div>
   </div>
 
-  <!-- ── SHOWS LIST ── -->
   <div class="shows-wrap">
-  <div class="shows-inner" id="showsContainer">
-    </div>
+    <div class="shows-inner" id="showsContainer">
+      </div>
 
-<script>
-  // Daten aus der JSON-Datei laden
-  fetch('shows.json')
-    .then(response => response.json())
-    .then(data => {
-      renderShows(data);
-    })
-    .catch(err => console.error("Fehler beim Laden der Shows:", err));
-
-  function renderShows(shows) {
-    const container = document.getElementById('showsContainer');
-    container.innerHTML = '';
-
-    // Gruppierung nach "UPCOMING" und den einzelnen Jahren
-    const groups = { 'UPCOMING': [] };
-
-    shows.forEach(show => {
-      if (show.upcoming) {
-        groups['UPCOMING'].push(show);
-      } else {
-        // Jahr aus dem Datum extrahieren (z.B. "13.06.2026" -> "2026")
-        const year = show.date.split('.').pop();
-        if (!groups[year]) groups[year] = [];
-        groups[year].push(show);
-      }
-    });
-
-    // Sortierung der Jahre abwärts (Neueste zuerst)
-    const sortedKeys = Object.keys(groups).sort((a, b) => {
-      if (a === 'UPCOMING') return -1;
-      if (b === 'UPCOMING') return 1;
-      return b - a;
-    });
-
-    sortedKeys.forEach(key => {
-      if (groups[key].length === 0) return; // Keine Shows in dieser Kategorie
-
-      // Year Group Header erstellen
-      const groupDiv = document.createElement('div');
-      groupDiv.className = 'year-group';
-      
-      const labelDiv = document.createElement('div');
-      labelDiv.className = 'year-group-label';
-      
-      if (key === 'UPCOMING') {
-        labelDiv.innerHTML = `<span class="upcoming">UPCOMING</span>`;
-      } else {
-        labelDiv.innerHTML = `<span class="year-big">${key}</span>`;
-      }
-      groupDiv.appendChild(labelDiv);
-
-      // Zeilen für die Shows hinzufügen
-      groups[key].forEach(show => {
-        const row = document.createElement('div');
-        row.className = 'show-row';
-        row.innerHTML = `
-          <span class="show-month">${show.date}</span>
-          <div>
-            <div class="show-title">${show.title}</div>
-            <div class="show-support">${show.support || ''}</div>
-          </div>
-          <span class="show-city">${show.city}</span>
-          <span class="show-badge ${show.upcoming ? 'upcoming' : ''}">${show.badge}</span>
-        `;
-        groupDiv.appendChild(row);
-      });
-
-      container.appendChild(groupDiv);
-    });
-  }
-</script>
-
-    <!-- ─ Bottom Actions ─ -->
     <div class="shows-footer">
       <a href="/" class="back">← Back Home</a>
       <a href="/#contact" class="btn-red">Booking Inquiry</a>
     </div>
+  </div>
 
-  </div><!-- /shows-wrap -->
-
-  <!-- ── FOOTER ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
@@ -409,13 +317,78 @@
   </footer>
 
   <script>
+    // Mobil-Menü Steuerung
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('open'));
+      link.addEventListener('click', () => navLinks.classList.remove('remove'));
     });
+
+    // Live-Daten aus der JSON-Datei laden
+    fetch('shows.json')
+      .then(response => response.json())
+      .then(data => {
+        renderShows(data);
+      })
+      .catch(err => console.error("Fehler beim Laden der Shows:", err));
+
+    function renderShows(shows) {
+      const container = document.getElementById('showsContainer');
+      container.innerHTML = '';
+
+      const groups = { 'UPCOMING': [] };
+
+      shows.forEach(show => {
+        if (show.upcoming) {
+          groups['UPCOMING'].push(show);
+        } else {
+          const year = show.date.split('.').pop();
+          if (!groups[year]) groups[year] = [];
+          groups[year].push(show);
+        }
+      });
+
+      const sortedKeys = Object.keys(groups).sort((a, b) => {
+        if (a === 'UPCOMING') return -1;
+        if (b === 'UPCOMING') return 1;
+        return b - a;
+      });
+
+      sortedKeys.forEach(key => {
+        if (groups[key].length === 0) return;
+
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'year-group';
+        
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'year-group-label';
+        
+        if (key === 'UPCOMING') {
+          labelDiv.innerHTML = `<span class="upcoming">UPCOMING</span>`;
+        } else {
+          labelDiv.innerHTML = `<span class="year-big">${key}</span>`;
+        }
+        groupDiv.appendChild(labelDiv);
+
+        groups[key].forEach(show => {
+          const row = document.createElement('div');
+          row.className = 'show-row';
+          row.innerHTML = `
+            <span class="show-month">${show.date}</span>
+            <div>
+              <div class="show-title">${show.title}</div>
+              <div class="show-support">${show.support || ''}</div>
+            </div>
+            <span class="show-city">${show.city}</span>
+            <span class="show-badge ${show.upcoming ? 'upcoming' : ''}">${show.badge}</span>
+          `;
+          groupDiv.appendChild(row);
+        });
+
+        container.appendChild(groupDiv);
+      });
+    }
   </script>
 </body>
-</html>
 </html>
