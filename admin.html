@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FLOWZ - Show Admin Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <style>
     :root {
       --bg: #0d0d0d;
@@ -17,25 +18,16 @@
       --red-hover: #c01108;
       --green: #6ee7b7;
       --blue: #3b82f6;
+      --orange: #f97316;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body { 
-      background: var(--bg); 
-      color: var(--text); 
-      font-family: 'Inter', sans-serif; 
-      padding: 2rem 1.5rem;
-      line-height: 1.5;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 2rem 1.5rem; line-height: 1.5; }
     .container { max-width: 800px; margin: 0 auto; }
-    
     h1 { font-size: 1.8rem; margin-bottom: 1.5rem; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 2px solid var(--red); padding-bottom: 0.5rem; }
     h3 { font-size: 1.2rem; margin: 1.5rem 0 1rem 0; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
     hr { border: 0; height: 1px; background: var(--border); margin: 2rem 0; }
 
-    /* Formular-Styles */
     .form-group { background: var(--surface); padding: 1.5rem; border: 1px solid var(--border); margin-bottom: 1.5rem; }
     input[type="text"], input[type="password"], select { 
       width: 100%; padding: 0.75rem; margin-bottom: 1rem; 
@@ -45,143 +37,147 @@
     input:focus, select:focus { border-color: var(--blue); outline: none; }
     label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; cursor: pointer; font-size: 0.9rem; }
 
-    /* Buttons */
-    button { 
-      padding: 0.75rem 1.2rem; font-family: inherit; font-size: 0.85rem; 
-      font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; 
-      border: none; cursor: pointer; transition: background 0.2s;
-    }
+    button { padding: 0.75rem 1.2rem; font-family: inherit; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; border: none; cursor: pointer; transition: background 0.2s; }
     .btn-add { background: var(--blue); color: white; width: 100%; }
-    .btn-add:hover { background: #2563eb; }
     .btn-delete { background: var(--red); color: white; }
-    .btn-delete:hover { background: var(--red-hover); }
     .btn-save { background: var(--green); color: #0d0d0d; font-size: 1rem; width: 100%; padding: 1rem; margin-top: 1.5rem; position: sticky; bottom: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-    .btn-save:hover { background: #56d0a1; }
     .btn-action { background: #333; color: #fff; border: 1px solid #55px; }
-    .btn-action:hover { background: #444; }
+    .btn-edit { background: var(--orange); color: #0d0d0d; }
     .btn-arrow { background: #2a2a2a; color: #fff; width: 35px; padding: 0.5rem 0; font-size: 1rem; }
-    .btn-arrow:hover { background: #3a3a3a; }
     .btn-arrow:disabled { opacity: 0.2; cursor: not-allowed; }
 
-    /* Listen-Elemente */
-    .show-item { 
-      display: flex; justify-content: space-between; align-items: center; 
-      background: var(--surface); border: 1px solid var(--border); 
-      padding: 1rem; margin-bottom: 0.75rem; gap: 1rem;
-    }
+    .show-item { background: var(--surface); border: 1px solid var(--border); padding: 1rem; margin-bottom: 0.75rem; }
+    .show-row-view { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .show-info strong { font-size: 1.05rem; display: inline-block; margin-bottom: 0.2rem; }
     .show-info p { font-size: 0.85rem; color: var(--text-muted); }
     .status-badge { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; display: inline-block; margin-top: 0.25rem; }
     .controls { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    
+    .edit-form { display: none; background: #050505; padding: 1rem; margin-top: 0.5rem; border-left: 3px solid var(--orange); }
 
+    #loginOverlay { position: fixed; top:0; left:0; width:100%; height:100%; background: #0d0d0d; z-index: 1000; display: flex; justify-content: center; align-items: center; }
+    .login-box { background: var(--surface); padding: 2.5rem; border: 1px solid var(--border); width: 100%; max-width: 400px; text-align: center; }
+    
     @media (max-width: 600px) {
-      .show-item { flex-direction: column; align-items: flex-start; }
+      .show-row-view { flex-direction: column; align-items: flex-start; }
       .controls { width: 100%; justify-content: flex-start; }
     }
   </style>
 </head>
 <body>
 
+  <div id="loginOverlay">
+    <div class="login-box">
+      <h2 style="margin-bottom: 1.5rem; letter-spacing: 0.1em;">FLOWZ ADMIN LOGIN</h2>
+      <input type="text" id="loginUser" placeholder="Benutzername">
+      <input type="password" id="loginPass" placeholder="Passwort">
+      <button class="btn-add" onclick="handleLogin()">Einloggen</button>
+      <div id="loginError" style="color: var(--red); margin-top: 1rem; font-size: 0.9rem; display: none;">Falsche Logindaten!</div>
+    </div>
+  </div>
+
   <div class="container">
     <h1>FLOWZ - Show Manager</h1>
-    
-    <div class="form-group">
-      <label for="ghToken">GitHub Personal Access Token:</label>
-      <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx o.ä. hier einfügen">
-      <p style="font-size: 0.75rem; color: var(--text-muted);">Wird nur lokal in deinem Browser (LocalStorage) gemerkt und niemals unverschlüsselt übertragen.</p>
-    </div>
-
-    <hr>
+    <p style="font-size: 0.85rem; color: var(--green); margin-bottom: 1.5rem;">● Eingeloggt als Administrator</p>
     
     <h3>Neue Show hinzufügen</h3>
     <div class="form-group">
       <input type="text" id="newDate" placeholder="Datum (z.B. 18.07.2026)">
-      <input type="text" id="newTitle" placeholder="Event Name (z.B. BAD BEHAVIOUR Open Air)">
-      <input type="text" id="newSupport" placeholder="Support / Line-Up (z.B. Gourski, tillted)">
-      <input type="text" id="newCity" placeholder="Stadt, Land (z.B. Mönchengladbach, DE)">
-      <input type="text" id="newBadge" placeholder="Location-Typ (z.B. Club, Festival, Event)">
-      
-      <label>
-        <input type="checkbox" id="newUpcoming" checked> 
-        Dieses Event als "UPCOMING" markieren
-      </label>
-      
+      <input type="text" id="newTitle" placeholder="Event Name">
+      <input type="text" id="newSupport" placeholder="Support / Line-Up">
+      <input type="text" id="newCity" placeholder="Stadt, Land">
+      <input type="text" id="newBadge" placeholder="Location-Typ (z.B. Club, Festival)">
+      <label><input type="checkbox" id="newUpcoming" checked> Als "UPCOMING" markieren</label>
       <button class="btn-add" onclick="addShow()">Zur Liste hinzufügen</button>
     </div>
 
     <hr>
-    
     <h3>Aktuelle Shows im Repository</h3>
     <div id="adminList">Lade Daten von GitHub...</div>
     
     <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
+
+    <hr style="margin-top: 5rem; opacity: 0.2;">
+    <h3 style="opacity: 0.4;">Token-Verschlüsselungs-Tool (Nur für die Ersteinrichtung)</h3>
+    <div class="form-group" style="opacity: 0.5;">
+      <p style="font-size:0.8rem; margin-bottom:0.5rem;">Gib hier deinen GitHub-Token und dein Wunschpasswort ein, um den Code für das Skript zu generieren:</p>
+      <input type="text" id="toolsToken" placeholder="GitHub Token (ghp_...)">
+      <input type="text" id="toolsPass" placeholder="Dein Wunsch-Admin-Passwort">
+      <button onclick="generateEncryptedToken()" style="background:#555; color:#fff;">Code generieren</button>
+      <input type="text" id="toolsOutput" readonly placeholder="Ergebnis-Code erscheint hier..." style="margin-top:1rem; background:#222;">
+    </div>
   </div>
 
   <script>
     // ── CONFIGURATION ───────────────────────────────────────
-    const repoOwner = "iamflowz-812"; // <-- HIER DEINEN USERNAME EINTRAGEN
-    const repoName = "website";       // <-- HIER DEINEN REPO-NAMEN EINTRAGEN
+    const repoOwner = "DEIN_GITHUB_USERNAME"; // <-- HIER DEINEN USERNAME EINTRAGEN
+    const repoName = "DEIN_REPO_NAME";       // <-- HIER DEINEN REPO-NAMEN EINTRAGEN
     const filePath = "shows.json";           // Pfad zur JSON-Datei im Repo
+    const ALLOWED_USER = "admin";            // <-- DEIN GEWÜNSCHTER BENUTZERNAME
+    
+    // HIER fügst du gleich das Ergebnis aus dem Verschlüsselungs-Tool ein:
+    const ENCRYPTED_TOKEN = ""; 
     // ────────────────────────────────────────────────────────
 
+    let decryptedToken = "";
     let localShows = [];
     let fileSha = "";
 
-    // 1. DATEN BEIM LADEN DER SEITE VON GITHUB HOLEN
-    function loadDataFromGitHub() {
-      const token = document.getElementById("ghToken").value;
-      const headers = {};
-      if (token) {
-        headers["Authorization"] = `token ${token}`;
+    // LOGIN LOGIK
+    function handleLogin() {
+      const user = document.getElementById("loginUser").value;
+      const pass = document.getElementById("loginPass").value;
+      const errorEl = document.getElementById("loginError");
+
+      if (user !== ALLOWED_USER || !ENCRYPTED_TOKEN) {
+        errorEl.style.display = "block";
+        return;
       }
+
+      try {
+        // Versuche den Token mit dem Passwort zu entschlüsseln
+        const bytes = CryptoJS.AES.decrypt(ENCRYPTED_TOKEN, pass);
+        const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+        if (decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_")) {
+          decryptedToken = decrypted;
+          document.getElementById("loginOverlay").style.display = "none";
+          loadDataFromGitHub();
+        } else {
+          errorEl.style.display = "block";
+        }
+      } catch (e) {
+        errorEl.style.display = "block";
+      }
+    }
+
+    // DATEN VON GITHUB LADEN
+    function loadDataFromGitHub() {
+      const headers = { "Authorization": `token ${decryptedToken}` };
 
       fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, { headers })
         .then(res => {
-          if (!res.ok) throw new Error(`Status ${res.status}. Token korrekt? Pfade überprüft?`);
+          if (!res.ok) throw new Error(`Status ${res.status}. Konfiguration prüfen.`);
           return res.json();
         })
         .then(data => {
-          fileSha = data.sha; // GitHub-Versions-ID speichern
-          
-          // Base64 UTF-8 sicher dekodieren (für Umlaute)
+          fileSha = data.sha;
           const decodedContent = decodeURIComponent(escape(atob(data.content)));
           localShows = JSON.parse(decodedContent);
           renderAdminList();
         })
         .catch(err => {
-          console.error(err);
-          document.getElementById("adminList").innerHTML = `
-            <span style="color:var(--red); font-weight:bold;">
-              Fehler beim Laden der Daten aus GitHub.<br>
-              <small style="color:#fff; font-weight:normal;">Details: ${err.message}</small>
-            </span>`;
+          alert("Fehler beim Laden der GitHub-Daten: " + err.message);
         });
     }
 
-    // Automatisch beim Start ausführen, falls Token vorhanden
-    document.addEventListener("DOMContentLoaded", () => {
-      const savedToken = localStorage.getItem("gh_admin_token");
-      if (savedToken) {
-        document.getElementById("ghToken").value = savedToken;
-        loadDataFromGitHub();
-      } else {
-        document.getElementById("adminList").innerHTML = `<span style="color:var(--text-muted);">Bitte trage oben deinen Token ein, um die Live-Daten zu laden.</span>`;
-      }
-    });
-
-    // Lädt Daten neu, wenn der Token manuell eingetippt/geändert wird
-    document.getElementById("ghToken").addEventListener("change", () => {
-      localStorage.setItem("gh_admin_token", document.getElementById("ghToken").value);
-      loadDataFromGitHub();
-    });
-
-    // 2. INTERAKTIVE LISTE ZEICHNEN
+    // LISTE REPRÄSENTIEREN (INKLUSIVE EDIT-FORMULAR)
     function renderAdminList() {
       const list = document.getElementById('adminList');
       list.innerHTML = '';
       
       if (localShows.length === 0) {
-        list.innerHTML = "<p style='color:var(--text-muted);'>Keine Shows in der Datei gefunden.</p>";
+        list.innerHTML = "<p>Keine Shows gefunden.</p>";
         return;
       }
 
@@ -190,132 +186,140 @@
         const isLast = index === localShows.length - 1;
 
         list.innerHTML += `
-          <div class="show-item">
-            <div class="show-info">
-              <strong>${show.date} - ${show.title}</strong>
-              <p>Ort: ${show.city} | Typ: ${show.badge} ${show.support ? '| Line-Up: ' + show.support : ''}</p>
-              <span class="status-badge" style="color: ${show.upcoming ? 'var(--green)' : 'var(--red)'}">
-                ${show.upcoming ? '● Upcoming' : '○ Past / Archiv'}
-              </span>
+          <div class="show-item" id="item-${index}">
+            <div class="show-row-view" id="view-${index}">
+              <div class="show-info">
+                <strong>${show.date} - ${show.title}</strong>
+                <p>Ort: ${show.city} | Typ: ${show.badge} ${show.support ? '| Line-Up: ' + show.support : ''}</p>
+                <span class="status-badge" style="color: ${show.upcoming ? 'var(--green)' : 'var(--red)'}">
+                  ${show.upcoming ? '● Upcoming' : '○ Past / Archiv'}
+                </span>
+              </div>
+              <div class="controls">
+                <button class="btn-arrow" onclick="moveShow(${index}, -1)" ${isFirst ? 'disabled' : ''}>↑</button>
+                <button class="btn-arrow" onclick="moveShow(${index}, 1)" ${isLast ? 'disabled' : ''}>↓</button>
+                <button class="btn-action btn-edit" onclick="openEditForm(${index})">Bearbeiten</button>
+                <button class="btn-action" onclick="toggleUpcoming(${index})">${show.upcoming ? 'Zu "Past"' : 'Zu "Upcoming"'}</button>
+                <button class="btn-delete" onclick="deleteShow(${index})">Löschen</button>
+              </div>
             </div>
-            
-            <div class="controls">
-              <button class="btn-arrow" onclick="moveShow(${index}, -1)" ${isFirst ? 'disabled' : ''} title="Nach oben verschieben">↑</button>
-              <button class="btn-arrow" onclick="moveShow(${index}, 1)" ${isLast ? 'disabled' : ''} title="Nach unten verschieben">↓</button>
-              
-              <button class="btn-action" onclick="toggleUpcoming(${index})">
-                ${show.upcoming ? 'In "Past" schieben' : 'In "Upcoming" schieben'}
-              </button>
 
-              <button class="btn-delete" onclick="deleteShow(${index})">Löschen</button>
+            <div class="edit-form" id="editForm-${index}">
+              <h4 style="color:var(--orange); margin-bottom:1rem;">Eintrag bearbeiten</h4>
+              <input type="text" id="editDate-${index}" value="${show.date}" placeholder="Datum">
+              <input type="text" id="editTitle-${index}" value="${show.title}" placeholder="Event Name">
+              <input type="text" id="editSupport-${index}" value="${show.support || ''}" placeholder="Support">
+              <input type="text" id="editCity-${index}" value="${show.city}" placeholder="Stadt">
+              <input type="text" id="editBadge-${index}" value="${show.badge}" placeholder="Typ">
+              <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+                <button class="btn-action" style="background:var(--orange); color:#000;" onclick="saveLocalEdit(${index})">Übernehmen</button>
+                <button class="btn-action" onclick="closeEditForm(${index})">Abbrechen</button>
+              </div>
             </div>
           </div>
         `;
       });
     }
 
-    // Show im Array verschieben
+    // EDIT-FORMULAR STEUERUNG
+    function openEditForm(index) {
+      document.getElementById(`editForm-${index}`).style.display = "block";
+      document.getElementById(`view-${index}`).style.display = "none";
+    }
+
+    function closeEditForm(index) {
+      document.getElementById(`editForm-${index}`).style.display = "none";
+      document.getElementById(`view-${index}`).style.display = "flex";
+    }
+
+    function saveLocalEdit(index) {
+      localShows[index].date = document.getElementById(`editDate-${index}`).value;
+      localShows[index].title = document.getElementById(`editTitle-${index}`).value;
+      localShows[index].support = document.getElementById(`editSupport-${index}`).value;
+      localShows[index].city = document.getElementById(`editCity-${index}`).value;
+      localShows[index].badge = document.getElementById(`editBadge-${index}`).value;
+
+      renderAdminList(); // Aktualisiert die Anzeige
+    }
+
+    // RESTLICHE AKTIONEN
     function moveShow(index, direction) {
       const targetIndex = index + direction;
       if (targetIndex < 0 || targetIndex >= localShows.length) return;
-      
       const temp = localShows[index];
       localShows[index] = localShows[targetIndex];
       localShows[targetIndex] = temp;
-      
       renderAdminList();
     }
 
-    // "Upcoming"-Flag umschalten
     function toggleUpcoming(index) {
       localShows[index].upcoming = !localShows[index].upcoming;
       renderAdminList();
     }
 
-    // Show aus lokaler Liste löschen
     function deleteShow(index) {
-      if(confirm(`Möchtest du "${localShows[index].title}" wirklich löschen?`)) {
+      if(confirm(`"${localShows[index].title}" löschen?`)) {
         localShows.splice(index, 1);
         renderAdminList();
       }
     }
 
-    // Neue Show lokal hinzufügen
     function addShow() {
       const dateEl = document.getElementById('newDate');
       const titleEl = document.getElementById('newTitle');
-      const supportEl = document.getElementById('newSupport');
-      const cityEl = document.getElementById('newCity');
-      const badgeEl = document.getElementById('newBadge');
-      const upcomingEl = document.getElementById('newUpcoming');
+      if (!dateEl.value || !titleEl.value) return alert("Datum und Name fehlen!");
 
-      if (!dateEl.value || !titleEl.value) {
-        alert("Bitte mindestens Datum und Event-Name ausfüllen!");
-        return;
-      }
-
-      const newShow = {
+      localShows.unshift({
         id: Date.now(),
         date: dateEl.value,
         title: titleEl.value,
-        support: supportEl.value,
-        city: cityEl.value,
-        badge: badgeEl.value || "Club",
-        upcoming: upcomingEl.checked
-      };
+        support: document.getElementById('newSupport').value,
+        city: document.getElementById('newCity').value,
+        badge: document.getElementById('newBadge').value || "Club",
+        upcoming: document.getElementById('newUpcoming').checked
+      });
 
-      // Neue Show ganz oben in die Liste einreihen
-      localShows.unshift(newShow);
       renderAdminList();
-
-      // Felder leeren für die nächste Eingabe
       titleEl.value = '';
-      supportEl.value = '';
     }
 
-    // 3. COMPLETE LISTE ZURÜCK AN GITHUB SENDEN
+    // LIVE SPEICHERN
     function saveToGitHub() {
-      const token = document.getElementById("ghToken").value;
-      if (!token) return alert("Bitte zuerst deinen GitHub Token oben eintragen!");
-
-      // Token sicherheitshalber nochmals im Browser merken
-      localStorage.setItem("gh_admin_token", token);
-
-      // JSON lesbar formatieren und UTF-8 sicher in Base64 konvertieren
       const jsonString = JSON.stringify(localShows, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-
-      const bodyData = {
-        message: "Shows aktualisiert über Web-Admin-Dashboard",
-        content: base64Content,
-        sha: fileSha // Zwingend erforderlich, um Konflikte zu vermeiden
-      };
 
       fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
         method: "PUT",
         headers: {
-          "Authorization": `token ${token}`,
+          "Authorization": `token ${decryptedToken}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(bodyData)
+        body: JSON.stringify({
+          message: "Shows aktualisiert über Web-Admin-Dashboard",
+          content: base64Content,
+          sha: fileSha
+        })
       })
       .then(res => {
-        if (!res.ok) {
-          return res.json().then(errData => {
-            throw new Error(errData.message || `Server-Fehler: ${res.status}`);
-          });
-        }
+        if (!res.ok) throw new Error("Fehler beim Senden.");
         return res.json();
       })
       .then(result => {
-        alert("Erfolgreich live auf GitHub gespeichert!");
-        fileSha = result.content.sha; // Neue Versions-ID für Folgespeicherungen merken
-        loadDataFromGitHub();         // Liste frisch synchronisieren
+        alert("Erfolgreich live gespeichert!");
+        fileSha = result.content.sha;
+        loadDataFromGitHub();
       })
-      .catch(err => {
-        console.error("Speicherfehler:", err);
-        alert(`Fehler beim Speichern: ${err.message}\n\nPrüfe die F12-Konsole auf genauere Infos.`);
-      });
+      .catch(err => alert("Speicherfehler: " + err.message));
+    }
+
+    // HILFSFUNKTION FÜR ERSTEINRICHTUNG
+    function generateEncryptedToken() {
+      const tok = document.getElementById("toolsToken").value;
+      const pass = document.getElementById("toolsPass").value;
+      if(!tok || !pass) return alert("Bitte Token und Passwort eintragen!");
+      
+      const encrypted = CryptoJS.AES.encrypt(tok, pass).toString();
+      document.getElementById("toolsOutput").value = encrypted;
     }
   </script>
 </body>
