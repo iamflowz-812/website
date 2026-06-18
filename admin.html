@@ -98,9 +98,9 @@
     <button class="btn-save" onclick="saveToGitHub()">Änderungen auf GitHub speichern</button>
 
     <hr style="margin-top: 5rem; opacity: 0.2;">
-    <h3 style="opacity: 0.4;">Token-Verschlüsselungs-Tool (Nur für die Ersteinrichtung)</h3>
+    <h3 style="opacity: 0.4;">Token-Verschlüsselungs-Tool</h3>
     <div class="form-group" style="opacity: 0.5;">
-      <p style="font-size:0.8rem; margin-bottom:0.5rem;">Gib hier deinen GitHub-Token und dein Wunschpasswort ein, um den Code für das Skript zu generieren:</p>
+      <p style="font-size:0.8rem; margin-bottom:0.5rem;">Gib hier deinen GitHub-Token und dein Wunschpasswort ein, um den verschlüsselten Code zu generieren:</p>
       <input type="text" id="toolsToken" placeholder="GitHub Token (ghp_...)">
       <input type="text" id="toolsPass" placeholder="Dein Wunsch-Admin-Passwort">
       <button onclick="generateEncryptedToken()" style="background:#555; color:#fff;">Code generieren</button>
@@ -115,7 +115,7 @@
     const filePath = "shows.json";           // Pfad zur JSON-Datei im Repo
     const ALLOWED_USER = "admin";            // <-- DEIN GEWÜNSCHTER BENUTZERNAME
     
-    // HIER fügst du gleich das Ergebnis aus dem Verschlüsselungs-Tool ein:
+    // HIER das Ergebnis aus dem Verschlüsselungs-Tool einfügen:
     const ENCRYPTED_TOKEN = ""; 
     // ────────────────────────────────────────────────────────
 
@@ -123,30 +123,39 @@
     let localShows = [];
     let fileSha = "";
 
-    // LOGIN LOGIK
+    // LOGIN LOGIK MIT DEBUGGING
     function handleLogin() {
       const user = document.getElementById("loginUser").value;
       const pass = document.getElementById("loginPass").value;
       const errorEl = document.getElementById("loginError");
 
+      console.log("--- Login-Versuch gestartet ---");
+      console.log("Eingegebener User:", user);
+      console.log("Verschlüsselter Token im Code hinterlegt?", !!ENCRYPTED_TOKEN);
+
       if (user !== ALLOWED_USER || !ENCRYPTED_TOKEN) {
+        console.warn("User stimmt nicht überein oder ENCRYPTED_TOKEN ist leer.");
         errorEl.style.display = "block";
         return;
       }
 
       try {
-        // Versuche den Token mit dem Passwort zu entschlüsseln
         const bytes = CryptoJS.AES.decrypt(ENCRYPTED_TOKEN, pass);
         const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+
+        console.log("Entschlüsselter String (Länge):", decrypted.length);
+        console.log("Startet mit ghp_ oder github_pat_?", decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_"));
 
         if (decrypted.startsWith("ghp_") || decrypted.startsWith("github_pat_")) {
           decryptedToken = decrypted;
           document.getElementById("loginOverlay").style.display = "none";
           loadDataFromGitHub();
         } else {
+          console.warn("Die Entschlüsselung war erfolgreich, ergab aber keinen gültigen Token-Präfix.");
           errorEl.style.display = "block";
         }
       } catch (e) {
+        console.error("Kritischer Fehler bei der AES-Entschlüsselung. Wahrscheinlich falsches Passwort:", e);
         errorEl.style.display = "block";
       }
     }
@@ -157,7 +166,7 @@
 
       fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, { headers })
         .then(res => {
-          if (!res.ok) throw new Error(`Status ${res.status}. Konfiguration prüfen.`);
+          if (!res.ok) throw new Error(`Status ${res.status}.`);
           return res.json();
         })
         .then(data => {
@@ -171,7 +180,7 @@
         });
     }
 
-    // LISTE REPRÄSENTIEREN (INKLUSIVE EDIT-FORMULAR)
+    // LISTE REPRÄSENTIEREN
     function renderAdminList() {
       const list = document.getElementById('adminList');
       list.innerHTML = '';
@@ -221,13 +230,12 @@
       });
     }
 
-    // EDIT-FORMULAR STEUERUNG
     function openEditForm(index) {
       document.getElementById(`editForm-${index}`).style.display = "block";
       document.getElementById(`view-${index}`).style.display = "none";
     }
 
-    function closeEditForm(index) {
+    box = function closeEditForm(index) {
       document.getElementById(`editForm-${index}`).style.display = "none";
       document.getElementById(`view-${index}`).style.display = "flex";
     }
@@ -238,11 +246,9 @@
       localShows[index].support = document.getElementById(`editSupport-${index}`).value;
       localShows[index].city = document.getElementById(`editCity-${index}`).value;
       localShows[index].badge = document.getElementById(`editBadge-${index}`).value;
-
-      renderAdminList(); // Aktualisiert die Anzeige
+      renderAdminList();
     }
 
-    // RESTLICHE AKTIONEN
     function moveShow(index, direction) {
       const targetIndex = index + direction;
       if (targetIndex < 0 || targetIndex >= localShows.length) return;
@@ -283,7 +289,6 @@
       titleEl.value = '';
     }
 
-    // LIVE SPEICHERN
     function saveToGitHub() {
       const jsonString = JSON.stringify(localShows, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
@@ -312,10 +317,10 @@
       .catch(err => alert("Speicherfehler: " + err.message));
     }
 
-    // HILFSFUNKTION FÜR ERSTEINRICHTUNG
+    // TOOL FÜR DIE ERSTEINRICHTUNG
     function generateEncryptedToken() {
-      const tok = document.getElementById("toolsToken").value;
-      const pass = document.getElementById("toolsPass").value;
+      const tok = document.getElementById("toolsToken").value.trim();
+      const pass = document.getElementById("toolsPass").value.trim();
       if(!tok || !pass) return alert("Bitte Token und Passwort eintragen!");
       
       const encrypted = CryptoJS.AES.encrypt(tok, pass).toString();
