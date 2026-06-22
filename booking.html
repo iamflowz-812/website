@@ -7,8 +7,6 @@
   <link rel="icon" type="image/png" href="assets/favicon.png"/>
   <style>
     /* ── LOKALE FONTS INJEKTION ── */
-    
-    /* Anton Regular */
     @font-face {
       font-family: 'Anton';
       font-style: normal;
@@ -16,8 +14,6 @@
       font-display: swap;
       src: url('fonts/anton-v25-latin-regular.woff2') format('woff2');
     }
-
-    /* Inter Light (300) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -25,8 +21,6 @@
       font-display: swap;
       src: url('fonts/inter-v18-latin-300.woff2') format('woff2');
     }
-
-    /* Inter Regular (400) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -34,8 +28,6 @@
       font-display: swap;
       src: url('fonts/inter-v18-latin-regular.woff2') format('woff2');
     }
-
-    /* Inter Medium (500) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -44,7 +36,6 @@
       src: url('fonts/inter-v18-latin-500.woff2') format('woff2');
     }
 
-    /* ── BESTEHENDE WEB-STYLES ── */
     :root {
       --bg: #f2f0eb;
       --dark: #0d0d0d;
@@ -53,183 +44,39 @@
       --border: #d8d5cf;
       --surface: #e8e5de;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; font-size: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 
-    body {
-      background: var(--dark);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .contact-wrap {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 6rem 2.5rem 4rem;
-    }
-
-    .contact-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .section-num {
-      font-size: 0.65rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 0.95;
-      color: #fff;
-      letter-spacing: 0.02em;
-      margin-bottom: 2rem;
-    }
-
-    .contact-desc {
-      color: rgba(255,255,255,0.4);
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-    
-    .contact-desc a {
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .contact-desc a:hover {
-      color: var(--red);
-      border-color: var(--red);
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 1.5rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .contact-wrap { flex: 1; display: flex; align-items: center; padding: 6rem 2.5rem 4rem; }
+    .contact-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    h1 { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; color: #fff; letter-spacing: 0.02em; margin-bottom: 2rem; }
+    .contact-desc { color: rgba(255,255,255,0.4); line-height: 1.8; margin-bottom: 2.5rem; }
+    .contact-desc a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s; }
+    .contact-desc a:hover { color: var(--red); border-color: var(--red); }
+    .back-link { display: inline-block; margin-top: 1.5rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; }
     .back-link:hover { color: var(--red); }
 
     /* ── FORM ── */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    form input,
-    form textarea {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      color: #fff;
-      padding: 0.75rem 0;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 100%;
-    }
-
-    form input::placeholder,
-    form textarea::placeholder { color: rgba(255,255,255,0.25); }
-
-    form input:focus,
-    form textarea:focus { border-color: var(--red); }
-
-    form textarea {
-      min-height: 100px;
-      resize: none;
-    }
-
-    .form-submit {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      padding: 1rem 2.5rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      width: 100%;
-    }
-    .form-submit:hover    { background: #c01108; }
+    form { display: flex; flex-direction: column; gap: 1.25rem; }
+    form input, form textarea { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 0.75rem 0; font-family: 'Inter', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; width: 100%; }
+    form input::placeholder, form textarea::placeholder { color: rgba(255,255,255,0.25); }
+    form input:focus, form textarea:focus { border-color: var(--red); }
+    form textarea { min-height: 100px; resize: none; }
+    .form-submit { display: inline-block; background: var(--red); color: #fff; padding: 1rem 2.5rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.2s; border: none; cursor: pointer; font-family: 'Inter', sans-serif; width: 100%; }
+    .form-submit:hover { background: #c01108; }
     .form-submit:disabled { background: rgba(255,255,255,0.1); cursor: not-allowed; }
+    .form-success { display: none; padding: 0.9rem 1.25rem; border: 1px solid var(--red); background: rgba(227,21,13,0.1); color: #fff; font-size: 0.85rem; letter-spacing: 0.05em; }
+    .form-error { display: none; padding: 0.9rem 1.25rem; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); font-size: 0.85rem; }
 
-    .form-success {
-      display: none;
-      padding: 0.9rem 1.25rem;
-      border: 1px solid var(--red);
-      background: rgba(227,21,13,0.1);
-      color: #fff;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-
-    .form-error {
-      display: none;
-      padding: 0.9rem 1.25rem;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.25);
-      border-top: 1px solid rgba(255,255,255,0.05);
-    }
-
-    footer p, footer a, footer button {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.25);
-      text-decoration: none;
-    }
-    footer button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-family: inherit;
-      padding: 0;
-      vertical-align: baseline;
-    }
+    footer { text-align: center; padding: 2rem 1.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.25); border-top: 1px solid rgba(255,255,255,0.05); }
+    footer p, footer a, footer button { font-size: 0.7rem; color: rgba(255,255,255,0.25); text-decoration: none; }
+    footer button { background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; vertical-align: baseline; }
     footer a:hover, footer button:hover { color: var(--red); }
 
     @media (max-width: 768px) {
       .contact-wrap { padding: 5rem 1.25rem 3rem; }
-      .contact-inner {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
     }
   </style>
 </head>
@@ -237,32 +84,23 @@
 
   <div class="contact-wrap">
     <div class="contact-inner">
-
       <div>
         <h1>BOOKING<br/>INQUIRIES</h1>
-        <p class="contact-desc">
-          FLOWZ is available for club shows, festivals and special events across Europe. Please fill out the form and send me your inquiry. Alternatively, you can send an email directly to <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a>.
-        </p>      
+        <p class="contact-desc">FLOWZ is available for club shows, festivals and special events across Europe. Bitte fülle das Formular aus und sende mir deine Anfrage. Alternativ kannst du eine E-Mail direkt an <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a> senden.</p>      
         <a href="/" class="back-link">← Back Home</a>
       </div>
-
       <form id="contactForm" action="https://formspree.io/f/mdavvkkr" method="POST">
-
+        <!-- Weiterleitung bei deaktiviertem JavaScript zurück zur Booking-Seite -->
+        <input type="hidden" name="_next" value="https://iamflowz.de/booking">
         <input type="text" name="_gotcha" style="display:none"/>
-
-        <input  type="text"  name="name"     placeholder="Your Name"              required/>
-        <input  type="email" name="email"   placeholder="Email Address"         required/>
-        <input  type="text"  name="event"   placeholder="Event / Venue / Date"/>
-        <textarea            name="message" placeholder="Message"                rows="4"></textarea>
-
-        <!-- Google reCAPTCHA v2 Checkbox im Dark-Design -->
+        <input type="text"  name="name"     placeholder="Your Name" required/>
+        <input type="email" name="email"   placeholder="Email Address" required/>
+        <input type="text"  name="event"   placeholder="Event / Venue / Date"/>
+        <textarea            name="message" placeholder="Message" rows="4"></textarea>
         <div class="g-recaptcha" data-sitekey="6Ld_XS0tAAAAAAIs2GjdwNf5xaRuRIoWf0GU-5pR" data-theme="dark" style="margin-bottom: 0.5rem;"></div>
-
         <button type="submit" class="form-submit">Send Inquiry</button>
-
         <div class="form-success" id="formSuccess">✓ Message sent</div>
         <div class="form-error" id="formError">✗ Something went wrong. Please try again or send an email directly to hey@iamflowz.de.</div>
-
       </form>
     </div>
   </div>
@@ -276,6 +114,7 @@
     </p>
   </footer>
 
+  <script src="js/cookie-banner.js"></script>
   <script>
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
@@ -283,8 +122,6 @@
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-
-      // Prüfen ob reCAPTCHA geladen und gelöst wurde
       if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
         if (typeof window.enableExternalCookiesViaButton === 'function') {
           window.enableExternalCookiesViaButton();
@@ -294,27 +131,23 @@
         }
         return;
       }
-
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         alert('Bitte bestätige das Captcha, um die Anfrage zu senden.');
         return;
       }
-
       const submitBtn = contactForm.querySelector('.form-submit');
       submitBtn.textContent = 'Sending…';
       submitBtn.disabled = true;
-
       try {
         const response = await fetch(contactForm.action, {
           method: 'POST',
           body: new FormData(contactForm),
           headers: { 'Accept': 'application/json' }
         });
-
         if (response.ok) {
           contactForm.reset();
-          grecaptcha.reset(); // Setzt das Captcha zurück
+          grecaptcha.reset();
           formSuccess.style.display = 'block';
           formError.style.display   = 'none';
           submitBtn.textContent = 'Sent ✓';
@@ -323,9 +156,7 @@
             submitBtn.textContent = 'Send Inquiry';
             submitBtn.disabled = false;
           }, 6000);
-        } else {
-          throw new Error();
-        }
+        } else { throw new Error(); }
       } catch {
         formError.style.display   = 'block';
         formSuccess.style.display = 'none';
@@ -334,7 +165,5 @@
       }
     });
   </script>
-
-  <script src="js/cookie-banner.js"></script>
 </body>
 </html>
