@@ -233,7 +233,8 @@
         <li><a href="shows">Shows</a></li>
         <li><a href="#socials">Socials</a></li>
         <li><a href="#music">Music</a></li>
-        <li><a href="#contact">Booking</a></li>
+        <!-- BEHOBEN: Verlinkung von #contact auf echte Unterseite booking gedreht -->
+        <li><a href="booking">Booking</a></li>
         <li>
           <a href="https://drive.google.com/drive/folders/1Bc-Hg4OGONvI0OLEcrMF__KkAMJJxYmF"
              target="_blank" rel="noopener noreferrer"
@@ -259,7 +260,8 @@
     </video>
     <div class="hero-content">
       <img src="assets/logo.png" alt="FLOWZ" class="hero-logo"/>
-      <a href="#contact" class="btn-red">Booking Inquiry</a>
+      <!-- BEHOBEN: Verlinkung im Hero ebenfalls auf booking Unterseite gedreht -->
+      <a href="booking" class="btn-red">Booking Inquiry</a>
     </div>
   </header>
 
@@ -460,8 +462,7 @@
         <p>FLOWZ is available for club shows, festivals and special events across Europe. Bitte fülle das Formular aus, um eine Anfrage zu senden. Alternativ kannst du eine E-Mail direkt an <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a> senden.</p>
       </div>
       <form id="contactForm" action="https://formspree.io/f/mdavvkkr" method="POST">
-        <!-- Weiterleitung bei deaktiviertem JavaScript zurück zur Startseite / Booking -->
-        <input type="hidden" name="_next" value="https://iamflowz.de">
+        <input type="hidden" name="_next" value="https://iamflowz.de/booking">
         <input type="text" name="_gotcha" style="display:none"/>
         <input type="text"  name="name"   placeholder="Your Name" required/>
         <input type="email" name="email"   placeholder="Email Address" required/>

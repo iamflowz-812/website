@@ -8,8 +8,6 @@
   <link rel="shortcut icon" href="assets/favicon.png"/>
   <style>
     /* ── LOKALE FONTS INJEKTION ── */
-    
-    /* Anton Regular */
     @font-face {
       font-family: 'Anton';
       font-style: normal;
@@ -17,8 +15,6 @@
       font-display: swap;
       src: url('fonts/anton-v25-latin-regular.woff2') format('woff2');
     }
-
-    /* Inter Light (300) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -26,8 +22,6 @@
       font-display: swap;
       src: url('fonts/inter-v18-latin-300.woff2') format('woff2');
     }
-
-    /* Inter Regular (400) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -35,8 +29,6 @@
       font-display: swap;
       src: url('fonts/inter-v18-latin-regular.woff2') format('woff2');
     }
-
-    /* Inter Medium (500) */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
@@ -45,7 +37,6 @@
       src: url('fonts/inter-v18-latin-500.woff2') format('woff2');
     }
 
-    /* ── BESTEHENDE WEB-STYLES ── */
     :root {
       --bg: #f2f0eb;
       --dark: #0d0d0d;
@@ -67,39 +58,18 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .nav-right { display: flex; align-items: center; gap: 2rem; }
-    .nav-back-text {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
+    .nav-back-text { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
     .nav-back-text:hover { color: var(--red); }
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: #fff; }
     .nav-links a.active { color: #fff; }
-    .nav-toggle {
-      display: none;
-      background: none; border: none; cursor: pointer;
-      flex-direction: column; gap: 5px;
-    }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
     .nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.6); }
 
     .page-hero { background: var(--dark); padding: 9rem 2.5rem 2rem; }
     .page-hero-inner { max-width: 1200px; margin: 0 auto; }
-    .page-hero h1 {
-      font-family: 'Anton', sans-serif; font-size: clamp(3.5rem, 9vw, 8rem); line-height: 0.92; color: #fff; letter-spacing: 0.02em;
-    }
+    .page-hero h1 { font-family: 'Anton', sans-serif; font-size: clamp(3.5rem, 9vw, 8rem); line-height: 0.92; color: #fff; letter-spacing: 0.02em; }
     .hero-sub { margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
     .shows-wrap { background: var(--dark); padding-bottom: 6rem; }
@@ -109,9 +79,7 @@
     .year-group-label .upcoming { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #6ee7b7; line-height: 1; user-select: none; }
     .year-group-label .year-big { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; line-height: 1; user-select: none; }
 
-    .show-row {
-      display: grid; grid-template-columns: 4.5rem 1fr 11rem 5.5rem; align-items: center; gap: 2rem; padding: 1.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); transition: all 0.15s ease; cursor: default;
-    }
+    .show-row { display: grid; grid-template-columns: 4.5rem 1fr 11rem 5.5rem; align-items: center; gap: 2rem; padding: 1.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); transition: all 0.15s ease; cursor: default; }
     .show-row:hover { background: rgba(255,255,255,0.028); padding-left: 1rem; padding-right: 1rem; margin-left: -1rem; margin-right: -1rem; }
     .show-month { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); white-space: nowrap; }
     .show-title { font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 0.04em; color: #fff; line-height: 1.2; }
@@ -158,7 +126,8 @@
         <li><a href="shows" class="active">Shows</a></li>
         <li><a href="/#socials">Socials</a></li>
         <li><a href="/#music">Music</a></li>
-        <li><a href="/#contact">Booking</a></li>
+        <!-- BEHOBEN: Auch hier von /#contact auf booking geändert -->
+        <li><a href="booking">Booking</a></li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
@@ -170,16 +139,17 @@
     <div class="page-hero-inner">
       <h1>UPCOMING SHOWS</h1>
       <p class="hero-sub">Check out all my upcoming and past shows<br>ㅤ</p>
-      <a href="/#contact" class="btn-red">Booking Inquiry</a>
+      <!-- BEHOBEN: Link im Hero auf booking geändert -->
+      <a href="booking" class="btn-red">Booking Inquiry</a>
     </div>
   </div>
 
   <div class="shows-wrap">
     <div class="shows-inner" id="showsContainer"></div>
-
     <div class="shows-footer">
       <a href="/" class="back">← Back Home</a>
-      <a href="/#contact" class="btn-red">Booking Inquiry</a>
+      <!-- BEHOBEN: Link im Footer auf booking geändert -->
+      <a href="booking" class="btn-red">Booking Inquiry</a>
     </div>
   </div>
 
@@ -191,6 +161,7 @@
     </p>
   </footer>
 
+  <script src="js/cookie-banner.js"></script>
   <script>
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
@@ -254,7 +225,5 @@
       });
     }
   </script>
-
-  <script src="js/cookie-banner.js"></script>
 </body>
 </html>
