@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		body {
-			background-color: white; /* Ensure the iframe has a white background */
-		}
-	</style>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8"/>
@@ -40,7 +28,7 @@
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-	  display: flex; justify-content: flex-end; align-items: center;
+      display: flex; justify-content: flex-end; align-items: center;
       padding: 1.25rem 2.5rem;
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -55,13 +43,13 @@
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--red); }
-	.nav-links a { color: rgba(255,255,255,0.5); }
-	.nav-links a:hover { color: var(--red); }
+    .nav-links a { color: rgba(255,255,255,0.5); }
+    .nav-links a:hover { color: var(--red); }
 
     /* ── HERO ── */
     .page-hero {
       background: var(--dark);
-      padding: 5rem 2.5rem 4rem;
+      padding: 8rem 2.5rem 4rem; /* Oberes Padding erhöht gegen den weißen Streifen */
       position: relative;
       overflow: hidden;
     }
@@ -167,13 +155,13 @@
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav          { padding: 1rem 1.25rem; justify-content: flex-end; }
-      .page-hero   { padding: 4rem 1.25rem 3rem; }
+      .page-hero   { padding: 7rem 1.25rem 3rem; } /* Auch mobil angepasst */
       .content-wrap { padding: 3rem 1.25rem; }
       footer       { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
-	  .nav-links {
-		background: var(--dark);
-		border-top: 1px solid rgba(255,255,255,0.08);
-	 }
+      .nav-links {
+        background: var(--dark);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
     }
   </style>
 </head>
@@ -241,13 +229,13 @@
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
-      <a href="impressum">Impressum</a>
-      &nbsp;·&nbsp;
+      <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
+      <a href="impressum">Impressum</a> · 
       <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
-</body>
-</html>
+  <!-- ZENTRALE COOKIE-BANNER-LOGIK -->
+  <script src="cookie-banner.js"></script>
 </body>
 </html>

@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		body {
-			background-color: white; /* Ensure the iframe has a white background */
-		}
-	</style>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8"/>
@@ -39,11 +27,11 @@
 
     /* ── NAV ── */
     nav {
-		position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-		display: flex; justify-content: flex-end; align-items: center;
-		padding: 1.25rem 2.5rem;
-		background: var(--dark);
-		border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: flex-end; align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: var(--dark);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .nav-back {
@@ -55,13 +43,13 @@
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--red); }
-	.nav-links a { color: rgba(255,255,255,0.5); }
+    .nav-links a { color: rgba(255,255,255,0.5); }
     .nav-links a:hover { color: var(--red); }
 
     /* ── HERO ── */
     .page-hero {
       background: var(--dark);
-      padding: 5rem 2.5rem 4rem;
+      padding: 8rem 2.5rem 4rem; /* Oberes Padding erhöht gegen den weißen Streifen */
       position: relative;
       overflow: hidden;
     }
@@ -199,13 +187,13 @@
     /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav           { padding: 1rem 1.25rem; justify-content: flex-end; }
-      .page-hero    { padding: 4rem 1.25rem 3rem; }
+      .page-hero    { padding: 7rem 1.25rem 3rem; } /* Auch mobil angepasst */
       .content-wrap { padding: 3rem 1.25rem; }
       footer        { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
-	  .nav-links {
-		background: var(--dark);
-		border-top: 1px solid rgba(255,255,255,0.08);
-		}
+      .nav-links {
+        background: var(--dark);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
     }
   </style>
 </head>
@@ -232,7 +220,7 @@
         Mettfelder Straße 2<br/>
         50996 Köln<br/>
         Deutschland<br/><br/>
-        E-Mail: <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a></p>
+        E-Mail: <a href="mailto:hey@iamflowz.de">hey@iamflowz.de</a>
       </address>
     </div>
 
@@ -252,7 +240,7 @@
         <li>Betriebssystem</li>
         <li>Referrer-URL</li>
       </ul>
-      <p style="margin-top: 0.75rem;">Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer stabilen und sichuren Bereitstellung der Website). Es kann nicht ausgeschlossen werden, dass Daten in die USA übertragen werden.</p>
+      <p style="margin-top: 0.75rem;">Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer stabile und sichere Bereitstellung der Website). Es kann nicht ausgeschlossen werden, dass Daten in die USA übertragen werden.</p>
     </div>
 
     <div class="legal-block">
@@ -264,7 +252,8 @@
       <h2>5. Cookies und Einwilligungsmanagement</h2>
       <p>Diese Website verwendet ein Cookie-Consent-Tool, um die Einwilligung der Nutzer zur Speicherung bestimmter Cookies und zur Nutzung externer Inhalte einzuholen.</p>
       <p>Beim Besuch der Website wird ein technisch notwendiges Cookie gespeichert, in dem die von Ihnen erteilten Einwilligungen oder deren Widerruf gespeichert werden. Diese Daten werden nicht an Dritte weitergegeben.</p>
-      <p>Die Speicherung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO (gesetzliche Verpflichtung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer rechtskonformen Einwilligungsverwaltung). Sie können Ihre Einwilligung jederzeit über die Cookie-Einstellungen auf dieser Website widerrufen.</p>
+      <p>Die Speicherung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO (gesetzliche Verpflichtung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer rechtskonformen Einwilligungsverwaltung).</p>
+      <p style="margin-top: 0.5rem; font-weight: 400;">Sie können Ihre Auswahl hier einsehen oder nachträglich bearbeiten: <a href="#" onclick="event.preventDefault(); window.reopenCookieBanner();">Cookie-Einstellungen anpassen</a>.</p>
     </div>
 
     <div class="legal-block">
@@ -279,7 +268,7 @@
 
     <div class="legal-block">
       <h2>7. Externe Links (Google Drive)</h2>
-      <p>Diese Website enthält Links zu externen Diensten wie Google Drive. Beim Anklicken eines solchen Links verlassen Sie diese Website. Für die Datenverarbeitung durch den jeweiligen Anbieter gelten deren Datenschutzbestimmungen.</p>
+      <p>Diese Website contains Links zu externen Diensten wie Google Drive. Beim Anklicken eines solchen Links verlassen Sie diese Website. Für die Datenverarbeitung durch den jeweiligen Anbieter gelten deren Datenschutzbestimmungen.</p>
     </div>
 
     <div class="legal-block">
@@ -312,13 +301,13 @@
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
-      <a href="impressum">Impressum</a>
-      &nbsp;·&nbsp;
+      <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
+      <a href="impressum">Impressum</a> · 
       <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
-</body>
-</html>
+  <!-- ZENTRALE COOKIE-BANNER-LOGIK -->
+  <script src="cookie-banner.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@
       background: var(--red);
       color: #fff !important;
       padding: 0.55rem 1.25rem;
-      font-size: 0.7 its;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       text-decoration: none;
@@ -209,26 +209,24 @@
     }
     .tag.active { border-color: var(--dark); color: var(--dark); }
 
-    /* ── MEDIA EMBED GRID ── */
-    .media-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2.5rem;
+    /* ── MEDIA EMBED GRID & PLACEHOLDER ── */
+    .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+    .media-video-wrapper { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
+    .media-video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .media-audio-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+    
+    .cookie-blocked-placeholder {
+      position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      background: #1a1a1a; color: #ccc; font-size: 0.8rem; padding: 1rem; text-align: center; z-index: 5;
     }
-    .media-video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    .cookie-blocked-placeholder p { color: rgba(255,255,255,0.7) !important; margin-bottom: 0.5rem; }
+    .cookie-blocked-placeholder button {
+      margin-top: 0.5rem; background: var(--red); color: #fff; border: none; padding: 0.5rem 1rem; font-size: 0.75rem; cursor: pointer; font-family: inherit; text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .media-video-wrapper iframe {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-    }
-    .media-audio-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .cookie-blocked-placeholder button:hover { background: #c01108; }
+
+    .audio-placeholder-box {
+      background: #1a1a1a; width: 100%; min-height: 166px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #ccc; font-size: 0.8rem; text-align: center; padding: 1rem; position: relative;
     }
 
     /* ── SOCIALS ── */
@@ -282,7 +280,7 @@
     .section-dark { background: var(--dark); }
     .section-dark h1-1 { color: #fff; }
     .section-dark .show-entry { border-bottom-color: rgba(255,255,255,0.08); }
-    .section-dark .show-entry:hover { background: rgba(255,255,255,0.05); }
+    .section-dark .show-entry:hover { background: rgba(255,255,255,0.05); margin: 0 -1rem; padding: 1.75rem 1rem; }
     .section-dark .show-name { color: rgba(255,255,255,0.9); }
     .section-dark .show-year { color: rgba(255,255,255,0.35); }
     .section-dark .show-loc { color: rgba(255,255,255,0.4); }
@@ -294,68 +292,15 @@
     .section-dark .social-item:hover { color: var(--red); }
     .section-dark .social-item span:last-child { color: rgba(255,255,255,0.4); }
 
-    /* ── COOKIE BANNER STYLE ── */
-    .cookie-banner {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: #141312;
-      border-top: 2px solid var(--red);
-      padding: 1.5rem 2.5rem;
-      z-index: 200;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-      transform: translateY(100%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .cookie-banner.show { transform: translateY(0); }
-    .cookie-text { font-size: 0.8rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
-    .cookie-text a { color: #fff; text-decoration: underline; transition: color 0.2s; }
-    .cookie-text a:hover { color: var(--red); }
-    .cookie-btns { display: flex; gap: 1rem; }
-    .btn-cookie-accept { background: var(--red); color: #fff; border: none; padding: 0.75rem 1.75rem; font-size: 0.75rem; font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
-    .btn-cookie-accept:hover { background: #c01108; }
-
-    /* ── MOBILE ── */
     @media (max-width: 900px) {
       body { padding-top: 50px; }
       nav { padding: 0.8rem 1.25rem; justify-content: flex-end; }
-      
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        width: 100%;
-        justify-content: flex-end;
-      }
-      
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: var(--dark);
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 1.5rem 1.25rem;
-        gap: 1.25rem;
-        text-align: center;
-      }
+      .nav-right { display: flex; align-items: center; gap: 1rem; width: 100%; justify-content: flex-end; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 1.25rem; gap: 1.25rem; text-align: center; }
       .nav-links.open { display: flex; }
-      
-      .nav-links .nav-presskit {
-        display: none;
-      }
-      
+      .nav-links .nav-presskit { display: none; }
       .nav-toggle { display: flex; }
-      
-      .nav-presskit-mobile {
-        display: inline-block !important;
-        padding: 0.45rem 0.95rem;
-        font-size: 0.65rem;
-        letter-spacing: 0.1em;
-      }
-      
+      .nav-presskit-mobile { display: inline-block !important; padding: 0.45rem 0.95rem; font-size: 0.65rem; letter-spacing: 0.1em; }
       header { padding: 2rem 1.25rem; }
       .hero-content { gap: 2rem; }
       .hero-logo { max-height: 90px; }
@@ -371,14 +316,12 @@
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .contact-block { padding: 3rem 1.25rem; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
-      .cookie-banner { flex-direction: column; gap: 1.25rem; padding: 1.5rem 1.25rem; align-items: flex-start; }
-      .cookie-btns { width: 100%; }
-      .btn-cookie-accept { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ── NAV ── -->
   <nav>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
@@ -408,6 +351,7 @@
     </div>
   </nav>
 
+  <!-- ── HERO ── -->
   <header>
     <video class="hero-bg" autoplay muted loop playsinline poster="photo_header.jpg">
       <source src="hero-video.mp4" type="video/mp4">
@@ -418,6 +362,7 @@
     </div>
   </header>
 
+  <!-- ── ABOUT ── -->
   <div class="section" id="about">
     <div class="section-inner">
       <div class="section-num">About FLOWZ</div>
@@ -442,6 +387,7 @@
     </div>
   </div>
 
+  <!-- ── SHOWS ── -->
   <div class="section section-dark" id="shows">
     <div class="section-inner">
       <h1-1>SELECTED SHOWS</h1-1>
@@ -519,7 +465,6 @@
         <span class="show-type">Festival</span>
       </div>
 
-      <!-- border-top entfernt, um doppelte Linie zu eliminieren -->
       <div class="shows-all-link-wrapper" style="margin-top: 2.5rem; text-align: right; padding-top: 1.75rem;">
         <a href="shows" class="shows-all-link" style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; transition: color 0.2s;">
           See all upcoming and past shows →
@@ -528,6 +473,7 @@
     </div>
   </div>
 
+  <!-- ── KEY FACTS ── -->
   <div class="section">
     <div class="section-inner">
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">KEY FACTS</h2>
@@ -580,6 +526,7 @@
     </div>
   </div>
 
+  <!-- ── SOCIAL LINKS ── -->
   <div class="section section-dark" id="socials">
     <div class="section-inner">
       <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">SOCIAL LINKS</h1-1>
@@ -594,29 +541,47 @@
     </div>
   </div>
 
+  <!-- ── MUSIC & VIDEO EMBED GRID (Mit Lazy Loading) ── -->
   <div class="section" id="music">
     <div class="section-inner">
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">LATEST MUSIC & VIDEOS</h2>
       
       <div class="media-grid" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
+        
+        <!-- YouTube Wrapper -->
         <div class="media-video-wrapper">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/KE9rXPWRyV0?si=1zYIC-RL168O0Igv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="cookie-blocked-placeholder" id="ytPlaceholder">
+            <p>Um dieses Video zu sehen, aktivieren Sie bitte "Externe Medien" in den Cookie-Einstellungen.</p>
+            <button onclick="enableExternalCookiesViaButton()">Externe Medien erlauben</button>
+          </div>
+          <iframe class="cookie-lazy-iframe" width="560" height="315" data-src="https://www.youtube.com/embed/KE9rXPWRyV0?si=1zYIC-RL168O0Igv" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         </div>
         
         <div class="media-audio-stack">
-          <div>
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-            <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100; margin-top: 5px;">
-              <a href="https://soundcloud.com/iamflowz" title="FLOWZ" target="_blank" style="color: #cccccc; text-decoration: none;">FLOWZ</a> · <a href="https://soundcloud.com/iamflowz/yearmix-2025" title="YEARMIX 2025" target="_blank" style="color: #cccccc; text-decoration: none;">YEARMIX 2025</a>
+          <!-- SoundCloud Wrapper -->
+          <div style="position: relative;">
+            <div class="cookie-blocked-placeholder audio-placeholder-box" id="scPlaceholder">
+              <p>SoundCloud-Inhalt blockiert. "Externe Medien" aktivieren.</p>
+              <button onclick="enableExternalCookiesViaButton()">Aktivieren</button>
             </div>
+            <iframe class="cookie-lazy-iframe" width="100%" height="166" scrolling="no" frameborder="no" data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false"></iframe>
           </div>
           
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/3vmMLFZ2ioiqpMdE20wA4X?si=4OJm4rz1TEen3MJeb_nqKA?utm_source=generator&theme=0&si=49e6e1c39458419e" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <!-- Spotify Wrapper -->
+          <div style="position: relative;">
+            <div class="cookie-blocked-placeholder audio-placeholder-box" id="spotPlaceholder" style="min-height: 352px;">
+              <p>Spotify Player blockiert. Bitte stimmen Sie externen Medien zu.</p>
+              <button onclick="enableExternalCookiesViaButton()">Aktivieren</button>
+            </div>
+            <iframe class="cookie-lazy-iframe" style="border-radius:12px" data-src="https://open.spotify.com/embed/artist/3vmMLFZ2ioiqpMdE20wA4X?si=4OJm4rz1TEen3MJeb_nqKA?utm_source=generator&theme=0&si=49e6e1c39458419e" width="100%" height="352" frameBorder="0" allowfullscreen="" loading="lazy"></iframe>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 
+  <!-- ── BOOKING INQUIRIES ── -->
   <div class="contact-block" id="contact">
     <div class="contact-inner">
       <div>
@@ -625,7 +590,7 @@
       </div>
       <form id="contactForm" action="https://formspree.io/f/mdavvkkr" method="POST">
         <input type="text" name="_gotcha" style="display:none"/>
-        <input type="text"  name="name"    placeholder="Your Name"           required/>
+        <input type="text"  name="name"   placeholder="Your Name"            required/>
         <input type="email" name="email"   placeholder="Email Address"       required/>
         <input type="text"  name="event"   placeholder="Event / Venue / Date"/>
         <textarea           name="message" placeholder="Message" rows="4"></textarea>
@@ -636,25 +601,19 @@
     </div>
   </div>
 
+  <!-- ── FOOTER (Mit verknüpftem globalen reopen-Link) ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
+      <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
       <a href="impressum">Impressum</a> · 
       <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
-  <div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-text">
-      Wir verwenden Cookies, um die Website-Nutzung zu analysieren. Mit dem Klick auf "Akzeptieren" stimmst du dem zu. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.
-    </div>
-    <div class="cookie-btns">
-      <button class="btn-cookie-accept" id="btnAcceptCookies">Akzeptieren</button>
-    </div>
-  </div>
-
+  <!-- ── JAVASCRIPT FÜR NAVI & FORMULAR ── -->
   <script>
-    // Mobile Nav Toggle
+    // --- Mobile Navigation Toggle ---
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
@@ -662,7 +621,7 @@
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // Contact Form AJAX
+    // --- Contact Form AJAX ---
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
     const formError   = document.getElementById('formError');
@@ -695,23 +654,9 @@
         submitBtn.disabled = false;
       }
     });
-
-    // Cookie Banner Logic
-    const cookieBanner = document.getElementById('cookieBanner');
-    const btnAcceptCookies = document.getElementById('btnAcceptCookies');
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if (!localStorage.getItem('cookiesAccepted')) {
-        setTimeout(() => {
-          cookieBanner.classList.add('show');
-        }, 1000);
-      }
-    });
-
-    btnAcceptCookies.addEventListener('click', () => {
-      localStorage.setItem('cookiesAccepted', 'true');
-      cookieBanner.classList.remove('show');
-    });
   </script>
+
+  <!-- ── ZENTRALE COOKIE-BANNER-LOGIK (Erzeugt das Banner & steuert Iframes) ── -->
+  <script src="cookie-banner.js"></script>
 </body>
 </html>

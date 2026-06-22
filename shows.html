@@ -305,9 +305,11 @@
     </div>
   </div>
 
+  <!-- ── FOOTER MIT REOPEN-BUTTON ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
+      <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.2); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
       <a href="impressum">Impressum</a>
       &nbsp;·&nbsp;
       <a href="datenschutz">Datenschutz</a>
@@ -388,5 +390,8 @@
       });
     }
   </script>
+
+  <!-- ── ZENTRALE COOKIE-BANNER-LOGIK ── -->
+  <script src="cookie-banner.js"></script>
 </body>
 </html>
