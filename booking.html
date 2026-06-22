@@ -194,6 +194,8 @@
       }
     }
   </style>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -212,10 +214,12 @@
 
         <input type="text" name="_gotcha" style="display:none"/>
 
-        <input  type="text"  name="name"    placeholder="Your Name"             required/>
-        <input  type="email" name="email"   placeholder="Email Address"        required/>
+        <input  type="text"  name="name"     placeholder="Your Name"              required/>
+        <input  type="email" name="email"   placeholder="Email Address"         required/>
         <input  type="text"  name="event"   placeholder="Event / Venue / Date"/>
-        <textarea            name="message" placeholder="Message"               rows="4"></textarea>
+        <textarea            name="message" placeholder="Message"                rows="4"></textarea>
+
+        <div class="g-recaptcha" data-sitekey="6Ld_XS0tAAAAAAIs2GjdwNf5xaRuRIoWf0GU-5pR" data-theme="dark" style="margin-bottom: 0.5rem;"></div>
 
         <button type="submit" class="form-submit">Send Inquiry</button>
 
@@ -242,6 +246,14 @@
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      // Captcha-Validierung abfragen vor dem Versenden
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        alert('Bitte bestätige das Captcha, um die Anfrage zu senden.');
+        return;
+      }
+
       const submitBtn = contactForm.querySelector('.form-submit');
       submitBtn.textContent = 'Sending…';
       submitBtn.disabled = true;
@@ -255,6 +267,7 @@
 
         if (response.ok) {
           contactForm.reset();
+          grecaptcha.reset(); // Setzt das Captcha-Feld zurück
           formSuccess.style.display = 'block';
           formError.style.display   = 'none';
           submitBtn.textContent = 'Sent ✓';
