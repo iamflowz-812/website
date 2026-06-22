@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FLOWZ - Links</title>
   
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <link rel="shortcut icon" href="assets/favicon.png"/>
   
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   
   <style>
     :root {
-      /* Farben eins zu eins aus deiner index.html */
       --bg: #f2f0eb;
       --dark: #0d0d0d;
       --red: #e3150d;
       --muted: #888;
       --border: #d8d5cf;
-      --surface: #ffffff; /* Weiße Karten wie auf den Screenshots */
+      --surface: #ffffff;
     }
     
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,12 +62,12 @@
 
     .profile-logo {
       display: block;
-      height: 42px; 
+      height: 42px;
       width: auto;
       max-width: 100%;
       object-fit: contain;
       margin-bottom: 0.5rem;
-      filter: brightness(0); /* Invertiert dein weißes Logo zu tiefem Schwarz */
+      filter: brightness(0);
     }
 
     .subtitle {
@@ -101,7 +100,7 @@
       align-items: center;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px; /* Moderne, abgerundete Ecken wie bei Linktree */
+      border-radius: 12px;
       text-decoration: none;
       color: var(--dark);
       padding: 1rem 1.25rem;
@@ -115,7 +114,6 @@
       box-shadow: 0 4px 12px rgba(13, 13, 13, 0.05);
     }
 
-    /* Card Content Alignment */
     .card-icon {
       display: flex;
       align-items: center;
@@ -149,23 +147,16 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding-right: 1.5rem; /* Platzhalter für den Drei-Punkt-Indikator */
+      padding-right: 1.5rem;
     }
 
     .card-title {
       font-family: 'Inter', sans-serif;
-      font-weight: 400; 
+      font-weight: 400;
       font-size: 1rem;
       line-height: 1.4;
     }
 
-    .card-sub {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-    }
-
-    /* Drei-Punkte-Menü rechts simulieren */
     .card-dots {
       position: absolute;
       right: 1.25rem;
@@ -183,12 +174,8 @@
       background: var(--muted);
     }
 
-    /* Spezifischer Stil für den Booking-Button */
-    .booking-card {
-      border: 1px solid var(--border);
-    }
     .booking-card .card-title {
-      font-weight: 500; 
+      font-weight: 500;
     }
 
     /* ── FOOTER ── */
@@ -215,63 +202,6 @@
     footer a:hover, footer button:hover {
       color: var(--red);
     }
-
-    /* ── COOKIE BANNER MODAL STYLES ── */
-    .cookie-overlay {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 1.5rem;
-    }
-    .cookie-overlay.show { display: flex; }
-    .cookie-modal {
-      background: #ffffff; color: #1a1a1a; width: 100%; max-width: 520px; padding: 2.25rem 2rem; font-family: 'Inter', sans-serif; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: initial;
-    }
-    .cookie-screen { display: none; }
-    .cookie-screen.active { display: block; }
-    .cookie-modal h2 {
-      font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 600; color: #000; margin-bottom: 1.25rem; text-align: center; text-transform: none; letter-spacing: normal; margin-top: 0;
-    }
-    .cookie-modal-text { font-size: 0.75rem; line-height: 1.6; color: #4a4a4a; text-align: justify; margin-bottom: 1.5rem; }
-    .cookie-modal-text a { color: #0044cc; text-decoration: underline; }
-    
-    .cookie-checkboxes { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; font-size: 0.8rem; font-weight: 500; }
-    .cookie-checkboxes label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: #000; }
-    .cookie-checkboxes input[type="checkbox"] { accent-color: #000; width: 15px; height: 15px; }
-    
-    .cookie-modal-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .btn-cookie-modal {
-      background: #000000; color: #ffffff; border: none; width: 100%; padding: 0.85rem; font-size: 0.8rem; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.2s; text-transform: none; letter-spacing: normal;
-    }
-    .btn-cookie-modal:hover { background: #222222; }
-    
-    .cookie-detail-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .cookie-detail-header-row .cookie-modal-btns-row { display: flex; gap: 0.5rem; }
-    .cookie-detail-header-row .cookie-modal-btns-row .btn-cookie-modal { width: auto; padding: 0.6rem 1.2rem; }
-    .btn-back { font-size: 0.8rem; color: #666; cursor: pointer; }
-    .btn-back:hover { color: #000; text-decoration: underline; }
-
-    .cookie-category-box { background: #f7f7f7; padding: 1.25rem; margin-bottom: 1rem; text-align: left; border-radius: 4px; }
-    .cookie-cat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-    .cookie-cat-title { font-size: 0.9rem; font-weight: 600; color: #000; }
-    .cookie-cat-desc { font-size: 0.75rem; line-height: 1.5; color: #555; margin-bottom: 0.5rem; }
-    
-    .cookie-cat-toggle-link { font-size: 0.75rem; color: #0044cc; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.25rem; }
-    .cookie-cat-toggle-link:hover { text-decoration: underline; }
-    .cookie-cat-details-content { display: none; font-size: 0.7rem; color: #666; background: #eee; padding: 0.75rem; margin-top: 0.5rem; border-left: 2px solid #000; line-height: 1.4; }
-    .cookie-cat-details-content.open { display: block; }
-    .cookie-cat-details-content a { color: #0044cc; text-decoration: underline; }
-
-    /* IOS Toggle Switch */
-    .switch-wrapper { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #666; }
-    .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 22px; }
-    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
-    input:checked + .slider { background-color: #000; }
-    input:checked + .slider:before { transform: translateX(18px); }
-    .switch input:disabled + .slider { background-color: #e0e0e0; cursor: not-allowed; }
-
-    .cookie-modal-footer { display: flex; justify-content: center; gap: 0.5rem; font-size: 0.65rem; color: #888; }
-    .cookie-modal-footer button, .cookie-modal-footer a { background: none; border: none; color: #888; font-size: 0.65rem; cursor: pointer; text-decoration: none; font-family: inherit; padding: 0; }
-    .cookie-modal-footer button:hover, .cookie-modal-footer a:hover { text-decoration: underline; color: #000; }
   </style>
 </head>
 <body>
@@ -279,8 +209,8 @@
   <div class="container">
     
     <header>
-      <img src="og-share.jpg" alt="FLOWZ" class="profile-img"/>
-      <img src="logo.png" alt="FLOWZ" class="profile-logo"/>
+      <img src="assets/og-share.jpg" alt="FLOWZ" class="profile-img"/>
+      <img src="assets/logo.png" alt="FLOWZ" class="profile-logo"/>
       <div class="subtitle">Drum & Bass Artist from Cologne, Germany</div>
     </header>
 
@@ -288,9 +218,7 @@
       <div class="section-title">Booking Request</div>
       <div class="block-group">
         <a href="https://iamflowz.de/booking" class="card booking-card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
-          </div>
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></div>
           <div class="card-text">
             <div class="card-title">Submit your request here</div>
           </div>
@@ -304,7 +232,7 @@
       <div class="block-group">
         
         <a href="https://soundcloud.com/iamflowz/yearmix-2025" target="_blank" rel="noopener noreferrer" class="card">
-          <img src="cover_yearmix.jpg" alt="Yearmix" class="card-cover"/>
+          <img src="assets/cover_yearmix.jpg" alt="Yearmix" class="card-cover"/>
           <div class="card-text">
             <div class="card-title">Yearmix 2025</div>
           </div>
@@ -312,7 +240,7 @@
         </a>
 
         <a href="https://www.youtube.com/watch?v=gU0MKgpUH-E" target="_blank" rel="noopener noreferrer" class="card">
-          <img src="cover_subvoid.jpg" alt="Subvoid" class="card-cover"/>
+          <img src="assets/cover_subvoid.jpg" alt="Subvoid" class="card-cover"/>
           <div class="card-text">
             <div class="card-title">Subvoid Agency Showcase Night Liveset</div>
           </div>
@@ -320,7 +248,7 @@
         </a>
 
         <a href="https://www.youtube.com/watch?v=KE9rXPWRyV0" target="_blank" rel="noopener noreferrer" class="card">
-          <img src="cover_container.jpg" alt="Container" class="card-cover"/>
+          <img src="assets/cover_container.jpg" alt="Container" class="card-cover"/>
           <div class="card-text">
             <div class="card-title">Container Rave Liveset</div>
           </div>
@@ -328,7 +256,7 @@
         </a>
 
         <a href="https://www.youtube.com/watch?v=hnrPO8uTtQs" target="_blank" rel="noopener noreferrer" class="card">
-          <img src="cover_pollerwiesen.jpg" alt="Pollerwiesen" class="card-cover"/>
+          <img src="assets/cover_pollerwiesen.jpg" alt="Pollerwiesen" class="card-cover"/>
           <div class="card-text">
             <div class="card-title">Pollerwiesen DJ Set</div>
           </div>
@@ -398,154 +326,6 @@
 
   </div>
 
-  <div class="cookie-overlay" id="cookieBanner">
-    <div class="cookie-modal">
-      
-      <div class="cookie-screen active" id="screenMain">
-        <h2>Datenschutzeinstellungen</h2>
-        <div class="cookie-modal-text">
-          Wir nutzen Cookies auf unserer Website. Einige von ihnen sind essenziell, während andere uns helfen, diese Website und Ihre Erfahrung zu verbessern. Wenn Sie unter 16 Jahre alt sind und Ihre Zustimmung zu freiwilligen Diensten geben möchten, müssen Sie Ihre Erziehungsberechtigten um Erlaubnis bitten. Personenbezogene Daten können verarbeitet werden (z. B. IP-Adressen), z. B. für personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen über die Verwendung Ihrer Daten finden Sie in unserer <a href="https://iamflowz.de/datenschutz">Datenschutzerklärung</a>. Sie können Ihre Auswahl jederzeit unter Einstellungen widerrufen oder anpassen.
-        </div>
-        
-        <div class="cookie-checkboxes">
-          <label><input type="checkbox" class="sync-essential" checked disabled> Essenziell</label>
-          <label><input type="checkbox" id="mainExternalCheckbox" class="sync-external"> Externe Medien</label>
-        </div>
-        
-        <div class="cookie-modal-btns">
-          <button class="btn-cookie-modal" id="btnMainAcceptAll">Alle akzeptieren</button>
-          <button class="btn-cookie-modal" id="btnMainSave">Speichern</button>
-          <button class="btn-cookie-modal id-settings-trigger">Individuelle Datenschutzeinstellungen</button>
-        </div>
-        
-        <div class="cookie-modal-footer">
-          <button class="id-settings-trigger">Cookie Details</button> | 
-          <a href="https://iamflowz.de/datenschutz">Datenschutzerklärung</a> | 
-          <a href="https://iamflowz.de/impressum">Impressum</a>
-        </div>
-      </div>
-
-      <div class="cookie-screen" id="screenDetails">
-        <h2>Datenschutzeinstellungen</h2>
-        
-        <div class="cookie-detail-header-row">
-          <div class="cookie-modal-btns-row">
-            <button class="btn-cookie-modal" id="btnDetailAcceptAll">Alle akzeptieren</button>
-            <button class="btn-cookie-modal" id="btnDetailSave">Speichern</button>
-          </div>
-          <span class="btn-back" id="btnBackToMain">Zurück</span>
-        </div>
-
-        <div class="cookie-category-box">
-          <div class="cookie-cat-top">
-            <span class="cookie-cat-title">Essenziell (1)</span>
-            <div class="switch-wrapper">
-              <span>Immer aktiv</span>
-              <label class="switch">
-                <input type="checkbox" checked disabled class="sync-essential">
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-          <p class="cookie-cat-desc">Essenzielle Cookies ermöglichen grundlegende Funktionen und sind für die einwandfreie Funktion der Website erforderlich.</p>
-          <span class="cookie-cat-toggle-link" onclick="toggleDetailsContent('detailsEssential')">Cookie-Informationen anzeigen</span>
-          <div class="cookie-cat-details-content" id="detailsEssential">
-            <strong>Cookie Name:</strong> flowz_session, cookie_essential<br>
-            <strong>Zweck:</strong> Speichert die getroffenen Auswahlen der Privatsphäre-Einstellungen.<br>
-            <strong>Rechtliche Infos:</strong> Sie finden alle Angaben zu verantwortlichen Stellen und Betreibern im <a href="https://iamflowz.de/impressum">Impressum</a> unserer Webseite.
-          </div>
-        </div>
-
-        <div class="cookie-category-box">
-          <div class="cookie-cat-top">
-            <span class="cookie-cat-title">Externe Medien (2)</span>
-            <div class="switch-wrapper">
-              <span id="toggleStatusText">Aus</span>
-              <label class="switch">
-                <input type="checkbox" id="detailExternalSwitch" class="sync-external">
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-          <p class="cookie-cat-desc">Beim Anklicken von Links zu Videoplattformen und Social-Media-Kanälen verlassen Sie diese Seite. Mit der Einwilligung stimmen Sie der Datenverarbeitung bei den externen Diensten zu.</p>
-          <span class="cookie-cat-toggle-link" onclick="toggleDetailsContent('detailsExternal')">Cookie-Informationen anzeigen</span>
-          <div class="cookie-cat-details-content" id="detailsExternal">
-            Beim Aufrufen externer Plattformen gelten die Datenschutzerklärungen der genutzten Anbieter:<br>
-            • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">YouTube (Google) Privacy Policy</a><br>
-            • <a href="https://soundcloud.com/pages/privacy" target="_blank" rel="noopener">SoundCloud Privacy Policy</a><br>
-            • <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener">Spotify Privacy Policy</a>
-          </div>
-        </div>
-
-        <div class="cookie-modal-footer" style="margin-top: 1.5rem;">
-          <a href="https://iamflowz.de/datenschutz">Datenschutzerklärung</a> | <a href="https://iamflowz.de/impressum">Impressum</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    const cookieBanner = document.getElementById('cookieBanner');
-    const screenMain = document.getElementById('screenMain');
-    const screenDetails = document.getElementById('screenDetails');
-    const settingsTriggers = document.querySelectorAll('.id-settings-trigger');
-    const btnBackToMain = document.getElementById('btnBackToMain');
-    const mainExternalCheckbox = document.getElementById('mainExternalCheckbox');
-    const detailExternalSwitch = document.getElementById('detailExternalSwitch');
-    const toggleStatusText = document.getElementById('toggleStatusText');
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if (!localStorage.getItem('cookiesAccepted')) {
-        setTimeout(() => { cookieBanner.classList.add('show'); }, 500);
-      }
-    });
-
-    function toggleDetailsContent(id) {
-      const el = document.getElementById(id);
-      el.classList.toggle('open');
-    }
-
-    settingsTriggers.forEach(t => t.addEventListener('click', (e) => { 
-      e.preventDefault();
-      screenMain.classList.remove('active'); 
-      screenDetails.classList.add('active'); 
-    }));
-    btnBackToMain.addEventListener('click', () => { 
-      screenDetails.classList.remove('active'); 
-      screenMain.classList.add('active'); 
-    });
-
-    mainExternalCheckbox.addEventListener('change', (e) => { 
-      detailExternalSwitch.checked = e.target.checked; 
-      toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
-    });
-    detailExternalSwitch.addEventListener('change', (e) => { 
-      mainExternalCheckbox.checked = e.target.checked; 
-      toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
-    });
-
-    function savePreferences(allAccepted, externalAccepted) {
-      localStorage.setItem('cookiesAccepted', 'true');
-      localStorage.setItem('cookie_essential', 'true');
-      localStorage.setItem('cookie_external', (allAccepted || externalAccepted) ? 'true' : 'false');
-      cookieBanner.classList.remove('show');
-    }
-
-    document.getElementById('btnMainAcceptAll').addEventListener('click', () => savePreferences(true, true));
-    document.getElementById('btnMainSave').addEventListener('click', () => savePreferences(false, mainExternalCheckbox.checked));
-    document.getElementById('btnDetailAcceptAll').addEventListener('click', () => savePreferences(true, true));
-    document.getElementById('btnDetailSave').addEventListener('click', () => savePreferences(false, detailExternalSwitch.checked));
-
-    window.reopenCookieBanner = function() {
-      const isExternalAllowed = localStorage.getItem('cookie_external') === 'true';
-      mainExternalCheckbox.checked = isExternalAllowed;
-      detailExternalSwitch.checked = isExternalAllowed;
-      toggleStatusText.textContent = isExternalAllowed ? "An" : "Aus";
-      screenMain.classList.remove('active'); 
-      screenDetails.classList.add('active'); 
-      cookieBanner.classList.add('show');
-    };
-  </script>
+  <script src="js/cookie-banner.js"></script>
 </body>
 </html>

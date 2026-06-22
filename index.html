@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FLOWZ - Drum & Bass Artist</title>
   
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <link rel="shortcut icon" href="assets/favicon.png"/>
   
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   
   <meta property="og:title" content="FLOWZ - Drum & Bass Artist" />
   <meta property="og:description" content="Drum & Bass artist from Cologne. Discover his latest sets, releases, tour dates, and booking information." />
   <meta property="og:url" content="https://iamflowz.de" />
-  <meta property="og:image" content="https://iamflowz.de/og-share.jpg" />
+  <meta property="og:image" content="https://iamflowz.de/assets/og-share.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="FLOWZ" />
   
@@ -321,7 +321,6 @@
 </head>
 <body>
 
-  <!-- ── NAV ── -->
   <nav>
     <div class="nav-right">
       <ul class="nav-links" id="navLinks">
@@ -351,24 +350,22 @@
     </div>
   </nav>
 
-  <!-- ── HERO ── -->
   <header>
-    <video class="hero-bg" autoplay muted loop playsinline poster="photo_header.jpg">
-      <source src="hero-video.mp4" type="video/mp4">
+    <video class="hero-bg" autoplay muted loop playsinline poster="assets/photo_header.jpg">
+      <source src="assets/hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-content">
-      <img src="logo.png" alt="FLOWZ" class="hero-logo"/>
+      <img src="assets/logo.png" alt="FLOWZ" class="hero-logo"/>
       <a href="#contact" class="btn-red">Booking Inquiry</a>
     </div>
   </header>
 
-  <!-- ── ABOUT ── -->
   <div class="section" id="about">
     <div class="section-inner">
       <div class="section-num">About FLOWZ</div>
       <div class="about-grid">
         <div class="about-image">
-          <img src="photo-about.jpg" alt="FLOWZ – Drum & Bass Artist from Cologne"/>
+          <img src="assets/photo-about.jpg" alt="FLOWZ – Drum & Bass Artist from Cologne"/>
         </div>
         <div class="about-text-box">
           <div>
@@ -387,7 +384,6 @@
     </div>
   </div>
 
-  <!-- ── SHOWS ── -->
   <div class="section section-dark" id="shows">
     <div class="section-inner">
       <h1-1>SELECTED SHOWS</h1-1>
@@ -473,7 +469,6 @@
     </div>
   </div>
 
-  <!-- ── KEY FACTS ── -->
   <div class="section">
     <div class="section-inner">
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">KEY FACTS</h2>
@@ -526,7 +521,6 @@
     </div>
   </div>
 
-  <!-- ── SOCIAL LINKS ── -->
   <div class="section section-dark" id="socials">
     <div class="section-inner">
       <h1-1 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 2rem;">SOCIAL LINKS</h1-1>
@@ -541,14 +535,12 @@
     </div>
   </div>
 
-  <!-- ── MUSIC & VIDEO EMBED GRID (Mit Lazy Loading) ── -->
   <div class="section" id="music">
     <div class="section-inner">
       <h2 style="font-size: clamp(2rem, 5vw, 4.5rem); margin-bottom: 0;">LATEST MUSIC & VIDEOS</h2>
       
       <div class="media-grid" style="border-top: 1px solid var(--border); margin-top: 2.5rem; padding-top: 2.5rem;">
         
-        <!-- YouTube Wrapper -->
         <div class="media-video-wrapper">
           <div class="cookie-blocked-placeholder" id="ytPlaceholder">
             <p>Um dieses Video zu sehen, aktivieren Sie bitte "Externe Medien" in den Cookie-Einstellungen.</p>
@@ -558,7 +550,6 @@
         </div>
         
         <div class="media-audio-stack">
-          <!-- SoundCloud Wrapper -->
           <div style="position: relative;">
             <div class="cookie-blocked-placeholder audio-placeholder-box" id="scPlaceholder">
               <p>SoundCloud-Inhalt blockiert. "Externe Medien" aktivieren.</p>
@@ -567,7 +558,6 @@
             <iframe class="cookie-lazy-iframe" width="100%" height="166" scrolling="no" frameborder="no" data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2234722379&color=%23ff5500&auto_play=false"></iframe>
           </div>
           
-          <!-- Spotify Wrapper -->
           <div style="position: relative;">
             <div class="cookie-blocked-placeholder audio-placeholder-box" id="spotPlaceholder" style="min-height: 352px;">
               <p>Spotify Player blockiert. Bitte stimmen Sie externen Medien zu.</p>
@@ -581,7 +571,6 @@
     </div>
   </div>
 
-  <!-- ── BOOKING INQUIRIES ── -->
   <div class="contact-block" id="contact">
     <div class="contact-inner">
       <div>
@@ -601,7 +590,6 @@
     </div>
   </div>
 
-  <!-- ── FOOTER (Mit verknüpftem globalen reopen-Link) ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
@@ -611,9 +599,7 @@
     </p>
   </footer>
 
-  <!-- ── JAVASCRIPT FÜR NAVI & FORMULAR ── -->
   <script>
-    // --- Mobile Navigation Toggle ---
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
@@ -621,7 +607,6 @@
       link.addEventListener('click', () => navLinks.classList.remove('open'));
     });
 
-    // --- Contact Form AJAX ---
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
     const formError   = document.getElementById('formError');
@@ -656,7 +641,6 @@
     });
   </script>
 
-  <!-- ── ZENTRALE COOKIE-BANNER-LOGIK (Erzeugt das Banner & steuert Iframes) ── -->
-  <script src="cookie-banner.js"></script>
+  <script src="js/cookie-banner.js"></script>
 </body>
 </html>

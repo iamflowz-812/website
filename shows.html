@@ -4,8 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FLOWZ - Upcoming Shows</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="shortcut icon" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <link rel="shortcut icon" href="assets/favicon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -28,9 +28,7 @@
       background: var(--dark);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    
     .nav-right { display: flex; align-items: center; gap: 2rem; }
-    
     .nav-back-text {
       font-size: 0.75rem;
       letter-spacing: 0.15em;
@@ -41,7 +39,6 @@
       white-space: nowrap;
     }
     .nav-back-text:hover { color: var(--red); }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-size: 0.75rem;
@@ -60,209 +57,53 @@
     }
     .nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.6); }
 
-    /* ── PAGE HERO ── */
-    .page-hero {
-      background: var(--dark);
-      padding: 9rem 2.5rem 2rem;
-    }
+    .page-hero { background: var(--dark); padding: 9rem 2.5rem 2rem; }
     .page-hero-inner { max-width: 1200px; margin: 0 auto; }
     .page-hero h1 {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(3.5rem, 9vw, 8rem);
-      line-height: 0.92;
-      color: #fff;
-      letter-spacing: 0.02em;
+      font-family: 'Anton', sans-serif; font-size: clamp(3.5rem, 9vw, 8rem); line-height: 0.92; color: #fff; letter-spacing: 0.02em;
     }
-    .hero-sub {
-      margin-top: 1.5rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-    }
+    .hero-sub { margin-top: 1.5rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
 
-    /* ── SHOWS LIST ── */
     .shows-wrap { background: var(--dark); padding-bottom: 6rem; }
     .shows-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
-
     .year-group { margin-top: 2rem; }
-
-    .year-group-label {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 0;
-    }
-    .year-group-label .upcoming {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: #6ee7b7;
-      line-height: 1;
-      user-select: none;
-    }
-    .year-group-label .year-big {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: #fff;
-      line-height: 1;
-      user-select: none;
-    }
+    .year-group-label { display: flex; align-items: baseline; gap: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 0; }
+    .year-group-label .upcoming { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #6ee7b7; line-height: 1; user-select: none; }
+    .year-group-label .year-big { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; line-height: 1; user-select: none; }
 
     .show-row {
-      display: grid;
-      grid-template-columns: 4.5rem 1fr 11rem 5.5rem;
-      align-items: center;
-      gap: 2rem;
-      padding: 1.35rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.055);
-      transition: all 0.15s ease;
-      cursor: default;
+      display: grid; grid-template-columns: 4.5rem 1fr 11rem 5.5rem; align-items: center; gap: 2rem; padding: 1.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.055); transition: all 0.15s ease; cursor: default;
     }
-    .show-row:hover {
-      background: rgba(255,255,255,0.028);
-      padding-left: 1rem;
-      padding-right: 1rem;
-      margin-left: -1rem;
-      margin-right: -1rem;
-    }
-    .show-month {
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      white-space: nowrap;
-    }
-    .show-title {
-      font-family: 'Anton', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      color: #fff;
-      line-height: 1.2;
-    }
-    .show-support {
-      font-size: 0.68rem;
-      color: rgba(255,255,255,0.28);
-      margin-top: 0.18rem;
-      letter-spacing: 0.04em;
-    }
-    .show-city {
-      font-size: 0.67rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-    .show-badge {
-      text-align: right;
-      font-size: 0.58rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--red);
-    }
+    .show-row:hover { background: rgba(255,255,255,0.028); padding-left: 1rem; padding-right: 1rem; margin-left: -1rem; margin-right: -1rem; }
+    .show-month { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); white-space: nowrap; }
+    .show-title { font-family: 'Anton', sans-serif; font-size: 1.1rem; letter-spacing: 0.04em; color: #fff; line-height: 1.2; }
+    .show-support { font-size: 0.68rem; color: rgba(255,255,255,0.28); margin-top: 0.18rem; letter-spacing: 0.04em; }
+    .show-city { font-size: 0.67rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .show-badge { text-align: right; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); }
     .show-badge.upcoming { color: #6ee7b7; }
 
-    /* ── FOOTER ACTIONS ── */
-    .shows-footer {
-      max-width: 1200px;
-      margin: 4rem auto 0;
-      padding: 2rem 2.5rem 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .shows-footer a.back {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+    .shows-footer { max-width: 1200px; margin: 4rem auto 0; padding: 2rem 2.5rem 0; display: flex; justify-content: space-between; align-items: center; }
+    .shows-footer a.back { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
     .shows-footer a.back:hover { color: var(--red); }
-    .btn-red {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      padding: 0.9rem 2rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
+    .btn-red { display: inline-block; background: var(--red); color: #fff; padding: 0.9rem 2rem; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: background 0.2s; }
     .btn-red:hover { background: #c01108; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    footer { background: var(--dark); padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 1rem; }
     footer p, footer a { font-size: 0.7rem; color: rgba(255,255,255,0.2); text-decoration: none; }
     footer a:hover { color: var(--red); }
 
-    /* ── MOBILE ANPASSUNG ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.25rem; justify-content: flex-end; }
-      
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        width: 100%;
-        justify-content: flex-end;
-      }
-      
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: var(--dark);
-        border-top: 1px solid rgba(255,255,255,0.06);
-        padding: 1.5rem 1.25rem;
-        gap: 1.25rem;
-        text-align: center;
-      }
+      .nav-right { display: flex; align-items: center; gap: 1.25rem; width: 100%; justify-content: flex-end; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 1.5rem 1.25rem; gap: 1.25rem; text-align: center; }
       .nav-links.open { display: flex; }
       .nav-toggle { display: flex; }
-      
       .nav-back-text { font-size: 0.7rem; letter-spacing: 0.1em; }
-      
       .page-hero { padding: 7rem 1.25rem 3rem; }
       .shows-inner { padding: 0 1.25rem; }
-      
-      /* Optimiertes Raster für Smartphones */
-      .show-row {
-        grid-template-columns: 5.5rem 1fr;
-        gap: 0.4rem 1rem;
-        padding: 1.5rem 0;
-      }
-      
-      /* Blendet die Stadt linksbündig unter dem Titel ein */
-      .show-city { 
-        display: block; 
-        grid-column: 2; 
-        font-size: 0.7rem;
-        color: rgba(255,255,255,0.5);
-      }
-      
-      /* Blendet das Badge linksbündig unter der Stadt ein */
-      .show-badge { 
-        display: block; 
-        grid-column: 2; 
-        text-align: left; 
-        font-size: 0.65rem;
-        margin-top: 0.1rem;
-      }
-      
+      .show-row { grid-template-columns: 5.5rem 1fr; gap: 0.4rem 1rem; padding: 1.5rem 0; }
+      .show-city { display: block; grid-column: 2; font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+      .show-badge { display: block; grid-column: 2; text-align: left; font-size: 0.65rem; margin-top: 0.1rem; }
       .year-group { margin-top: 3rem; }
       .shows-footer { padding: 2rem 1.25rem 0; flex-direction: column; gap: 1.25rem; text-align: center; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
@@ -296,8 +137,7 @@
   </div>
 
   <div class="shows-wrap">
-    <div class="shows-inner" id="showsContainer">
-      </div>
+    <div class="shows-inner" id="showsContainer"></div>
 
     <div class="shows-footer">
       <a href="/" class="back">← Back Home</a>
@@ -305,38 +145,28 @@
     </div>
   </div>
 
-  <!-- ── FOOTER MIT REOPEN-BUTTON ── -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
       <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.2); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
-      <a href="impressum">Impressum</a>
-      &nbsp;·&nbsp;
-      <a href="datenschutz">Datenschutz</a>
+      <a href="impressum">Impressum</a> · <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
   <script>
-    // Mobil-Menü Steuerung
     const navToggle = document.getElementById('navToggle');
     const navLinks  = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('remove'));
-    });
 
-    // Live-Daten aus der JSON-Datei laden
-    fetch('shows.json')
+    // Pfad zum data-Ordner für die JSON angepasst
+    fetch('data/shows.json')
       .then(response => response.json())
-      .then(data => {
-        renderShows(data);
-      })
+      .then(data => { renderShows(data); })
       .catch(err => console.error("Fehler beim Laden der Shows:", err));
 
     function renderShows(shows) {
       const container = document.getElementById('showsContainer');
       container.innerHTML = '';
-
       const groups = { 'UPCOMING': [] };
 
       shows.forEach(show => {
@@ -357,10 +187,8 @@
 
       sortedKeys.forEach(key => {
         if (groups[key].length === 0) return;
-
         const groupDiv = document.createElement('div');
         groupDiv.className = 'year-group';
-        
         const labelDiv = document.createElement('div');
         labelDiv.className = 'year-group-label';
         
@@ -385,13 +213,11 @@
           `;
           groupDiv.appendChild(row);
         });
-
         container.appendChild(groupDiv);
       });
     }
   </script>
 
-  <!-- ── ZENTRALE COOKIE-BANNER-LOGIK ── -->
-  <script src="cookie-banner.js"></script>
+  <script src="js/cookie-banner.js"></script>
 </body>
 </html>

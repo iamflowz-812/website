@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Impressum – FLOWZ</title>
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -43,13 +43,11 @@
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--red); }
-    .nav-links a { color: rgba(255,255,255,0.5); }
-    .nav-links a:hover { color: var(--red); }
 
     /* ── HERO ── */
     .page-hero {
       background: var(--dark);
-      padding: 8rem 2.5rem 4rem; /* Oberes Padding erhöht gegen den weißen Streifen */
+      padding: 8rem 2.5rem 4rem;
       position: relative;
       overflow: hidden;
     }
@@ -115,8 +113,6 @@
       font-weight: 300;
     }
 
-    .legal-block p:last-child { margin-bottom: 0; }
-
     .legal-block address {
       font-style: normal;
       color: var(--muted);
@@ -145,40 +141,40 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    footer p, footer a {
+    footer p, footer a, footer button {
       font-size: 0.7rem;
       color: rgba(255,255,255,0.25);
       text-decoration: none;
     }
-    footer a:hover { color: var(--red); }
+    footer button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+      vertical-align: baseline;
+    }
+    footer a:hover, footer button:hover { color: var(--red); }
 
-    /* ── MOBILE ── */
     @media (max-width: 768px) {
       nav          { padding: 1rem 1.25rem; justify-content: flex-end; }
-      .page-hero   { padding: 7rem 1.25rem 3rem; } /* Auch mobil angepasst */
+      .page-hero   { padding: 7rem 1.25rem 3rem; }
       .content-wrap { padding: 3rem 1.25rem; }
       footer       { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; }
-      .nav-links {
-        background: var(--dark);
-        border-top: 1px solid rgba(255,255,255,0.08);
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="/" class="nav-back">← Zurück</a>
   </nav>
 
-  <!-- HERO -->
   <div class="page-hero">
     <div class="section-num">Rechtliches</div>
     <h1 class="page-title">IMPRESSUM</h1>
   </div>
 
-  <!-- CONTENT -->
   <div class="content-wrap">
 
     <div class="legal-block">
@@ -225,17 +221,15 @@
 
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 FLOWZ · All rights reserved.</p>
     <p>
-      <button onclick="window.reopenCookieBanner()" style="background:none; border:none; color:rgba(255,255,255,0.25); font-size:0.7rem; cursor:pointer; font-family:inherit; margin-right:5px; padding:0; vertical-align:baseline;">Cookie-Einstellungen</button> · 
+      <button onclick="window.reopenCookieBanner()">Cookie-Einstellungen</button> · 
       <a href="impressum">Impressum</a> · 
       <a href="datenschutz">Datenschutz</a>
     </p>
   </footer>
 
-  <!-- ZENTRALE COOKIE-BANNER-LOGIK -->
-  <script src="cookie-banner.js"></script>
+  <script src="js/cookie-banner.js"></script>
 </body>
 </html>
