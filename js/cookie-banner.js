@@ -34,7 +34,7 @@ const cookieStyles = `
   .cookie-cat-desc { font-size: 0.75rem; line-height: 1.5; color: #555; margin-bottom: 0.5rem; }
   .cookie-cat-toggle-link { font-size: 0.75rem; color: #0044cc; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.25rem; }
   .cookie-cat-toggle-link:hover { text-decoration: underline; }
-  .cookie-cat-details-content { display: none; font-size: 0.7rem; color: #666; background: #eee; padding: 0.75rem; margin-top: 0.5rem; border-left: 2px solid #000; line-height: 1.4; }
+  .cookie-cat-details-content { display: none; font-size: 0.7 crumbs; color: #666; background: #eee; padding: 0.75rem; margin-top: 0.5rem; border-left: 2px solid #000; line-height: 1.4; }
   .cookie-cat-details-content.open { display: block; }
   .cookie-cat-details-content a { color: #0044cc; text-decoration: underline; }
   .switch-wrapper { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #666; }
@@ -124,7 +124,7 @@ const bannerHTML = `
             Hierbei werden Daten an externe Plattformen übermittelt. Die Datenschutzerklärungen der genutzten Dienste finden Sie hier:<br>
             • <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">YouTube (Google) Privacy Policy</a><br>
             • <a href="https://soundcloud.com/pages/privacy" target="_blank" rel="noopener">SoundCloud Privacy Policy</a><br>
-            • <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener">Spotify Privacy Policy</a>
+            • <a href="https://www.spotify.com/de/legal/privacy-policy/" target="_blank" rel="noopener">Spotify Privacy Policy</a>
           </div>
         </div>
         <div class="cookie-modal-footer" style="margin-top: 1.5rem;">
@@ -135,13 +135,11 @@ const bannerHTML = `
   </div>
 `;
 
-// Sobald der DOM bereit ist, initialisieren wir das Banner
 document.addEventListener('DOMContentLoaded', () => {
   const div = document.createElement('div');
   div.innerHTML = bannerHTML;
   document.body.appendChild(div);
 
-  // Elemente holen
   const cookieBanner = document.getElementById('cookieBanner');
   const screenMain = document.getElementById('screenMain');
   const screenDetails = document.getElementById('screenDetails');
@@ -151,21 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const detailExternalSwitch = document.getElementById('detailExternalSwitch');
   const toggleStatusText = document.getElementById('toggleStatusText');
 
-  // Logik zur Prüfung und Status-Erkennung
   window.checkCookieConsent = function() {
     const consent = localStorage.getItem('cookie_external');
     if (consent === 'true') {
       loadExternalContent();
     } else {
       restrictExternalContent();
-      // Wenn noch überhaupt nicht entschieden wurde, zeige den Banner auf jeder Unterseite!
       if (!localStorage.getItem('cookiesAccepted')) {
         setTimeout(() => { cookieBanner.classList.add('show'); }, 500);
       }
     }
   };
 
-  // Akkordeon Umschalter
   document.querySelectorAll('.cookie-cat-toggle-link').forEach(link => {
     link.addEventListener('click', () => {
       const targetId = link.getAttribute('data-target');
@@ -173,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Navigation innerhalb des Banners
   settingsTriggers.forEach(t => t.addEventListener('click', (e) => { 
     e.preventDefault();
     screenMain.classList.remove('active'); 
@@ -184,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     screenMain.classList.add('active'); 
   });
 
-  // Synchronisation der Schalter
   mainExternalCheckbox.addEventListener('change', (e) => { 
     detailExternalSwitch.checked = e.target.checked; 
     toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
@@ -194,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
   });
 
-  // Externe Inhalte freigeben
   function loadExternalContent() {
     document.querySelectorAll('.cookie-blocked-placeholder').forEach(p => p.style.display = 'none');
     document.querySelectorAll('.cookie-lazy-iframe').forEach(iframe => {
@@ -203,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // DSGVO-Konform: Google reCAPTCHA v2 erst nachladen, wenn externe Medien erlaubt sind
     if (!document.getElementById('recaptcha-script')) {
       const script = document.createElement('script');
       script.id = 'recaptcha-script';
@@ -214,17 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Externe Inhalte blockieren
   function restrictExternalContent() {
     document.querySelectorAll('.cookie-blocked-placeholder').forEach(p => p.style.display = 'flex');
     document.querySelectorAll('.cookie-lazy-iframe').forEach(iframe => { iframe.removeAttribute('src'); });
     
-    // Falls das Script existiert, entfernen wir es wieder (für Opt-Out)
     const script = document.getElementById('recaptcha-script');
     if (script) script.remove();
   }
 
-  // Speicherfunktion
   window.savePreferences = function(allAccepted, externalAccepted) {
     localStorage.setItem('cookiesAccepted', 'true');
     localStorage.setItem('cookie_essential', 'true');
@@ -237,13 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.savePreferences(true, true);
   };
 
-  // Click-Events registrieren
   document.getElementById('btnMainAcceptAll').addEventListener('click', () => window.savePreferences(true, true));
   document.getElementById('btnMainSave').addEventListener('click', () => window.savePreferences(false, mainExternalCheckbox.checked));
   document.getElementById('btnDetailAcceptAll').addEventListener('click', () => window.savePreferences(true, true));
   document.getElementById('btnDetailSave').addEventListener('click', () => window.savePreferences(false, detailExternalSwitch.checked));
 
-  // Globaler Reopen-Trigger für den Footer
   window.reopenCookieBanner = function() {
     const isExternalAllowed = localStorage.getItem('cookie_external') === 'true';
     mainExternalCheckbox.checked = isExternalAllowed;
@@ -254,6 +240,5 @@ document.addEventListener('DOMContentLoaded', () => {
     cookieBanner.classList.add('show');
   };
 
-  // Consent beim Laden ausführen
   window.checkCookieConsent();
 });
