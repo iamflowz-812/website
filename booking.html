@@ -194,8 +194,6 @@
       }
     }
   </style>
-
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -219,6 +217,7 @@
         <input  type="text"  name="event"   placeholder="Event / Venue / Date"/>
         <textarea            name="message" placeholder="Message"                rows="4"></textarea>
 
+        <!-- Google reCAPTCHA v2 Checkbox im Dark-Design -->
         <div class="g-recaptcha" data-sitekey="6Ld_XS0tAAAAAAIs2GjdwNf5xaRuRIoWf0GU-5pR" data-theme="dark" style="margin-bottom: 0.5rem;"></div>
 
         <button type="submit" class="form-submit">Send Inquiry</button>
@@ -247,7 +246,17 @@
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Captcha-Validierung abfragen vor dem Versenden
+      // Prüfen ob reCAPTCHA geladen und gelöst wurde
+      if (typeof grecaptcha === 'undefined' || !grecaptcha.getResponse) {
+        if (typeof window.enableExternalCookiesViaButton === 'function') {
+          window.enableExternalCookiesViaButton();
+          alert('Die Privatsphäre-Einstellungen wurden für das Sicherheits-Captcha aktualisiert. Bitte löse jetzt das erschienene Captcha und klicke erneut auf Senden.');
+        } else {
+          alert('Das Sicherheits-Captcha konnte nicht geladen werden. Bitte lade die Seite neu.');
+        }
+        return;
+      }
+
       const recaptchaResponse = grecaptcha.getResponse();
       if (!recaptchaResponse) {
         alert('Bitte bestätige das Captcha, um die Anfrage zu senden.');
@@ -267,7 +276,7 @@
 
         if (response.ok) {
           contactForm.reset();
-          grecaptcha.reset(); // Setzt das Captcha-Feld zurück
+          grecaptcha.reset(); // Setzt das Captcha zurück
           formSuccess.style.display = 'block';
           formError.style.display   = 'none';
           submitBtn.textContent = 'Sent ✓';
