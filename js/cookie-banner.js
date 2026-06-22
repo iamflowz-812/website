@@ -202,12 +202,26 @@ document.addEventListener('DOMContentLoaded', () => {
         iframe.src = iframe.getAttribute('data-src');
       }
     });
+
+    // DSGVO-Konform: Google reCAPTCHA v2 erst nachladen, wenn externe Medien erlaubt sind
+    if (!document.getElementById('recaptcha-script')) {
+      const script = document.createElement('script');
+      script.id = 'recaptcha-script';
+      script.src = 'https://www.google.com/recaptcha/api.js';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
   }
 
   // Externe Inhalte blockieren
   function restrictExternalContent() {
     document.querySelectorAll('.cookie-blocked-placeholder').forEach(p => p.style.display = 'flex');
     document.querySelectorAll('.cookie-lazy-iframe').forEach(iframe => { iframe.removeAttribute('src'); });
+    
+    // Falls das Script existiert, entfernen wir es wieder (für Opt-Out)
+    const script = document.getElementById('recaptcha-script');
+    if (script) script.remove();
   }
 
   // Speicherfunktion
