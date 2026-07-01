@@ -15,8 +15,8 @@ const cookieStyles = `
   }
   .cookie-modal-text { font-size: 0.75rem; line-height: 1.6; color: #4a4a4a; text-align: justify; margin-bottom: 1.5rem; }
   .cookie-modal-text a { color: #0044cc; text-decoration: underline; }
-  .cookie-checkboxes { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; font-size: 0.8rem; font-weight: 500; }
-  .cookie-checkboxes label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: #1a1a1a; }
+  .cookie-checkboxes { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.8rem; font-weight: 500; flex-wrap: wrap; }
+  .cookie-checkboxes label { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: #1a1a1a; }
   .cookie-checkboxes input[type="checkbox"] { accent-color: #000; width: 15px; height: 15px; }
   .cookie-modal-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
   .btn-cookie-modal {
@@ -34,7 +34,7 @@ const cookieStyles = `
   .cookie-cat-desc { font-size: 0.75rem; line-height: 1.5; color: #555; margin-bottom: 0.5rem; }
   .cookie-cat-toggle-link { font-size: 0.75rem; color: #0044cc; text-decoration: none; cursor: pointer; display: inline-block; margin-top: 0.25rem; }
   .cookie-cat-toggle-link:hover { text-decoration: underline; }
-  .cookie-cat-details-content { display: none; font-size: 0.7 crumbs; color: #666; background: #eee; padding: 0.75rem; margin-top: 0.5rem; border-left: 2px solid #000; line-height: 1.4; }
+  .cookie-cat-details-content { display: none; font-size: 0.75rem; color: #666; background: #eee; padding: 0.75rem; margin-top: 0.5rem; border-left: 2px solid #000; line-height: 1.4; }
   .cookie-cat-details-content.open { display: block; }
   .cookie-cat-details-content a { color: #0044cc; text-decoration: underline; }
   .switch-wrapper { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: #666; }
@@ -65,6 +65,7 @@ const bannerHTML = `
         </div>
         <div class="cookie-checkboxes">
           <label><input type="checkbox" checked disabled> Essenziell</label>
+          <label><input type="checkbox" id="mainAnalyticsCheckbox"> Statistiken</label>
           <label><input type="checkbox" id="mainExternalCheckbox"> Externe Medien</label>
         </div>
         <div class="cookie-modal-btns">
@@ -102,11 +103,32 @@ const bannerHTML = `
           <p class="cookie-cat-desc">Essenzielle Cookies ermöglichen grundlegende Funktionen und sind für die einwandfreie Funktion der Website erforderlich.</p>
           <span class="cookie-cat-toggle-link" data-target="detailsEssential">Cookie-Informationen anzeigen</span>
           <div class="cookie-cat-details-content" id="detailsEssential">
-            <strong>Cookie Name:</strong> flowz_session, cookie_essential<br>
+            <strong>Cookie Name:</strong> flowz_session, cookie_essential, cookiesAccepted<br>
             <strong>Zweck:</strong> Speichert die getroffenen Auswahlen der Privatsphäre-Einstellungen.<br>
             <strong>Rechtliche Infos:</strong> Sie finden alle Angaben zu verantwortlichen Stellen und Betreibern im <a href="impressum">Impressum</a> unserer Webseite.
           </div>
         </div>
+        
+        <div class="cookie-category-box">
+          <div class="cookie-cat-top">
+            <span class="cookie-cat-title">Statistiken / Analyse (1)</span>
+            <div class="switch-wrapper">
+              <span id="toggleAnalyticsStatusText">Aus</span>
+              <label class="switch">
+                <input type="checkbox" id="detailAnalyticsSwitch">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+          <p class="cookie-cat-desc">Statistik-Cookies erfassen Informationen anonymisiert. Diese Informationen helfen uns zu verstehen, wie unsere Besucher unsere Website nutzen.</p>
+          <span class="cookie-cat-toggle-link" data-target="detailsAnalytics">Cookie-Informationen anzeigen</span>
+          <div class="cookie-cat-details-content" id="detailsAnalytics">
+            <strong>Dienst:</strong> Google Analytics (Google Ireland Limited)<br>
+            <strong>Zweck:</strong> Analyse von Website-Traffic und Nutzerverhalten zur Optimierung des Angebots.<br>
+            <strong>Datenschutzerklärung von Google:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>
+          </div>
+        </div>
+
         <div class="cookie-category-box">
           <div class="cookie-cat-top">
             <span class="cookie-cat-title">Externe Medien (2)</span>
@@ -145,19 +167,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const screenDetails = document.getElementById('screenDetails');
   const settingsTriggers = document.querySelectorAll('.id-settings-trigger');
   const btnBackToMain = document.getElementById('btnBackToMain');
+  
   const mainExternalCheckbox = document.getElementById('mainExternalCheckbox');
   const detailExternalSwitch = document.getElementById('detailExternalSwitch');
   const toggleStatusText = document.getElementById('toggleStatusText');
 
+  const mainAnalyticsCheckbox = document.getElementById('mainAnalyticsCheckbox');
+  const detailAnalyticsSwitch = document.getElementById('detailAnalyticsSwitch');
+  const toggleAnalyticsStatusText = document.getElementById('toggleAnalyticsStatusText');
+
   window.checkCookieConsent = function() {
-    const consent = localStorage.getItem('cookie_external');
-    if (consent === 'true') {
+    const externalConsent = localStorage.getItem('cookie_external');
+    const analyticsConsent = localStorage.getItem('cookie_analytics');
+
+    if (externalConsent === 'true') {
       loadExternalContent();
     } else {
       restrictExternalContent();
-      if (!localStorage.getItem('cookiesAccepted')) {
-        setTimeout(() => { cookieBanner.classList.add('show'); }, 500);
-      }
+    }
+
+    if (analyticsConsent === 'true') {
+      loadGoogleAnalytics();
+    }
+
+    if (!localStorage.getItem('cookiesAccepted')) {
+      setTimeout(() => { cookieBanner.classList.add('show'); }, 500);
     }
   };
 
@@ -178,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     screenMain.classList.add('active'); 
   });
 
+  // Event Listener Synchronisation Externe Medien
   mainExternalCheckbox.addEventListener('change', (e) => { 
     detailExternalSwitch.checked = e.target.checked; 
     toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
@@ -186,6 +221,33 @@ document.addEventListener('DOMContentLoaded', () => {
     mainExternalCheckbox.checked = e.target.checked; 
     toggleStatusText.textContent = e.target.checked ? "An" : "Aus"; 
   });
+
+  // Event Listener Synchronisation Analyse / Google Analytics
+  mainAnalyticsCheckbox.addEventListener('change', (e) => {
+    detailAnalyticsSwitch.checked = e.target.checked;
+    toggleAnalyticsStatusText.textContent = e.target.checked ? "An" : "Aus";
+  });
+  detailAnalyticsSwitch.addEventListener('change', (e) => {
+    mainAnalyticsCheckbox.checked = e.target.checked;
+    toggleAnalyticsStatusText.textContent = e.target.checked ? "An" : "Aus";
+  });
+
+  function loadGoogleAnalytics() {
+    if (!document.getElementById('google-analytics-script')) {
+      const script = document.createElement('script');
+      script.id = 'google-analytics-script';
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-9QN1LXRDR6';
+      script.async = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9QN1LXRDR6');
+      };
+    }
+  }
 
   function loadExternalContent() {
     document.querySelectorAll('.cookie-blocked-placeholder').forEach(p => p.style.display = 'none');
@@ -213,28 +275,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (script) script.remove();
   }
 
-  window.savePreferences = function(allAccepted, externalAccepted) {
+  window.savePreferences = function(allAccepted, analyticsAccepted, externalAccepted) {
     localStorage.setItem('cookiesAccepted', 'true');
     localStorage.setItem('cookie_essential', 'true');
-    localStorage.setItem('cookie_external', (allAccepted || externalAccepted) ? 'true' : 'false');
+    localStorage.setItem('cookie_analytics', allAccepted ? 'true' : (analyticsAccepted ? 'true' : 'false'));
+    localStorage.setItem('cookie_external', allAccepted ? 'true' : (externalAccepted ? 'true' : 'false'));
     cookieBanner.classList.remove('show');
     window.checkCookieConsent();
   };
 
   window.enableExternalCookiesViaButton = function() {
-    window.savePreferences(true, true);
+    // Falls Captcha erzwungen wird, akzeptieren wir beide Cookie-Gruppen
+    window.savePreferences(true, true, true);
   };
 
-  document.getElementById('btnMainAcceptAll').addEventListener('click', () => window.savePreferences(true, true));
-  document.getElementById('btnMainSave').addEventListener('click', () => window.savePreferences(false, mainExternalCheckbox.checked));
-  document.getElementById('btnDetailAcceptAll').addEventListener('click', () => window.savePreferences(true, true));
-  document.getElementById('btnDetailSave').addEventListener('click', () => window.savePreferences(false, detailExternalSwitch.checked));
+  document.getElementById('btnMainAcceptAll').addEventListener('click', () => window.savePreferences(true, true, true));
+  document.getElementById('btnMainSave').addEventListener('click', () => window.savePreferences(false, mainAnalyticsCheckbox.checked, mainExternalCheckbox.checked));
+  document.getElementById('btnDetailAcceptAll').addEventListener('click', () => window.savePreferences(true, true, true));
+  document.getElementById('btnDetailSave').addEventListener('click', () => window.savePreferences(false, detailAnalyticsSwitch.checked, detailExternalSwitch.checked));
 
   window.reopenCookieBanner = function() {
     const isExternalAllowed = localStorage.getItem('cookie_external') === 'true';
+    const isAnalyticsAllowed = localStorage.getItem('cookie_analytics') === 'true';
+    
     mainExternalCheckbox.checked = isExternalAllowed;
     detailExternalSwitch.checked = isExternalAllowed;
     toggleStatusText.textContent = isExternalAllowed ? "An" : "Aus";
+
+    mainAnalyticsCheckbox.checked = isAnalyticsAllowed;
+    detailAnalyticsSwitch.checked = isAnalyticsAllowed;
+    toggleAnalyticsStatusText.textContent = isAnalyticsAllowed ? "An" : "Aus";
+
     screenMain.classList.remove('active'); 
     screenDetails.classList.add('active'); 
     cookieBanner.classList.add('show');
